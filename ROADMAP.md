@@ -66,13 +66,19 @@ Phase 7    Portfolio projects           ░░░░░░░░░░░░
 
 Ye phase nahi hai — **saath-saath chalega**. Har job ki pehli sharat hai.
 
-- [ ] `git init`, `add`, `commit`, `status`, `log`
-- [ ] GitHub account + repo banana, `push`
+- [x] `git init`, `add`, `commit`, `status`, `log`
+- [x] GitHub account + repo banana, `push` → **github.com/jayesh9969/python-learning**
 - [ ] `.gitignore`
 - [ ] branch, merge
 - [ ] README likhna
 
-**Aaj hi karo:** `python-learning` folder ko git repo banao aur GitHub par daal do. Roz ka kaam commit karte jao — 4 mahine baad ye tumhara sabse bada proof hoga.
+**Roz ki 3 commands:**
+```
+git add .
+git commit -m "kya kiya wo likho"
+git push
+```
+Confuse ho jao to `git status` — wo `print()` ki tarah batata hai kya ho raha hai.
 
 ---
 
