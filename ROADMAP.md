@@ -68,9 +68,9 @@ Ye phase nahi hai — **saath-saath chalega**. Har job ki pehli sharat hai.
 
 - [x] `git init`, `add`, `commit`, `status`, `log`
 - [x] GitHub account + repo banana, `push` → **github.com/jayesh9969/python-learning**
+- [x] README likhna (Markdown)
 - [ ] `.gitignore`
 - [ ] branch, merge
-- [ ] README likhna
 
 **Roz ki 3 commands:**
 ```
