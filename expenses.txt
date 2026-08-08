@@ -1,0 +1,5 @@
+chai,20
+pizza,450
+auto,80
+recharge,239
+sabzi,120

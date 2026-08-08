@@ -19,3 +19,14 @@ with open("users.txt") as f:
             f.write(f"{ask_username}\n")
 
         print("sign up successfull")  
+
+
+def view_expenses():
+    with open("expenses.txt", "r") as f:
+        for line in f:
+            parts = line.split(",")
+            name = parts[0]
+            amount = parts[1].strip()
+            print(f"{name} - Rupees {amount}")
+
+view_expenses()
