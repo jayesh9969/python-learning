@@ -55,7 +55,8 @@ Phase 7    Portfolio projects           ░░░░░░░░░░░░
 - [x] dictionaries, list-of-dicts — `day07.py`
 - [x] try / except — `day08.py`
 - [x] file padhna + list comprehension — `day09.py`
-- [ ] file mein likhna
+- [x] file mein likhna (`"w"` vs `"a"`, `.write()`) — `practice02.py` signup system
+- [x] `for / else` — khud khoja
 - [ ] chhota project jisme sab jude
 
 **Checkpoint:** File padho → list banao → total, average, max, min. Sab bina dekhe.
@@ -267,7 +268,7 @@ Syntax bhoolna bilkul normal hai (`.append()`, `sorted(x, reverse=True)` — dek
 
 ## Toolkit ab tak
 
-`variables` · `loops` · `if/else` · `functions` · `file reading` · `try/except` · `comprehension`
+`variables` · `loops` · `if/else` · `functions` · `file read` · `file write` · `try/except` · `comprehension` · `for/else`
 
 ---
 
