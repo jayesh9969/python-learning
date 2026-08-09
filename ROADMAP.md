@@ -10,9 +10,9 @@
 ## Progress
 
 ```
-Phase 0    Python core                  ████████████░  ~90%   ← ABHI YAHAN
+Phase 0    Python core                  █████████████  100% ✅
 Parallel   Git + GitHub                 ░░░░░░░░░░░░   ← AAJ SE SHURU
-Phase 1    NumPy                        ░░░░░░░░░░░░
+Phase 1    NumPy                        ░░░░░░░░░░░░   ← ABHI YAHAN
 Phase 1.5  Math for ML (stats + LA)     ░░░░░░░░░░░░
 Phase 2    Pandas + SQL + Matplotlib    ░░░░░░░░░░░░
 Phase 3    ML basics (pehla model)      ░░░░░░░░░░░░
@@ -57,7 +57,7 @@ Phase 7    Portfolio projects           ░░░░░░░░░░░░
 - [x] file padhna + list comprehension — `day09.py`
 - [x] file mein likhna (`"w"` vs `"a"`, `.write()`) — `practice02.py` signup system
 - [x] `for / else` — khud khoja
-- [ ] chhota project jisme sab jude
+- [x] chhota project — `expense_tracker.py` (view / summary / add / menu)
 
 **Checkpoint:** File padho → list banao → total, average, max, min. Sab bina dekhe.
 
@@ -146,6 +146,19 @@ Ratna nahi hai — **feel** aana chahiye. Interview mein bhi aata hai.
 
 **Kis app jaisa:** Kisi bhi company ka data dashboard.
 **Checkpoint:** CSV load karke safai + SQL se wahi jawab nikalna.
+
+---
+
+## Phase 2.5 — OOP + Python extras (2 hafte)
+
+ML mein OOP zyadatar **use** hoti hai, likhni kam padti hai. Utni hi seekho jitni PyTorch aur sklearn ke liye chahiye.
+
+- [ ] class, object, `__init__`, methods, `self`
+- [ ] inheritance — sirf itna jitna `class MyModel(nn.Module)` ke liye chahiye
+- [ ] lambda — pandas mein har jagah milega
+- [ ] tuples aur sets
+- [ ] modules aur imports — code ko kai files mein baantna
+- [ ] decorators — halka sa (`@app.get` FastAPI mein milega)
 
 ---
 

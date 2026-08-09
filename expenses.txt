@@ -3,3 +3,8 @@ pizza,450
 auto,80
 recharge,239
 sabzi,120
+coffee,50
+shoes,1000
+samosa,40
+clothing,2000
+book,300
