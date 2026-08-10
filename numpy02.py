@@ -29,11 +29,26 @@ for i in range(len(subjects)):
 
 
 print(avg)
-
-
-
-
 print(sub_avg)
+
+print(f"kabir ka row {marks[2]}")
+print(f"second subjects all marks {marks[:, 1]}")
+
+print("pehlo do students ke pehle do subjects\n", marks[0:2, 0:2])
+
+
+bonus = [5, 0, 10]
+
+diff = marks - marks.mean(axis=0)
+
+print(diff)
+
+sub_std = marks.std(axis=0)
+for i in range(len(subjects)):
+    print(f"{subjects[i]} ka standard deviation {sub_std[i] :.1f}")
+
+
+
 
 
 

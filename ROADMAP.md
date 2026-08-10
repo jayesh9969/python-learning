@@ -95,11 +95,14 @@ Confuse ho jao to `git status` — wo `print()` ki tarah batata hai kya ho raha 
 
 ## Phase 1 — NumPy (1.5-2 hafte)
 
-- [ ] array banana, list se farak
-- [ ] vectorization — poori list par ek saath hisaab, **bina loop**
-- [ ] indexing, slicing, boolean masking
+- [x] array banana, list se farak — `numpy01.py`
+- [x] vectorization — poori list par ek saath hisaab, **bina loop**
+- [x] boolean masking (filtering) — `amounts[amounts > 100]`
+- [x] `sum`, `mean`, `max`, `min`, `argmax`
+- [x] 2D arrays — `.shape`, `marks[row, col]`, `axis=0` / `axis=1` — `numpy02.py`
+- [ ] slicing (2D)
 - [ ] broadcasting
-- [ ] `mean`, `sum`, `std`, `argmax`, `reshape`
+- [ ] `reshape`, `std`
 
 **Kis app jaisa:** Photo = numbers ka grid. Instagram filter = us grid par maths.
 **Checkpoint:** NumPy array par bina loop ke hisaab.
