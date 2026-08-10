@@ -48,6 +48,15 @@ for i in range(len(subjects)):
     print(f"{subjects[i]} ka standard deviation {sub_std[i] :.1f}")
 
 
+nums = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+
+reshaping = nums.reshape(3, 4)
+print(reshaping)
+print(nums.shape)
+print(reshaping.shape)
+
+
+
 
 
 

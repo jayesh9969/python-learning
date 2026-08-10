@@ -12,8 +12,8 @@
 ```
 Phase 0    Python core                  █████████████  100% ✅
 Parallel   Git + GitHub                 ░░░░░░░░░░░░   ← AAJ SE SHURU
-Phase 1    NumPy                        ░░░░░░░░░░░░   ← ABHI YAHAN
-Phase 1.5  Math for ML (stats + LA)     ░░░░░░░░░░░░
+Phase 1    NumPy                        █████████████  100% ✅
+Phase 1.5  Math for ML (stats + LA)     ░░░░░░░░░░░░   ← ABHI YAHAN
 Phase 2    Pandas + SQL + Matplotlib    ░░░░░░░░░░░░
 Phase 3    ML basics (pehla model)      ░░░░░░░░░░░░
 Phase 3.5  Deployment (FastAPI+Docker)  ░░░░░░░░░░░░   ← "Engineer" wala hissa
@@ -100,9 +100,9 @@ Confuse ho jao to `git status` — wo `print()` ki tarah batata hai kya ho raha 
 - [x] boolean masking (filtering) — `amounts[amounts > 100]`
 - [x] `sum`, `mean`, `max`, `min`, `argmax`
 - [x] 2D arrays — `.shape`, `marks[row, col]`, `axis=0` / `axis=1` — `numpy02.py`
-- [ ] slicing (2D)
-- [ ] broadcasting
-- [ ] `reshape`, `std`
+- [x] slicing (2D) — `marks[:, 0]`, `marks[0:2, 0:2]`
+- [x] broadcasting — chhoti array poore table par
+- [x] `std`, `reshape`, `size`
 
 **Kis app jaisa:** Photo = numbers ka grid. Instagram filter = us grid par maths.
 **Checkpoint:** NumPy array par bina loop ke hisaab.
