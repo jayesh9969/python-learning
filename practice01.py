@@ -79,4 +79,16 @@ def top_post(posts):
 
 print(top_post(posts))
 
-      
+def low_likes_post(posts):
+    caption = posts[0]["caption"]
+    likes = posts[0]["likes"]
+
+    for p in posts:
+       m = p["likes"]
+       if m < likes:
+          likes = m
+          caption = p["caption"]
+    return caption
+print(low_likes_post(posts))
+
+    

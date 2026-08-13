@@ -64,6 +64,8 @@ marks = [78, 42, 90, 35]
 pass_marks = [m for m in marks if m >= 50]
 
 print(pass_marks)
+
+
       
 
     

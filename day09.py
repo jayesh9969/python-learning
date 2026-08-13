@@ -8,18 +8,17 @@ with open("marks.txt") as m:
 
 total = 0
 count = 0
-with open("marks.txt") as m:
-    for line in m:
-        total = total + int(line)
-        count = count + 1
-        avg = total / count
+# with open("marks.txt") as m:
+#     for line in m:
+#         total = total + int(line)
+#         count = count + 1
+#         avg = total / count
 
 
-    print(f"Total: {total}")
-    print(f"Average: {avg :.1f}")
-    print(f"Sabse bada: {max(marks)}")
-    print(f"Sabse chhota: {min(marks)}")
-
+#     print(f"Total: {total}")
+#     print(f"Average: {avg :.1f}")
+#     print(f"Sabse bada: {max(marks)}")
+#     print(f"Sabse chhota: {min(marks)}")
 
 
 

@@ -284,7 +284,11 @@ Syntax bhoolna bilkul normal hai (`.append()`, `sorted(x, reverse=True)` — dek
 
 ## Toolkit ab tak
 
-`variables` · `loops` · `if/else` · `functions` · `file read` · `file write` · `try/except` · `comprehension` · `for/else`
+**Python:** `variables` · `loops` · `if/else` · `functions` · `file read` · `file write` · `try/except` · `comprehension` · `for/else`
+
+**NumPy:** `np.array` · vectorization · boolean filtering · `sum` `mean` `max` `min` `std` · `argmax` · `size` `shape` `reshape` · 2D indexing `[row, col]` · slicing `[:, 0]` · `axis=0` / `axis=1` · broadcasting · `np.abs` · `np.round` · `np.sort`
+
+**Stats:** `np.median` · outlier detection with std · `np.corrcoef`
 
 ---
 
