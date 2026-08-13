@@ -34,4 +34,13 @@ print((age - age.min()) / (age.max() - age.min()))
 print((salary - salary.min()) / (salary.max() - salary.min()))
 
 
+qty   = np.array([2, 1, 3, 1])
+price = np.array([200, 40, 90, 150])
+
+#bill_total = (qty * price).sum()
+total_bill = np.dot(qty, price)
+
+#print(bill_total)
+print(total_bill)
+
 

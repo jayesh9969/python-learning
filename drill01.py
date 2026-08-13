@@ -1,4 +1,4 @@
-
+import numpy as np
 
 students = [
     {"name": "Aarav", "marks": [78, 85, 92]},
@@ -31,6 +31,11 @@ for c in chats:
     kul_msg = sum(c["messages"])
 
     print(f"{c['naam']} - {kul_msg}")
+
+
+
+
+
 
 
 
