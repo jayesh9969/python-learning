@@ -1,5 +1,6 @@
 import numpy as np
 
+
 marks = np.array([78, 85, 92, 88, 5])
 
 print(f" mean {marks.mean()}\n median {np.median(marks)}")
@@ -42,5 +43,42 @@ total_bill = np.dot(qty, price)
 
 #print(bill_total)
 print(total_bill)
+
+
+
+marks = np.array([[80, 60, 90], [70, 85, 75], [95, 50, 88]])
+wazan = np.array([0.5, 0.3, 0.2])
+
+
+
+    
+
+final_marks = np.dot(marks, wazan)
+
+
+print(f"final marks of three students {final_marks}")
+
+
+
+sizes = np.array(['M','L','M','S','M','L','M'])
+
+vals, counts = np.unique(sizes, return_counts=True)
+position = counts.argmax()
+
+print(f"{vals[position]}")
+
+
+
+on_time = np.array([1, 0, 1, 1, 0, 1, 0, 0, 1, 1])
+
+
+count1 = on_time[on_time ==1]
+prob = len(count1) / len(on_time) 
+
+print(prob)
+
+
+
+
 
 

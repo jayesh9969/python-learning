@@ -11,10 +11,10 @@
 
 ```
 Phase 0    Python core                  █████████████  100% ✅
-Parallel   Git + GitHub                 ░░░░░░░░░░░░   ← AAJ SE SHURU
+Parallel   Git + GitHub                 ████████░░░░   basics ho gaye
 Phase 1    NumPy                        █████████████  100% ✅
-Phase 1.5  Math for ML (stats + LA)     ░░░░░░░░░░░░   ← ABHI YAHAN
-Phase 2    Pandas + SQL + Matplotlib    ░░░░░░░░░░░░
+Phase 1.5  Math for ML (stats + LA)     █████████████  100% ✅
+Phase 2    Pandas + SQL + Matplotlib    ░░░░░░░░░░░░   ← ABHI YAHAN
 Phase 3    ML basics (pehla model)      ░░░░░░░░░░░░
 Phase 3.5  Deployment (FastAPI+Docker)  ░░░░░░░░░░░░   ← "Engineer" wala hissa
 Phase 4    Classification               ░░░░░░░░░░░░
@@ -44,7 +44,7 @@ Phase 7    Portfolio projects           ░░░░░░░░░░░░
 
 ---
 
-## Phase 0 — Python core (~2-3 din baaki)
+## Phase 0 — Python core ✅
 
 - [x] variables, types, f-string — `day01.py`
 - [x] input, type conversion, if/elif/else — `day02.py`
@@ -63,7 +63,7 @@ Phase 7    Portfolio projects           ░░░░░░░░░░░░
 
 ---
 
-## Parallel Track — Git + GitHub (AAJ se, roz 15 min)
+## Parallel Track — Git + GitHub
 
 Ye phase nahi hai — **saath-saath chalega**. Har job ki pehli sharat hai.
 
@@ -114,16 +114,18 @@ Confuse ho jao to `git status` — wo `print()` ki tarah batata hai kya ho raha 
 Ratna nahi hai — **feel** aana chahiye. Interview mein bhi aata hai.
 
 **Statistics:**
-- [ ] mean, median, mode, variance, standard deviation
-- [ ] distribution, normal curve, outliers
-- [ ] correlation vs causation
-- [ ] probability basics
+- [x] mean, median, standard deviation — `math01.py`
+- [x] outliers — `(x - mean) / std`, 2 se zyada matlab shak
+- [x] correlation vs causation — `np.corrcoef(a, b)[0, 1]`
+- [x] normalization — sab ko 0 se 1 ke beech laana
+- [x] mode (`np.unique(..., return_counts=True)` + `argmax`), variance (`std` ka square)
+- [x] probability basics — jo chahiye ÷ kul, filtering + `len` se
 
 **Linear algebra (sirf itna):**
-- [ ] vector, matrix
-- [ ] dot product — *ye poore neural net ka dil hai*
-- [ ] matrix multiplication
-- [ ] "shape" ka matlab — `(100, 3)` kya kehta hai
+- [x] vector — ek array hi vector hai
+- [x] dot product — *ye poore neural net ka dil hai*. Kirana bill = dot product
+- [x] "shape" ka matlab — `(100, 3)` kya kehta hai
+- [x] matrix multiplication — `np.dot(table, weights)`, teen grahak ke bill ek saath. Shape rule: table ke columns = doosri array ki lambai
 
 ---
 
