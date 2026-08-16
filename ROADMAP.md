@@ -1,305 +1,111 @@
-# Python → AI/ML Engineer Roadmap
+# Roadmap — Full-Stack AI App Builder
 
-**Goal:** Entry-level **AI/ML Engineer** — aisa model banana jo data se khud seekhe, *aur* usko chalta hua product banana.
+*Teaching rules: `CLAUDE.md` · Meri notes: `NOTES.md`*
 
-**Rhythm:** Roz **3 ghante** (structure niche diya hai) · har teesre din revision-heavy · hafte mein 1 din chhutti
-**Total estimate:** ~3.5-4.5 mahine
-
----
-
-## Progress
-
-```
-Phase 0    Python core                  █████████████  100% ✅
-Parallel   Git + GitHub                 ████████░░░░   basics ho gaye
-Phase 1    NumPy                        █████████████  100% ✅
-Phase 1.5  Math for ML (stats + LA)     █████████████  100% ✅
-Phase 2    Pandas + SQL + Matplotlib    ░░░░░░░░░░░░   ← ABHI YAHAN
-Phase 3    ML basics (pehla model)      ░░░░░░░░░░░░
-Phase 3.5  Deployment (FastAPI+Docker)  ░░░░░░░░░░░░   ← "Engineer" wala hissa
-Phase 4    Classification               ░░░░░░░░░░░░
-Phase 5    Neural Nets + PyTorch        ░░░░░░░░░░░░
-Phase 6    LLM + RAG                    ░░░░░░░░░░░░
-Phase 7    Portfolio projects           ░░░░░░░░░░░░
-```
+**Position:** Full-Stack AI App Builder. **Not** junior ML engineer.
+**Target:** remote/freelance AI work for international clients, phir AI Engineer role at a startup.
 
 ---
 
-## Daily routine — 3 ghante
+## Ho chuka ✅
 
-| Time | Kaam |
-|---|---|
-| 20 min | **Revision** — purana exercise, khaali file se, bina dekhe |
-| 40 min | **Naya concept** — samajhna, chhote examples chalana |
-| 15 min | ☕ **Break** (skip mat karna) |
-| 60 min | **Problems** — naye concept ke 3-5 problems |
-| 15 min | ☕ **Break** |
-| 45 min | **Project work** — chal raha project ya bada problem |
-
-**Zaroori niyam:**
-- 3 ghante mein **sirf 40 min naya concept**. Baaki practice hai. 3 ghante naya seekhne se dimag jam jaata hai
-- Break sach mein lena — screen se hatke
-- Har **teesra din**: naya concept skip, poora time revision + project
-- Hafte mein **1 din poori chhutti**. Ye recovery hai, aalas nahi
+- Python fundamentals — loops, if/else, functions, dicts, comprehension, file handling, try/except
+- NumPy + statistics — mean, median, std, z-score, correlation, dot product, matrix multiplication
+- Pandas — DataFrame, read_csv, filter, groupby, sort, merge, missing data, to_csv
+- Projects — CLI expense tracker · LeNet on MNIST
 
 ---
 
-## Phase 0 — Python core ✅
+## Ab ye — isi order mein
 
-- [x] variables, types, f-string — `day01.py`
-- [x] input, type conversion, if/elif/else — `day02.py`
-- [x] for, range, accumulator, while, break — `day03.py`
-- [x] running best (max/min khud se) — `day04.py`
-- [x] functions, parameters, return, scope — `day05.py`
-- [x] lists — index, slicing, append, sorted vs sort — `day06.py`
-- [x] dictionaries, list-of-dicts — `day07.py`
-- [x] try / except — `day08.py`
-- [x] file padhna + list comprehension — `day09.py`
-- [x] file mein likhna (`"w"` vs `"a"`, `.write()`) — `practice02.py` signup system
-- [x] `for / else` — khud khoja
-- [x] chhota project — `expense_tracker.py` (view / summary / add / menu)
+### 1. LLM APIs
+- [ ] Anthropic / OpenAI se pehla call
+- [ ] system prompt vs user prompt, temperature, max_tokens
+- [ ] streaming response
+- [ ] error handling — rate limit, timeout, retry
+- [ ] token counting aur cost
 
-**Checkpoint:** File padho → list banao → total, average, max, min. Sab bina dekhe.
+### 1.5 SQL — Phase 2 se pehle khatam karo
+pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoora rahega.
 
----
+- [x] `SELECT`, `FROM`, `WHERE`
+- [x] `GROUP BY` + `AVG` / `COUNT` / `SUM`
+- [x] `ORDER BY`, `LIMIT` — `sql01.py`
+- [x] `JOIN` — inner aur left — `sql01.py`
+- [x] Python se connect — `sqlite3` + `pd.read_sql`
+- [ ] Supabase se connect (Phase 2 ke saath)
 
-## Parallel Track — Git + GitHub
+### 2. Embeddings + Vector DB
+- [ ] embedding kya hai — text se numbers
+- [ ] similarity search (cosine)
+- [ ] Chroma ya pgvector (Supabase pehle se aata hai)
+- [ ] store, query, metadata filter
 
-Ye phase nahi hai — **saath-saath chalega**. Har job ki pehli sharat hai.
+### 3. RAG — scratch se, bina framework
+- [ ] chunking — size, overlap, kahan todna
+- [ ] indexing pipeline
+- [ ] retrieval + re-ranking
+- [ ] grounded generation, citations
+- [ ] hallucination kab hoti hai aur kyun
 
-- [x] `git init`, `add`, `commit`, `status`, `log`
-- [x] GitHub account + repo banana, `push` → **github.com/jayesh9969/python-learning**
-- [x] README likhna (Markdown)
-- [ ] `.gitignore`
-- [ ] branch, merge
+> **No LangChain, no LlamaIndex** jab tak raw pipeline khud na ban jaye. Framework baad mein, samajhne ke baad.
 
-**Roz ki 3 commands:**
-```
-git add .
-git commit -m "kya kiya wo likho"
-git push
-```
-Confuse ho jao to `git status` — wo `print()` ki tarah batata hai kya ho raha hai.
+### 4. Deployment
+- [ ] FastAPI — endpoints, request/response models
+- [ ] Docker — Dockerfile, image, container
+- [ ] live hosting (Render / Railway / Fly)
+- [ ] environment variables, secrets
 
----
+### 5. Evaluation & Observability
+- [ ] Langfuse ya Logfire
+- [ ] tracing — har step ka record
+- [ ] retrieval accuracy naapna
+- [ ] latency aur cost tracking
 
-## Parallel Track — Python engineering (Phase 1 ke saath)
+### 6. n8n automation
+- [ ] workflows, triggers
+- [ ] apne API ko n8n se jodna
 
-- [ ] virtual environment (`venv`)
-- [ ] `requirements.txt`
-- [ ] code ko alag files/modules mein baantna, `import`
-- [ ] `if __name__ == "__main__":`
-- [ ] basic testing (`pytest`) — thoda sa
-
----
-
-## Phase 1 — NumPy (1.5-2 hafte)
-
-- [x] array banana, list se farak — `numpy01.py`
-- [x] vectorization — poori list par ek saath hisaab, **bina loop**
-- [x] boolean masking (filtering) — `amounts[amounts > 100]`
-- [x] `sum`, `mean`, `max`, `min`, `argmax`
-- [x] 2D arrays — `.shape`, `marks[row, col]`, `axis=0` / `axis=1` — `numpy02.py`
-- [x] slicing (2D) — `marks[:, 0]`, `marks[0:2, 0:2]`
-- [x] broadcasting — chhoti array poore table par
-- [x] `std`, `reshape`, `size`
-
-**Kis app jaisa:** Photo = numbers ka grid. Instagram filter = us grid par maths.
-**Checkpoint:** NumPy array par bina loop ke hisaab.
+### 7. PyTorch — sabse aakhir, kam priority
+- [ ] tensors, `nn.Module`, training loop
+- [ ] sirf itna ki job description padh ke samajh aaye
 
 ---
 
-## Phase 1.5 — Math for ML (1.5-2 hafte)
+## Abhi skip
 
-Ratna nahi hai — **feel** aana chahiye. Interview mein bhi aata hai.
-
-**Statistics:**
-- [x] mean, median, standard deviation — `math01.py`
-- [x] outliers — `(x - mean) / std`, 2 se zyada matlab shak
-- [x] correlation vs causation — `np.corrcoef(a, b)[0, 1]`
-- [x] normalization — sab ko 0 se 1 ke beech laana
-- [x] mode (`np.unique(..., return_counts=True)` + `argmax`), variance (`std` ka square)
-- [x] probability basics — jo chahiye ÷ kul, filtering + `len` se
-
-**Linear algebra (sirf itna):**
-- [x] vector — ek array hi vector hai
-- [x] dot product — *ye poore neural net ka dil hai*. Kirana bill = dot product
-- [x] "shape" ka matlab — `(100, 3)` kya kehta hai
-- [x] matrix multiplication — `np.dot(table, weights)`, teen grahak ke bill ek saath. Shape rule: table ke columns = doosri array ki lambai
+Deep ML theory · scratch se model training · Kaggle · LeetCode · certifications · OOP/classes · recursion/algorithms
 
 ---
 
-## Phase 2 — Pandas + SQL + Matplotlib (2-3 hafte)
+## Projects
 
-**Pandas:**
-- [ ] `pip install pandas` (abhi installed nahi hai)
-- [ ] DataFrame — Excel jaisi table code se
-- [ ] CSV load, `head`, `info`, `describe`
-- [ ] filter, `groupby`, sorting, merge
-- [ ] missing data ki safai
+2-3, har ek **kisi asli problem ki shakl ka** — generic demo nahi.
 
-**SQL** (90% data jobs mein poochha jata hai):
-- [ ] `SELECT`, `WHERE`, `ORDER BY`, `LIMIT`
-- [ ] `GROUP BY` + aggregate (`COUNT`, `SUM`, `AVG`)
-- [ ] `JOIN` (inner, left)
-- [ ] subquery
-- [ ] Python se database connect karna (`sqlite3`)
+- [ ] **Project 1** — kisi jaan-pehchan wale ki asli problem solve kare
+- [ ] **Project 2**
+- [ ] **Project 3**
 
-**Matplotlib:**
-- [ ] line, bar, scatter, histogram
-- [ ] labels, title, legend
-
-**Kis app jaisa:** Kisi bhi company ka data dashboard.
-**Checkpoint:** CSV load karke safai + SQL se wahi jawab nikalna.
-
----
-
-## Phase 2.5 — OOP + Python extras (2 hafte)
-
-ML mein OOP zyadatar **use** hoti hai, likhni kam padti hai. Utni hi seekho jitni PyTorch aur sklearn ke liye chahiye.
-
-- [ ] class, object, `__init__`, methods, `self`
-- [ ] inheritance — sirf itna jitna `class MyModel(nn.Module)` ke liye chahiye
-- [ ] lambda — pandas mein har jagah milega
-- [ ] tuples aur sets
-- [ ] modules aur imports — code ko kai files mein baantna
-- [ ] decorators — halka sa (`@app.get` FastAPI mein milega)
-
----
-
-## Phase 3 — ML basics · PEHLA MODEL (3-4 hafte)
-
-- [ ] "seekhna" ka matlab kya — loss, gradient descent
-- [ ] linear regression **scratch se** (loop + accumulator se!)
-- [ ] scikit-learn se wahi cheez 3 line mein
-- [ ] train / test split — kyun zaroori hai
-- [ ] overfitting, underfitting
-- [ ] feature engineering, scaling
-- [ ] metrics — MAE, RMSE, R²
-- [ ] cross-validation
-
-**Kis app jaisa:** Ola ka fare estimate, ghar ka daam.
-**Checkpoint:** Ek model train karke accuracy batana + kyun itni aayi, wo samjhana.
-
-> Sabse bada padav yahi hai. Engine wahi hai jo pehle se aata hai — ek loop, ek accumulator, aur "sabse achha kaun" wala muqabla.
-
----
-
-## Phase 3.5 — Deployment (2 hafte) ⭐ Engineer wala hissa
-
-**Yahi cheez Data Scientist aur ML Engineer ko alag karti hai.** Notebook mein model banana kaafi nahi — chalta hua product chahiye.
-
-- [ ] FastAPI basics — endpoint banana
-- [ ] model ko `pickle`/`joblib` se save/load
-- [ ] model ko API ke peeche lagana (`POST /predict`)
-- [ ] input validation + error handling (`try/except` yahin kaam aayega)
-- [ ] Docker basics — `Dockerfile`, image, container
-- [ ] kahin deploy karna (Render / Railway / HuggingFace Spaces — free)
-
-**Checkpoint:** Tumhara model ek **live URL** par chal raha ho jise koi bhi call kar sake.
-
----
-
-## Phase 4 — Classification (2 hafte)
-
-- [ ] logistic regression
-- [ ] decision tree, random forest
-- [ ] confusion matrix, precision / recall / F1
-- [ ] class imbalance
-- [ ] `GridSearchCV` se tuning
-
-**Kis app jaisa:** Gmail ka spam filter, fraud detection.
-
----
-
-## Phase 5 — Neural Nets + PyTorch (3-4 hafte)
-
-- [ ] neuron kya hai, layers, activation
-- [ ] neural net **numpy se scratch**
-- [ ] PyTorch tensors (GPU pe chalte hain)
-- [ ] `nn.Module` — apna model
-- [ ] training loop, optimizer, loss
-- [ ] image classification (CNN basics)
-- [ ] model save / load
-- [ ] transfer learning (pre-trained model use karna)
-
-**Kis app jaisa:** Face unlock, Google Photos ka "ye tumhara dost hai".
-**Note:** Laptop mein `torch 2.5.1+cu121` already hai — CUDA/GPU ready.
-
----
-
-## Phase 6 — LLM + RAG (2-3 hafte) ⭐ Market edge
-
-RAG = ChatGPT ko apni files ka gyaan dena.
-
-- [ ] LLM API se baat karna (Claude / OpenAI)
-- [ ] prompt engineering basics
-- [ ] documents ko chunks mein todna ← *file handling*
-- [ ] embeddings — text ko numbers mein badalna ← *NumPy*
-- [ ] similarity search ← *running-best pattern*
-- [ ] vector database (Chroma / FAISS)
-- [ ] poora RAG pipeline
-- [ ] RAG app ko deploy karna
-
-**Kis app jaisa:** "Apni PDF se baat karo" tools, company ka internal chatbot, coding assistants.
-
-> Abhi market mein LLM/RAG wale log kam hain aur demand zyada. Ye tumhara edge ban sakta hai.
-
----
-
-## Phase 7 — Portfolio (ongoing)
-
-Interview mein yahi dekha jata hai. **3 projects chahiye, teeno deployed:**
-
-- [ ] **Project 1 — Regression:** data → model → API → live URL
-- [ ] **Project 2 — Classification:** proper metrics + analysis
-- [ ] **Project 3 — RAG app:** apne documents par chalne wala chatbot
-- [ ] har project ka saaf README (problem, approach, result, live link)
-- [ ] GitHub profile theek karna
-
----
-
-## Job-ready checklist
-
-- [ ] GitHub par 4+ mahine ka lagataar commit history
-- [ ] 3 deployed projects live URL ke saath
-- [ ] SQL queries bina dekhe likh sakta hoon
-- [ ] Model ko API banake deploy kar sakta hoon
-- [ ] Apne har project ko 5 minute mein samjha sakta hoon
-- [ ] Resume + LinkedIn projects ke saath
-- [ ] Basic DSA (lists, dicts, strings, simple algorithms) — coding round ke liye
-
----
-
-## 6 patterns — ye zabani aane chahiye (~80%)
-
-Syntax bhoolna bilkul normal hai (`.append()`, `sorted(x, reverse=True)` — dekh lo). **Pattern bhoolna** matlab ruko aur dohrao.
-
-1. **accumulator** — `total = 0` bahar, `total = total + x` andar ✅
-2. **counter** — `count = count + 1` ✅
-3. **running best** — do dabbe, `if` ke andar dono saath badlein ✅
-4. **filter** — loop + `if` + `append` ✅
-5. **function** — parameter andar, `return` bahar ✅
-6. **file padhna** — `with open` + loop + `int()` ✅
+Har project: **live deployed + README + demo video.**
 
 ---
 
 ## Toolkit ab tak
 
-**Python:** `variables` · `loops` · `if/else` · `functions` · `file read` · `file write` · `try/except` · `comprehension` · `for/else`
+**Python:** variables · loops · if/else · functions · file read/write · try/except · comprehension · `for/else`
 
-**NumPy:** `np.array` · vectorization · boolean filtering · `sum` `mean` `max` `min` `std` · `argmax` · `size` `shape` `reshape` · 2D indexing `[row, col]` · slicing `[:, 0]` · `axis=0` / `axis=1` · broadcasting · `np.abs` · `np.round` · `np.sort`
+**NumPy:** array · vectorization · boolean filter · `sum` `mean` `max` `min` `std` `argmax` · `shape` `size` `reshape` · 2D indexing · slicing · `axis=0/1` · broadcasting · `np.dot`
 
-**Stats:** `np.median` · outlier detection with std · `np.corrcoef`
+**Stats:** `median` · z-score outliers · `corrcoef` · normalization · mode · probability
+
+**Pandas:** `DataFrame` · `read_csv` `to_csv` · `loc` · filter · `groupby` · `sort_values` · `isnull` `dropna` `fillna` · `merge` · `astype('Int64')`
+
+**Aur:** git/GitHub · SQL basics (`SELECT` `WHERE` `GROUP BY`) · sqlite3
 
 ---
 
-## 3-din wala test
+## Kaam ka tareeka
 
-> **Kya main 3 din baad, khaali file mein, bina kuch dekhe ye likh sakta hoon?**
-
-- **Haan** → aage badho
-- **Nahi, par dekhte hi "arre haan"** → normal, ek baar aur likho
-- **Dekhne ke baad bhi samajh nahi aaya** → ruko, wahi concept dobara
-
-Pehli baar mein ~30% baithta hai. Revision ke baad ~60%. Project mein use karne par ~90%. **Sabke saath aisa hi hota hai.**
+- Roz thoda, lagataar. Naya concept ek session mein ek.
+- Har teesre din revision — purana exercise khaali file se.
+- **3-din wala test:** teen din baad bina dekhe likh paye? Haan matlab aa gaya.
