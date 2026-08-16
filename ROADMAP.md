@@ -19,7 +19,10 @@
 ## Ab ye — isi order mein
 
 ### 1. LLM APIs
-- [ ] Anthropic / OpenAI se pehla call
+
+> Abhi **Gemini free tier** par seekh rahe hain (`google-genai`, model `gemini-flash-lite-latest`). Concepts wahi hain — baad mein Claude/OpenAI par sirf syntax badlega.
+
+- [x] pehla API call — `llm01.py`
 - [ ] system prompt vs user prompt, temperature, max_tokens
 - [ ] streaming response
 - [ ] error handling — rate limit, timeout, retry

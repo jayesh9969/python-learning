@@ -1,16 +1,16 @@
 import pandas as pd
 
-# df = pd.DataFrame({
-#     'naam' : ['Aarav', 'Diya', 'Kabir', 'Meera'],
-#     'city' : ['Delhi', 'Mumbai', 'Delhi', 'Pune'],
-#     'marks' : [78, 55, 90, 83]
-# })
+df = pd.DataFrame({
+    'naam' : ['Aarav', 'Diya', 'Kabir', 'Meera'],
+    'city' : ['Delhi', 'Mumbai', 'Delhi', 'Pune'],
+    'marks' : [78, 55, 90, 83]
+})
 
 
 # print(f"poori table\n{df}")
 # print(f"{df.shape}")
 # print(f"kabir ka row\n{df.loc[2]}")
-# #print(df.loc[:,'marks'])
+# print(df.loc[:,'marks'])
 # print(df['marks'])
 
 df = pd.read_csv('students.csv')
@@ -31,10 +31,10 @@ df = pd.read_csv('students.csv')
 # print(df['marks'].mean())
 # print(df.sort_values('marks').head(3))
 
-att = pd.read_csv('attendance.csv')
+# att = pd.read_csv('attendance.csv')
 
-print(pd.merge(df, att, on='naam', how='left'))
-att1 = att['days_present'].astype('int64')
+# print(pd.merge(df, att, on='naam', how='left'))
+# att1 = att['days_present'].astype('int64')
 
 # att1 = att['days_present'].astype('int64')
 

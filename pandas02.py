@@ -5,7 +5,7 @@ df = pd.read_csv('students_dirty.csv')
 
 
 
-# print(df.dropna())
+print(df.dropna())
 
 # print(df.fillna(df['marks'].median()))
 # print(df['city'].fillna('unknown'))
