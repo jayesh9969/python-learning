@@ -60,3 +60,20 @@
 ## LEFT JOIN sab rows rakhta hai, JOIN sirf matching
 
 ## SELECT * ye pura table de dega isse bacho agar 2 columns chahiye to sirf wahi mango * ye nahi
+
+## LLM API call setup -- kese kare - pehle model ke platform se API key le phir us model ki library pip se install karo. new terminal ex. setx GEMINI_API_KEY "yaha api key dalo" wo environment variable me chali gayi safe key kabhi bhi code me mat likhna. 
+
+## LLM API ko call kese kare -- from google import genai - se librarary ko aur module ko bulao. har ai model ke librarary ka thoda sa alag syntax hota hai. wo syntax ya code model ke documentations se mil jata hai. uske code me pehle model ko bulane ke liye connection banana hota hai, phir model ka id ya naam likhna padta hai, phir ek jagah apna message ya question likhna hota hai "hi" ais quotes me. phir print karke aur program karne par model ka response ya message dikhata hain
+
+## Classifier - model ka output control karne ki koshish - system instruction = guzarish ya vinanti Ek shabd dena." Model zyadatar maanta hai, kabhi Positive likh deta hai, kabhi full stop laga deta hai,
+## Schema = pabandi. Tum API ko pehle hi keh dete ho: "jawab in teen mein se ek hona chahiye, aur kuch ho hi nahi sakta." Ab model ke paas chauthi cheez likhne ka rasta hi nahi bacha. 
+
+## Kya jawab hoga (positive ya negative) — ye model khud tay karta hai. Humne kahin nahi likha ki "thanda matlab naraz". Usne training mein karodon reviews padhe hain aur naraz-khush ka farak khud seekh liya hai. Ismein hamara koi haath nahi.
+
+## Kis shakl mein jawab aayega (ek shabd, chhote akshar) — ye humne kaabu kiya. Yahi system instruction aur .strip().lower() ka kaam tha.
+
+## Yaani: faisla uska, format hamara.
+
+## Dhundhla sawal, dhundhla jawab. System instruction se jawab ka shape kaabu mein aata hai.
+
+## AI ka jawab hamesha saaf karo. .strip().lower() — shape bharosemand hota hai, akshar nahi
