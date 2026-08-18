@@ -23,10 +23,12 @@
 > Abhi **Gemini free tier** par seekh rahe hain (`google-genai`, model `gemini-flash-lite-latest`). Concepts wahi hain — baad mein Claude/OpenAI par sirf syntax badlega.
 
 - [x] pehla API call — `llm01.py`
-- [ ] system prompt vs user prompt, temperature, max_tokens
-- [ ] streaming response
-- [ ] error handling — rate limit, timeout, retry
-- [ ] token counting aur cost
+- [x] system instruction — jawab ka shape kaabu karna
+- [x] structured output — `response_schema` + enum se jawab **pakka** karna (guzarish nahi, pabandi)
+- [x] streaming — `generate_content_stream`, `end=""`, `flush=True`. Pehla shabd 0.9s vs 5.3s
+- [x] error handling — `ClientError` (429/404) vs `ServerError` (503), retry loop + `break` on success
+- [x] token counting — `count_tokens()` pehle, `usage_metadata` baad mein. System instruction har call mein dobara ginta hai
+- [ ] thinking dekhna (`include_thoughts=True`) — model chahiye jo support kare
 
 ### 1.5 SQL — Phase 2 se pehle khatam karo
 pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoora rahega.
@@ -103,7 +105,9 @@ Har project: **live deployed + README + demo video.**
 
 **Pandas:** `DataFrame` · `read_csv` `to_csv` · `loc` · filter · `groupby` · `sort_values` · `isnull` `dropna` `fillna` · `merge` · `astype('Int64')`
 
-**Aur:** git/GitHub · SQL basics (`SELECT` `WHERE` `GROUP BY`) · sqlite3
+**LLM API (Gemini):** `generate_content` · `system_instruction` · `response_schema` + enum · `generate_content_stream` · `ClientError` / `ServerError` + retry · `count_tokens` · `usage_metadata`
+
+**Aur:** git/GitHub · SQL (`SELECT` `WHERE` `GROUP BY` `ORDER BY` `LIMIT` `JOIN`) · sqlite3
 
 ---
 

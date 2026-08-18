@@ -77,3 +77,11 @@
 ## Dhundhla sawal, dhundhla jawab. System instruction se jawab ka shape kaabu mein aata hai.
 
 ## AI ka jawab hamesha saaf karo. .strip().lower() — shape bharosemand hota hai, akshar nahi
+
+## Streaming - jab user se ko wait karna padta hai answer ke liye ex. 20 seconds. tab streaming wait nahi karwata jaise jaise answer banta hai wo answer tukdo me aate jata hai
+
+## ClientError vs ServerError - 400-499 code matlab clienterror hamari taraf ki baat ex 429 limit khatm 404 wrong model or name, servererror 500-599 unki taraf ki baat 503 server busy
+
+## Token counting : estimated token counts karna count_tokens().total_tokens se, actual tokens ka total nikalne ke liye r = usage_metadata.total_token_count se prompt + answer ka total milta hai agar sare ab tak ke prompts + answer ka total chahiye total + r se milta hai
+
+## Token counting me sabhi data ko count kiya jata hai 4 characters = 1 token jaise system_instructions, prompt ya data and answer
