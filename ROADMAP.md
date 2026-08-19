@@ -41,8 +41,8 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 - [ ] Supabase se connect (Phase 2 ke saath)
 
 ### 2. Embeddings + Vector DB
-- [ ] embedding kya hai — text se numbers
-- [ ] similarity search (cosine)
+- [x] embedding kya hai — text se numbers (`embed_content`, 3072 values, norm 1.0)
+- [x] similarity search — `np.dot` (vectors normalized hain to dot hi cosine hai) + `argmax` — `embed01.py`
 - [ ] Chroma ya pgvector (Supabase pehle se aata hai)
 - [ ] store, query, metadata filter
 

@@ -85,3 +85,7 @@
 ## Token counting : estimated token counts karna count_tokens().total_tokens se, actual tokens ka total nikalne ke liye r = usage_metadata.total_token_count se prompt + answer ka total milta hai agar sare ab tak ke prompts + answer ka total chahiye total + r se milta hai
 
 ## Token counting me sabhi data ko count kiya jata hai 4 characters = 1 token jaise system_instructions, prompt ya data and answer
+
+## Embeddings aur Semantic search: embeddings matlab shabdon ka ek dusre se kitna acha sambandh hai ya kitne milte julte hai ye numbers me dekhna aur konsa shabd sabse zyada milta julta hai use dhundhna. np.dot() se do cheezon me kitna gehra sambandh hai ye numbero me nikala phir sabse bade number ko dhund ne ke liye np.argmax() ka istemal kiya jo us number se connected shabd tha use print kiya
+
+## API call ko hamesha loop ke bahar kare nahi to jyada bill aa sakta hai
