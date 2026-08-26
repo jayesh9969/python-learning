@@ -25,7 +25,7 @@ for m in range(len(menu)):
     vector = r.embeddings[m].values     
     score = np.dot(vectorq, vector)
             
-    print(f"{score} {menu[m]}")
+    print(f"{score :.3f} {menu[m]}")
     scores.append(score)
 position = np.argmax(scores)
     

@@ -43,8 +43,12 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 ### 2. Embeddings + Vector DB
 - [x] embedding kya hai — text se numbers (`embed_content`, 3072 values, norm 1.0)
 - [x] similarity search — `np.dot` (vectors normalized hain to dot hi cosine hai) + `argmax` — `embed01.py`
-- [ ] Chroma ya pgvector (Supabase pehle se aata hai)
-- [ ] store, query, metadata filter
+- [x] Chroma — `PersistentClient(path=...)` disk par save, `get_or_create_collection` — `chroma01.py` (Gemini embeddings), `chroma02.py` (Chroma ke apne)
+- [x] store, query, metadata filter — `metadatas=[{...}]` + `where={...}`. `n_results` upar ki hadd hai, guarantee nahi
+- [x] `add` vs `upsert` vs `update` — `update()` nayi id par chup-chaap kuch nahi karta, error bhi nahi
+- [x] `count()` se pehli-baar wala kaam skip — Gemini ki call bachti hai
+- [x] distance ulta hai — `np.dot` mein bada achha, Chroma distance mein chhota achha
+- [ ] pgvector / Supabase (SQL ke saath)
 
 ### 3. RAG — scratch se, bina framework
 - [ ] chunking — size, overlap, kahan todna
@@ -106,6 +110,8 @@ Har project: **live deployed + README + demo video.**
 **Pandas:** `DataFrame` · `read_csv` `to_csv` · `loc` · filter · `groupby` · `sort_values` · `isnull` `dropna` `fillna` · `merge` · `astype('Int64')`
 
 **LLM API (Gemini):** `generate_content` · `system_instruction` · `response_schema` + enum · `generate_content_stream` · `ClientError` / `ServerError` + retry · `count_tokens` · `usage_metadata`
+
+**Vector DB (Chroma):** `PersistentClient` · `get_or_create_collection` · `add` / `upsert` / `update` · `count` · `query` (`query_texts` / `query_embeddings`) · `distances` · `metadatas` + `where` · `delete_collection`
 
 **Aur:** git/GitHub · SQL (`SELECT` `WHERE` `GROUP BY` `ORDER BY` `LIMIT` `JOIN`) · sqlite3
 

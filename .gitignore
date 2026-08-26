@@ -1,0 +1,7 @@
+# Chroma ka banaya hua data - code se dobara ban jaata hai
+chroma_data/
+chroma_test/
+
+# Python ka apna kachra
+__pycache__/
+*.pyc

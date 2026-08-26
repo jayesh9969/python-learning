@@ -84,8 +84,20 @@
 
 ## Token counting : estimated token counts karna count_tokens().total_tokens se, actual tokens ka total nikalne ke liye r = usage_metadata.total_token_count se prompt + answer ka total milta hai agar sare ab tak ke prompts + answer ka total chahiye total + r se milta hai
 
-## Token counting me sabhi data ko count kiya jata hai 4 characters = 1 token jaise system_instructions, prompt ya data and answer
+## Token counting me sabhi data ko count kiya jata hai ausatan 4 characters = 1 token jaise system_instructions, prompt ya data and answer
 
-## Embeddings aur Semantic search: embeddings matlab shabdon ka ek dusre se kitna acha sambandh hai ya kitne milte julte hai ye numbers me dekhna aur konsa shabd sabse zyada milta julta hai use dhundhna. np.dot() se do cheezon me kitna gehra sambandh hai ye numbero me nikala phir sabse bade number ko dhund ne ke liye np.argmax() ka istemal kiya jo us number se connected shabd tha use print kiya
+## Embeddings aur Semantic search: embeddings ka use shabdon ka ek dusre se kitna acha sambandh hai ya kitne milte julte hai ye numbers me dekhna aur konsa shabd sabse zyada milta julta hai use dhundhna. embeddings ek text ko numbers me badalta hai. np.dot() se do cheezon me kitna gehra sambandh hai ye numbero me nikala phir sabse bade number ko dhund ne ke liye np.argmax() ka istemal kiya jo us number se connected shabd tha use print kiya
 
 ## API call ko hamesha loop ke bahar kare nahi to jyada bill aa sakta hai
+
+## Vector DB - persistentClient() data disk me save hota hai file me vs Client() no file but add() har baar karna padta hai
+
+## add() vs upsert() vs update() - add() naya dalta hai purani mile to chhod deta hai - update() jo pehle se hai usko badalta hai nayi id do to kuch nahi karta error bhi nahi deta ex. fruit_dishes wali list me jo items pehle se hai unme badlao agar hota hai to update kar dega naa ki nayi item ko update wo ignore karta hai nayi item ko   - upsert() ye nayi items ko bhi save karta hai or show karta hai agar koi change ho purani items mein wo bhi change karke save karta hai show karta hai
+
+## delete_collection() - ek baar run phir comment kar do agar galat data chala jaye use remove karne ke liye hai
+
+## if collection.count() == 0 is condition ke andar sirf jo sirf ek baar run karna jaruri hai ye gemini ki call bachata hai
+
+## 'distances' chromadb me use hota hai ye numpy ke np.dot() se ulta hai chroma me distance me chota wo acha
+
+## metadatas - dicts me likha hua hota hai jaise 'cold' : true/false ki dict hoti hai query() me where'cold' : True puch kar hum saari cold items show kar sakte hai
