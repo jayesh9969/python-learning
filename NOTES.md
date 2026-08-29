@@ -101,3 +101,37 @@
 ## 'distances' chromadb me use hota hai ye numpy ke np.dot() se ulta hai chroma me distance me chota wo acha
 
 ## metadatas - dicts me likha hua hota hai jaise 'cold' : true/false ki dict hoti hai query() me where'cold' : True puch kar hum saari cold items show kar sakte hai
+
+## Threshold - items ke beech agar jyada distance ho ya query ka items ya list andar ki info se koi sambandh na hone par model ko call karne se pehle hi rok dena ex. if res['distances'][0][0] > 0.8: else: model call
+
+## Gounding instruction - agar model ko items ya list se related kuch milta hai par usse related info nahi hai list me to system_instruction me kuch aisa prompt dala jaye jo use extra ya unrelated info dene se roke ex.agar list me nahi hai to 'pata nahi' bolo
+
+## chunking       →  bade text ko tukdon mein todo
+## embed + store  →  har tukda Chroma mein
+## retrieve       →  sawal se milte-julte tukde nikaalo
+## threshold      →  bilkul alag sawal ho to yahin rok do
+## prompt         →  tukde + sawal ek saath, saaf label ke saath
+## grounding      →  rules mein na ho to "nahi pata" bolo
+
+<!-- 1. RAG kya hai. Do cheezein jodna — Chroma se sahi tukde dhoondho, Gemini se un tukdon par jawab banwao. Retrieval = dhoondhna, Generation = jawab banana.
+
+2. Kis kaam aata hai. Model ko tumhare data ka pata nahi hota. Poora document har baar bhejna mehenga aur token limit se bahar. RAG sirf zaroori do-teen tukde bhejta hai.
+
+3. Teen kadam. Sawal embed karo → Chroma se tukde nikaalo → wo tukde + sawal prompt mein daal ke Gemini ko bhejo. Tarteeb yahi rahegi — dhoondho pehle, poochho baad mein.
+
+4. Threshold. res["distances"][0][0] sabse kam doori hai (Chroma sorted deta hai). Wo hadd se zyada ho to Gemini call karo hi mat — sawal topic se bahar hai. API call bhi bachi.
+
+5. Distance ki hadd. Distance batata hai ki tukda sawal se milta-julta hai. Ye nahi batata ki usme jawab hai. "samosa kitne baje tak" par samosa wala tukda 0.472 par aaya — ekdum paas, par usme timing likhi hi nahi thi.
+
+6. Grounding instruction. "Sirf diye gaye data se jawab do, na mile to nahi pata bolo." Isse hallucination kam hoti hai, khatam nahi — kyunki system instruction guzarish hai, pabandi nahi. Wahi baat jo llm01.py mein seekhi thi.
+
+7. Instruction ka santulan. Bahut dheeli — jhooth bolega. Bahut kadi — sahi jawab bhi rok dega. "100 rupaye mein kya kha sakta hu" par "I don't know" aa gaya tha, kyunki "don't add additional information" ne hisaab lagane se bhi rok diya. "calculation is allowed" jodne se theek hua.
+
+8. Data ek jagah rakho. Sabse badi galti — rules contents mein aur "list di hai" system_instruction mein. Model bola "please provide the list". Jawab kabhi aata kabhi nahi. Sab kuch ek prompt mein, saaf label ke saath — "rules ye hain / sawal ye hai" — tab har baar sahi chala.
+
+9. Chunking. Bade text ko tukdon mein todo (text.split("\n\n")), har tukda alag embed karo, alag id se Chroma mein daalo. Poore akhbaar ka ek embedding banaoge to sab matlab ghul-mil jayenge.
+
+10. n_results ek se zyada rakho. "College kitne ghante khula hai" ka jawab do alag rules mein tha — 11am aur 5pm. Ek tukda laate to jawab kabhi nahi banta.
+
+11. join. "\n".join(list) — gond par lagta hai, list par nahi. list.join("\n") error deta hai. Aur res["documents"] ek parat andar hoti hai, isliye res["documents"][0] par lagta hai. -->
+
