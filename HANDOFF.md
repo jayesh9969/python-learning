@@ -1,6 +1,6 @@
 # Handoff — Learning Session History
 
-*Last updated: 2026-08-29*
+*Last updated: 2026-08-30*
 
 Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `ROADMAP.md` plan hai, ye file **kahani** hai — kaise wahan tak pahunche.
 
@@ -10,7 +10,7 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 **Phase 3 — RAG ka basic loop chal raha hai.** `rag01.py` (menu + budget) aur `rag02.py` (college rules + chunking) dono kaam kar rahe hain, verified.
 
-Bacha hua: chunk size aur overlap, citations, re-ranking.
+Bacha hua: **re-ranking**. Chunking (size + overlap), threshold, grounding, citations — sab ho gaye.
 
 ---
 
@@ -57,9 +57,10 @@ Files: `rag01.py` (khane ka menu + budget wala sawal), `rag02.py` (college rules
 - **Distance ki hadd** — distance batata hai tukda *milta-julta* hai, ye nahi ki usme *jawab* hai. "samosa kitne baje tak" 0.472 par aaya (bahut paas) par tukde mein timing thi hi nahi.
 - **Grounding instruction ka santulan** — bahut kadi to sahi jawab bhi rok deti hai ("100 rupaye" par "I don't know"). `"calculation is allowed"` jodne se theek hua.
 - **Sabse badi seekh — data ek jagah rakho.** Rules `contents` mein aur "list di hai" `system_instruction` mein baant diya tha. Model ne kaha "please provide the list", aur jawab kabhi aata kabhi nahi. Sab kuch ek prompt mein saaf label ke saath daalte hi har baar sahi chala.
-- **Chunking** — `text.split("
-
-")`, har tukda alag embed + alag id. `n_results` 2-3 rakho: "college kitne ghante khula hai" ka jawab do alag rules (11am + 5pm) jodne se bana.
+- **Chunking** — khali line par (`split`), ya fixed size + overlap (`range(0, len(text), size-overlap)`). Har tukda alag embed + alag id. `n_results` 2-3 rakho: "college kitne ghante khula hai" ka jawab do alag rules (11am + 5pm) jodne se bana.
+- **Overlap kyun** — 120 size bina overlap ke "Delivery Mumbai mein free hai," aur "baaki shehron mein 50 rupaye" ko do tukdon mein baant diya. Chroma ne sahi tukda dhoondha (0.747) par Gemini bola "ye jaankari nahi hai" — tukda adhoora tha. Overlap 30 lagate hi wahi sawal sahi jawab de gaya. **RAG kharab jawab de to pehle chunking dekho.**
+- **Chhote tukde chhaan do** — `if len(chunk) > 40:`. Kachra tukda ("agte hain.") Chroma mein jaake kisi sawal ka "sabse paas" ban sakta hai.
+- **Citations** — `enumerate(rules, 1)` se tukdon ko `[1] [2]` number do, aur prompt mein saaf maango. Bina maange model 3 mein se 1 jawab par citation chhod deta tha. Number dhoondhe hue tukdon ka hai, asli document ka nahi — sawal badla to kram badal jayega.
 
 ---
 
@@ -75,11 +76,10 @@ Ye galtiyan multiple sessions mein repeat hui hain, isliye inko revision ke waqt
 6. **Casing mismatch** — `"positive"` vs `"Positive"` compare fail hona. Fix: `.strip().lower()`, ya better — structured output (enum) jo guarantee kare.
 7. **Persistent store mein purana ganda data** — do baar phase. Pehle `chroma01.py` mein `"vector, vectorq"` wali galat entry, phir `chroma02.py` mein ids `"1"-"4"` se `"0"-"3"` badalne par anaath `"4"`. Almirah purani cheezein khud nahi phenkti. Aadat: `len(list)` aur `collection.count()` milaake dekho.
 8. **List mein comma chhoot jana** — `"a"` `"b"` agal-bagal likhne par Python dono ko chipka ke ek string bana deta hai, bina error ke. `len()` se pakda jata hai.
-10. **`join` ulta likhna** — `list.join("
-")` error deta hai. `"
-".join(list)` sahi hai — join gond par lagta hai, cheezon par nahi.
-11. **`()` vs `[]` comprehension mein** — `(str(i) for i in ...)` generator banata hai, list nahi. Chroma ne usko `ids: 1` gina aur "Unequal lengths" error diya. Aur generator ek baar hi chalta hai.
 9. **Dead code chhodna** — kaam khatam hone ke baad bekaar `import` aur variables file mein pade rehte hain (`chroma02.py` mein `genai`, `chroma01.py` mein `numpy`/`types`).
+10. **`join` ulta likhna** — `list.join(sep)` error deta hai. `sep.join(list)` sahi hai — join gond par lagta hai, cheezon par nahi.
+11. **`()` vs `[]` comprehension mein** — `(str(i) for i in ...)` generator banata hai, list nahi. Chroma ne usko `ids: 1` gina aur "Unequal lengths" error diya. Aur generator ek baar hi chalta hai.
+12. **Hadd (threshold) bahut kasi rakhna** — `if len(chunk) > 10` sirf isliye chala kyunki kachra theek 10 akshar ka tha. Number likhte waqt socho: data thoda badla to tootega?
 
 Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`total = m + m` instead of `total = total + m`), running-best loop ka starting value, `sorted()` ka result throw away karna, f-string ke andar quotes.
 
@@ -108,7 +108,7 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 ## Aage kya hai (order mein, `ROADMAP.md` se)
 
 1. Supabase / pgvector se connect (SQL ke saath, Phase 2 ka bacha hua hissa)
-2. RAG ka bacha hissa — chunk size + overlap, citations, re-ranking
+2. RAG ka bacha hissa — re-ranking
 3. Deployment — FastAPI, Docker, hosting, env vars
 4. Evaluation & Observability — Langfuse/Logfire
 5. n8n automation

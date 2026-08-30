@@ -52,16 +52,14 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 
 ### 3. RAG — scratch se, bina framework
 - [x] poora RAG loop — retrieve -> prompt -> generate. `rag01.py` (menu + budget), `rag02.py` (college rules)
-- [x] chunking — `text.split("
-
-")`, har tukda alag embed + alag id
+- [x] chunking — khali line par (`split`) ya fixed size + overlap, har tukda alag embed + alag id
 - [x] indexing pipeline — chunk -> embed -> Chroma, `count()` ke guard ke saath
 - [x] threshold — sabse kam distance hadd se zyada ho to Gemini call hi mat karo
 - [x] grounded generation — "sirf diye gaye data se jawab do", aur "calculation is allowed" ka santulan
 - [x] hallucination kab hoti hai aur kyun — instruction guzarish hai, pabandi nahi
 - [x] prompt ki shakl — data + sawal ek jagah, saaf label ke saath. Baant do to model confuse
-- [ ] chunk size aur overlap — abhi sirf khali line par toda hai
-- [ ] citations — jawab ke saath batana ki kaunse tukde se aaya
+- [x] chunk size aur overlap — `range(0, len(text), size-overlap)`, chhote tukde `len()` se chhaan do — `chunk01.py`
+- [x] citations — `enumerate(rules, 1)` se `[1] [2]`, aur prompt mein saaf maango
 - [ ] re-ranking
 
 > **No LangChain, no LlamaIndex** jab tak raw pipeline khud na ban jaye. Framework baad mein, samajhne ke baad.
@@ -120,8 +118,7 @@ Har project: **live deployed + README + demo video.**
 
 **Vector DB (Chroma):** `PersistentClient` · `get_or_create_collection` · `add` / `upsert` / `update` · `count` · `query` (`query_texts` / `query_embeddings`) · `distances` · `metadatas` + `where` · `delete_collection`
 
-**RAG:** chunking (`split`) · `"
-".join()` · retrieve -> prompt -> generate · distance threshold · grounding instruction
+**RAG:** chunking (`split`, fixed size + overlap) · `join()` · `enumerate()` · retrieve -> prompt -> generate · distance threshold · grounding instruction · citations
 
 **Aur:** git/GitHub · SQL (`SELECT` `WHERE` `GROUP BY` `ORDER BY` `LIMIT` `JOIN`) · sqlite3
 

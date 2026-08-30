@@ -8,7 +8,7 @@ chunks = college_rules.split("\n\n")
 
   
 
-query = "whats the name of college?"
+query = "when college starts and ends?"
 c = genai.Client()
 
 all_vectors = []
@@ -38,14 +38,20 @@ res = collection.query(query_embeddings=[vectorq], n_results=4)
 print(res["documents"],res["distances"])
 
 rules = res["documents"][0]
-rules_text = "\n".join(rules) 
+# rules_text = "\n".join(rules)
+rules_text = ""
 
+
+for n, l in enumerate(rules, 1):
+    rules_text = rules_text + f"[{n}] {l}\n"
+
+    
 
 if res["distances"][0][0] > 0.8:
     print("rules me iska jawab nahi hai")
 
 else:
-    prompt =f"""rules are given below: {rules_text}  question: {query} calculation is allowed, if information is not available in the rules say 'this info is not available yet'"""
+    prompt =f"""rules are given below: {rules_text}  question: {query} calculation is allowed, if information is not available in the rules say 'this info is not available yet', with every answer the number of rule should show like this [1] [2]"""
     response = c.models.generate_content(
         model="gemini-flash-lite-latest",
         contents=prompt,

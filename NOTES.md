@@ -135,3 +135,21 @@
 
 11. join. "\n".join(list) — gond par lagta hai, list par nahi. list.join("\n") error deta hai. Aur res["documents"] ek parat andar hoti hai, isliye res["documents"][0] par lagta hai.
 
+Chunk size aur overlap. Koi jaadui number nahi hota. Chhota tukda — matlab adhoora ("50 rupaye" mila par "delivery" gayab, Gemini ne "jaankari nahi hai" bola). Bada tukda — matlab ghul-mil jaata hai aur tokens zyada. Sochne ka tarika: ek tukda = ek poori baat. Shuruat 300-500 akshar, overlap uska 10-20%.
+
+Overlap kaise lagta hai. range(0, len(text), size - overlap) — tukda size ka, par har baar sirf size - overlap aage kudo. Isse har naye tukde mein pichhle ka aakhri hissa dobara aa jaata hai. Poster ki photocopy jaisa — kinare thoda overlap rakho warna seemā ka shabd kahin poora nahi milega.
+
+RAG kharab jawab de to sabse pehle chunking dekho. Wahi sawal, wahi model, sirf overlap laga — "ye jaankari nahi hai" se "Delhi mein 50 rupaye" ho gaya.
+
+Chhote tukde chhaan do. if len(chunk) > 40: — kachra tukde ("agte hain.") Chroma mein jaake kisi din kisi sawal ka "sabse paas" ban sakte hain. Aur hadd itni kasi mat rakho ki ek akshar se bache — > 10 sirf isliye chala kyunki kachra theek 10 ka tha.
+
+enumerate(list, 1) — har item ke saath uska number deta hai, aur 1 se ginti shuru karta hai.
+
+Citations. Tukdon ko [1] [2] number ke saath prompt mein bhejo aur instruction mein maango ki jawab ke saath number likhe. Isse user khud check kar sakta hai aur tum debug kar sakte ho. Bina maange model kabhi karta hai kabhi nahi — teen mein se ek jawab mein chhoot gaya tha.
+
+Citation ka number dhoondhe hue tukdon ka hai, asli document ka nahi. Sawal badla to kram badal jayega. Asli app mein tukde ki pakki id bhejte hain.
+
+
+
+
+
