@@ -133,5 +133,5 @@
 
 10. n_results ek se zyada rakho. "College kitne ghante khula hai" ka jawab do alag rules mein tha — 11am aur 5pm. Ek tukda laate to jawab kabhi nahi banta.
 
-11. join. "\n".join(list) — gond par lagta hai, list par nahi. list.join("\n") error deta hai. Aur res["documents"] ek parat andar hoti hai, isliye res["documents"][0] par lagta hai. -->
+11. join. "\n".join(list) — gond par lagta hai, list par nahi. list.join("\n") error deta hai. Aur res["documents"] ek parat andar hoti hai, isliye res["documents"][0] par lagta hai.
 

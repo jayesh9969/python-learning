@@ -1,6 +1,6 @@
 # Handoff — Learning Session History
 
-*Last updated: 2026-08-20*
+*Last updated: 2026-08-29*
 
 Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `ROADMAP.md` plan hai, ye file **kahani** hai — kaise wahan tak pahunche.
 
@@ -8,9 +8,9 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 ## Abhi kaha hu
 
-**Phase 2 — Embeddings + Vector DB: KHATAM.** Chroma ho gaya (`chroma01.py`, `chroma02.py`), notes `NOTES.md` mein likh di.
+**Phase 3 — RAG ka basic loop chal raha hai.** `rag01.py` (menu + budget) aur `rag02.py` (college rules + chunking) dono kaam kar rahe hain, verified.
 
-Agla: **Phase 3 — RAG scratch se** (chunking → indexing → retrieval → grounded generation), bina LangChain/LlamaIndex ke.
+Bacha hua: chunk size aur overlap, citations, re-ranking.
 
 ---
 
@@ -48,6 +48,21 @@ Files: `chroma01.py` (Gemini embeddings + Chroma), `chroma02.py` (Chroma ke apne
 
 ---
 
+### Phase 3 — RAG (scratch se)
+Files: `rag01.py` (khane ka menu + budget wala sawal), `rag02.py` (college rules + chunking)
+
+- Poora loop: sawal embed -> Chroma se tukde -> tukde + sawal ek prompt mein -> Gemini
+- **Tarteeb mayne rakhti hai** — pehle `generate_content` upar tha aur `res` neeche, to Chroma ka koi role hi nahi tha. Dhoondho pehle, poochho baad mein.
+- **Threshold** — `res["distances"][0][0] > 0.8` ho to Gemini call karo hi mat. "delhi se mumbai flight" 0.884 par ruk gaya.
+- **Distance ki hadd** — distance batata hai tukda *milta-julta* hai, ye nahi ki usme *jawab* hai. "samosa kitne baje tak" 0.472 par aaya (bahut paas) par tukde mein timing thi hi nahi.
+- **Grounding instruction ka santulan** — bahut kadi to sahi jawab bhi rok deti hai ("100 rupaye" par "I don't know"). `"calculation is allowed"` jodne se theek hua.
+- **Sabse badi seekh — data ek jagah rakho.** Rules `contents` mein aur "list di hai" `system_instruction` mein baant diya tha. Model ne kaha "please provide the list", aur jawab kabhi aata kabhi nahi. Sab kuch ek prompt mein saaf label ke saath daalte hi har baar sahi chala.
+- **Chunking** — `text.split("
+
+")`, har tukda alag embed + alag id. `n_results` 2-3 rakho: "college kitne ghante khula hai" ka jawab do alag rules (11am + 5pm) jodne se bana.
+
+---
+
 ## Baar-baar hui galtiyan (in par dobara dhyan dena — teaching pattern)
 
 Ye galtiyan multiple sessions mein repeat hui hain, isliye inko revision ke waqt zaroor check karna:
@@ -60,6 +75,10 @@ Ye galtiyan multiple sessions mein repeat hui hain, isliye inko revision ke waqt
 6. **Casing mismatch** — `"positive"` vs `"Positive"` compare fail hona. Fix: `.strip().lower()`, ya better — structured output (enum) jo guarantee kare.
 7. **Persistent store mein purana ganda data** — do baar phase. Pehle `chroma01.py` mein `"vector, vectorq"` wali galat entry, phir `chroma02.py` mein ids `"1"-"4"` se `"0"-"3"` badalne par anaath `"4"`. Almirah purani cheezein khud nahi phenkti. Aadat: `len(list)` aur `collection.count()` milaake dekho.
 8. **List mein comma chhoot jana** — `"a"` `"b"` agal-bagal likhne par Python dono ko chipka ke ek string bana deta hai, bina error ke. `len()` se pakda jata hai.
+10. **`join` ulta likhna** — `list.join("
+")` error deta hai. `"
+".join(list)` sahi hai — join gond par lagta hai, cheezon par nahi.
+11. **`()` vs `[]` comprehension mein** — `(str(i) for i in ...)` generator banata hai, list nahi. Chroma ne usko `ids: 1` gina aur "Unequal lengths" error diya. Aur generator ek baar hi chalta hai.
 9. **Dead code chhodna** — kaam khatam hone ke baad bekaar `import` aur variables file mein pade rehte hain (`chroma02.py` mein `genai`, `chroma01.py` mein `numpy`/`types`).
 
 Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`total = m + m` instead of `total = total + m`), running-best loop ka starting value, `sorted()` ka result throw away karna, f-string ke andar quotes.
@@ -79,16 +98,17 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 
 ## Chhoti pending cheezein
 
-- `chroma01.py` mein `import numpy as np` aur `types` bekaar pade hain. `chroma02.py` saaf ho chuki hai.
-- `chroma02.py` mein `query_texts=[query]` list ki shakl mein hai — theek. Ek saath kai queries bhejne ka tarika abhi try nahi kiya.
+- `chroma01.py` mein `import numpy as np` aur `types` bekaar pade hain.
 - `where` mein number wali shartein (`{"price": {"$lt": 100}}`) sirf batayi hain, chalake nahi dekhi.
+- `rag02.py` mein `print(res["documents"], res["distances"])` debug line padi hai — seekhne ke liye theek hai, saaf karni ho to kar dena.
+- `.gitignore` ab `chroma_*/` pattern use karta hai. Pehle naam-se-naam likhe the aur `chroma_food`/`chroma_rules` chhoot ke commit ho gaye the (10 MB). Ab tracking se hata diye, disk par bache hain — par purane commit ki history mein ab bhi pade hain.
 
 ---
 
 ## Aage kya hai (order mein, `ROADMAP.md` se)
 
 1. Supabase / pgvector se connect (SQL ke saath, Phase 2 ka bacha hua hissa)
-2. **RAG pipeline** ← agla asli kadam — chunking → indexing → retrieval → grounded generation → hallucination — **bina LangChain/LlamaIndex ke**
+2. RAG ka bacha hissa — chunk size + overlap, citations, re-ranking
 3. Deployment — FastAPI, Docker, hosting, env vars
 4. Evaluation & Observability — Langfuse/Logfire
 5. n8n automation
