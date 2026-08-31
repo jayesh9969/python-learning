@@ -114,10 +114,13 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 
 1. **Deployment** ← agla asli kadam — FastAPI, Docker, hosting, env vars
 2. **Project 1 live** — deployment ke turant baad, aur seekhte mat raho
-3. LangChain/LlamaIndex — chhota item, 2-3 session, sirf naam aur syntax
-4. Supabase / pgvector (Phase 2 ka bacha hua hissa)
-5. Evaluation & Observability — Langfuse/Logfire
-6. n8n automation
-7. PyTorch (sabse aakhir, kam priority)
+3. **Agents + tool calling** — job market ka sabse bada gap (RAG, agents, evaluation — teeno saath maange jaate hain)
+4. MCP — agents ke baad, chhota
+5. LangChain/LlamaIndex — chhota item, sirf naam aur syntax
+6. Hybrid search (BM25) — Phase 3 ka bacha hua, 2 session
+7. Supabase / pgvector (Phase 2 ka bacha hua hissa)
+8. Evaluation & Observability — haath se eval pehle, phir RAGAS/DeepEval/Langfuse
+9. n8n automation
+10. PyTorch (sabse aakhir, kam priority)
 
 Plus: 3 portfolio projects, har ek live deployed, kisi asli insaan ki asli problem.

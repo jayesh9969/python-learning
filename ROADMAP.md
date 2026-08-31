@@ -61,6 +61,7 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 - [x] chunk size aur overlap — `range(0, len(text), size-overlap)`, chhote tukde `len()` se chhaan do — `chunk01.py`
 - [x] citations — `enumerate(rules, 1)` se `[1] [2]`, aur prompt mein saaf maango
 - [x] re-ranking — Chroma se 8 nikaalo, Gemini se 2-3 chunwao, phir jawab — `rag03.py`
+- [ ] **hybrid search (BM25 + embedding)** — embedding matlab dhoondhta hai, BM25 hu-ba-hu shabd. Product code, order number, naam, version — ye embedding se phisal jaate hain (`SKU-4471` vs `SKU-4472` uske liye ek jaise). Dono chalao, score jodo. 2 session.
 
 > Raw pipeline ban gaya. Ab framework seekh sakte ho — par baad mein, deployment ke baad.
 
@@ -70,14 +71,37 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 - [ ] live hosting (Render / Railway / Fly)
 - [ ] environment variables, secrets
 
-### 4.5 LangChain / LlamaIndex — chhota item, poora phase nahi
+### 4.5 Project 1 — LIVE karo, yahin, isi jagah par
+Deployment ke turant baad. Aur seekhte mat raho — jo aata hai usse ek asli cheez banao.
+Client ko skills ki list nahi chahiye, link chahiye.
+- [ ] kisi jaan-pehchan wale ki asli problem
+- [ ] live URL + README + demo video
+- [ ] har nayi skill isi project par lagao — hybrid search isme, eval isi par, agent isi mein
+
+### 4.6 Agents + tool calling — ye sabse bada gap hai
+Har job list mein teen shabd saath aate hain: **RAG, agents, evaluation.** RAG ho gaya, evaluation aa raha hai, agents bilkul nahi.
+Agent = model sirf jawab nahi deta, **kaam karta hai** — tools chalata hai aur khud tay karta hai kaunsa.
+Upwork par clients seedha yahi maangte hain: "AI agents that automate workflows".
+- [ ] tool calling — function ko model ke haath mein dena
+- [ ] agent loop — soche, tool chalaye, natija dekhe, phir soche
+- [ ] kab agent chahiye aur kab sirf RAG kaafi hai
+
+### 4.7 MCP (Model Context Protocol) — agents ke BAAD, chhota
+Apne tools ko kisi bhi AI se jodne ka standard tareeka. Anthropic ne banaya, ab OpenAI/Google/Microsoft sab use karte hain, Dec 2025 se Linux Foundation ke paas hai.
+- [ ] MCP server banana aur expose karna. 2-3 session. Pehle agents, warna sirf syntax ratoge.
+
+### 4.8 LangChain / LlamaIndex — chhota item, poora phase nahi
 Jo khud banaya uske naam seekhne hain: TextSplitter = chunking, VectorStore = Chroma, Retriever = query, PromptTemplate = f-string, Chain = sab jodna.
 - [ ] 2-3 session, sirf naam aur syntax. Portfolio mein scratch wala code hi rakhna.
 
 ### 5. Evaluation & Observability
-- [ ] Langfuse ya Logfire
+> Har senior job description ismein experience maangti hai. Junior aur senior ka farak yahi hai.
+
+- [ ] **pehle haath se eval** — 20 sawal + unke sahi jawab likho, `rag03.py` chalao, gino kitne sahi aaye. Ek din ka kaam, aur isi se pata chalega ki naapna kya hai
+- [ ] **RAGAS** — score nikaalta hai. Chunk 200 achha ya 500, dono chalao aur tulna karo. Prayog ke liye
+- [ ] **DeepEval** — pytest jaisa, pass/fail. Quality gire to build rok deta hai
+- [ ] Langfuse ya Logfire — live app par nazar
 - [ ] tracing — har step ka record
-- [ ] retrieval accuracy naapna
 - [ ] latency aur cost tracking
 
 ### 6. n8n automation
@@ -93,6 +117,10 @@ Jo khud banaya uske naam seekhne hain: TextSplitter = chunking, VectorStore = Ch
 ## Abhi skip
 
 Deep ML theory · scratch se model training · Kaggle · LeetCode · certifications · OOP/classes · recursion/algorithms
+
+**Job listing mein dikhte hain par mere raaste ke nahi:** AI video generation (Upwork par sabse tez, +329% — par bilkul alag field) · data annotation/labeling (demand hai par sasta, dohrane wala kaam) · fine-tuning (eval pehle; 95% kaam RAG + prompt se ho jaata hai)
+
+**Alag phase nahi, aadat hai:** cost control (`count()`, token counting — pehle se kar raha hoon) · prompt injection se bachav (Project 1 public hoga, deployment ke saath ek session)
 
 ---
 
