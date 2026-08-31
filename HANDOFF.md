@@ -1,6 +1,6 @@
 # Handoff — Learning Session History
 
-*Last updated: 2026-08-30*
+*Last updated: 2026-08-31*
 
 Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `ROADMAP.md` plan hai, ye file **kahani** hai — kaise wahan tak pahunche.
 
@@ -8,9 +8,9 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 ## Abhi kaha hu
 
-**Phase 3 — RAG ka basic loop chal raha hai.** `rag01.py` (menu + budget) aur `rag02.py` (college rules + chunking) dono kaam kar rahe hain, verified.
+**Phase 3 — RAG: KHATAM.** `rag01.py` (menu + budget), `rag02.py` (college rules + chunking + citations), `rag03.py` (2-parat re-ranking) — teeno verified.
 
-Bacha hua: **re-ranking**. Chunking (size + overlap), threshold, grounding, citations — sab ho gaye.
+Agla: **Phase 4 — Deployment.** FastAPI se shuru — script ko web service banana. Phir Docker, phir hosting. Uske turant baad Project 1 live karna hai, aur seekhte nahi rehna.
 
 ---
 
@@ -49,7 +49,7 @@ Files: `chroma01.py` (Gemini embeddings + Chroma), `chroma02.py` (Chroma ke apne
 ---
 
 ### Phase 3 — RAG (scratch se)
-Files: `rag01.py` (khane ka menu + budget wala sawal), `rag02.py` (college rules + chunking)
+Files: `rag01.py` (menu + budget), `rag02.py` (college rules + chunking + citations), `rag03.py` (re-ranking)
 
 - Poora loop: sawal embed -> Chroma se tukde -> tukde + sawal ek prompt mein -> Gemini
 - **Tarteeb mayne rakhti hai** — pehle `generate_content` upar tha aur `res` neeche, to Chroma ka koi role hi nahi tha. Dhoondho pehle, poochho baad mein.
@@ -61,6 +61,8 @@ Files: `rag01.py` (khane ka menu + budget wala sawal), `rag02.py` (college rules
 - **Overlap kyun** — 120 size bina overlap ke "Delivery Mumbai mein free hai," aur "baaki shehron mein 50 rupaye" ko do tukdon mein baant diya. Chroma ne sahi tukda dhoondha (0.747) par Gemini bola "ye jaankari nahi hai" — tukda adhoora tha. Overlap 30 lagate hi wahi sawal sahi jawab de gaya. **RAG kharab jawab de to pehle chunking dekho.**
 - **Chhote tukde chhaan do** — `if len(chunk) > 40:`. Kachra tukda ("agte hain.") Chroma mein jaake kisi sawal ka "sabse paas" ban sakta hai.
 - **Citations** — `enumerate(rules, 1)` se tukdon ko `[1] [2]` number do, aur prompt mein saaf maango. Bina maange model 3 mein se 1 jawab par citation chhod deta tha. Number dhoondhe hue tukdon ka hai, asli document ka nahi — sawal badla to kram badal jayega.
+- **Re-ranking (2-parat)** — Chroma se 8 nikaalo (clerk: tez, motā), Gemini se poocho kaunse 2-3 sach mein jawab dete hain (manager: dheema, samajhdar), phir un par jawab banao. Embedding "baat isi bare mein hai" dekhta hai, manager "jawab isme hai" dekhta hai. Saboot: "kis baat par kanooni karyavahi" par embedding ne "fighting will not be tolerated" ko top-3 mein daala — usme kanoon ka zikr hi nahi tha; manager ne nikaal diya. Ab har sawal par do Gemini call — chhote data par ghaata, bade par faayda.
+- **`response.text` hamesha string hai** — `"1,2,3"` ka `len()` 5 deta hai. `strip()` -> `split(",")` -> `int()` karke hi list ka index ban sakta hai. Gemini 1 se ginta hai, list 0 se: `rules[n-1]`.
 
 ---
 
@@ -80,6 +82,8 @@ Ye galtiyan multiple sessions mein repeat hui hain, isliye inko revision ke waqt
 10. **`join` ulta likhna** — `list.join(sep)` error deta hai. `sep.join(list)` sahi hai — join gond par lagta hai, cheezon par nahi.
 11. **`()` vs `[]` comprehension mein** — `(str(i) for i in ...)` generator banata hai, list nahi. Chroma ne usko `ids: 1` gina aur "Unequal lengths" error diya. Aur generator ek baar hi chalta hai.
 12. **Hadd (threshold) bahut kasi rakhna** — `if len(chunk) > 10` sirf isliye chala kyunki kachra theek 10 akshar ka tha. Number likhte waqt socho: data thoda badla to tootega?
+13. **`for X in Y` mein galat Y** — `for n in rules[n-1]` likha, jo ek string hai, to loop se akshar nikle (`f`, `r`, `o`, `m`). `in` ke baad **tokri** aati hai (`nums`), uthana loop ke **andar** hota hai (`rules[n-1]`). Teen baar samjhana pada — ye wahi "gaddi vs card" wali jad hai.
+14. **Loop variable ka naam gaddi wala rakhna** — `for nums in nums` likhne se poori list mit jaati hai.
 
 Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`total = m + m` instead of `total = total + m`), running-best loop ka starting value, `sorted()` ka result throw away karna, f-string ke andar quotes.
 
@@ -99,6 +103,7 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 ## Chhoti pending cheezein
 
 - `chroma01.py` mein `import numpy as np` aur `types` bekaar pade hain.
+- `rag03.py` ke doosre prompt mein grounding line chhoot gayi hai ("sirf inhi se jawab do, na mile to nahi pata bolo"). Pizza wala sawal sahi nikla par wo model ki meherbani thi, instruction ki nahi.
 - `where` mein number wali shartein (`{"price": {"$lt": 100}}`) sirf batayi hain, chalake nahi dekhi.
 - `rag02.py` mein `print(res["documents"], res["distances"])` debug line padi hai — seekhne ke liye theek hai, saaf karni ho to kar dena.
 - `.gitignore` ab `chroma_*/` pattern use karta hai. Pehle naam-se-naam likhe the aur `chroma_food`/`chroma_rules` chhoot ke commit ho gaye the (10 MB). Ab tracking se hata diye, disk par bache hain — par purane commit ki history mein ab bhi pade hain.
@@ -107,11 +112,12 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 
 ## Aage kya hai (order mein, `ROADMAP.md` se)
 
-1. Supabase / pgvector se connect (SQL ke saath, Phase 2 ka bacha hua hissa)
-2. RAG ka bacha hissa — re-ranking
-3. Deployment — FastAPI, Docker, hosting, env vars
-4. Evaluation & Observability — Langfuse/Logfire
-5. n8n automation
-6. PyTorch (sabse aakhir, kam priority)
+1. **Deployment** ← agla asli kadam — FastAPI, Docker, hosting, env vars
+2. **Project 1 live** — deployment ke turant baad, aur seekhte mat raho
+3. LangChain/LlamaIndex — chhota item, 2-3 session, sirf naam aur syntax
+4. Supabase / pgvector (Phase 2 ka bacha hua hissa)
+5. Evaluation & Observability — Langfuse/Logfire
+6. n8n automation
+7. PyTorch (sabse aakhir, kam priority)
 
 Plus: 3 portfolio projects, har ek live deployed, kisi asli insaan ki asli problem.

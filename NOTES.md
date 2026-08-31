@@ -150,6 +150,24 @@ Citations. Tukdon ko [1] [2] number ke saath prompt mein bhejo aur instruction m
 Citation ka number dhoondhe hue tukdon ka hai, asli document ka nahi. Sawal badla to kram badal jayega. Asli app mein tukde ki pakki id bhejte hain.
 
 
+Re-ranking kya hai. Do parat mein dhoondhna. Chroma se zyada tukde nikalo (8), phir Gemini se poocho kaunse 2-3 sach mein jawab dete hain, sirf wahi aage bhejo. Clerk 500 CV mein se 20 chhaanta hai, manager un 20 mein se 3 chunta hai.
+
+Kyun zaroori hai. Embedding dekhta hai "baat isi bare mein hai", ye nahi dekhta "jawab isme hai". "kis baat par kanooni karyavahi" par embedding ne "fighting will not be tolerated" ko top-3 mein daal diya — usme kanoon ka zikr hi nahi tha. Manager ne nikaal diya.
+
+response.text hamesha string hoti hai. "1,2,3" numbers jaisa dikhta hai par hai text — len() 5 deta hai, aur rules["1,2,3"] error deta hai. strip() → split(",") → int() karke asli numbers banane padte hain.
+
+for X in Y mein Y tokri hai. for n in rules[n-1] likhne se string par loop chala aur akshar nikle. Tokri wo hai jisme se ek-ek nikalna hai — yahan nums. rules[n-1] loop ke andar aata hai.
+
+Loop variable ka naam gaddi wala mat rakho. for nums in nums likhne se poori list mit jaati hai.
+
+Gemini se numbers maango to ginti 1 se hoti hai, list 0 se. rules[n - 1] likhna padta hai.
+
+Do call ka kharcha. Ab har sawal par do Gemini call jaati hain — ek chunne ki, ek jawab ki. Faayda ye ki doosri call mein kam tukde jaate hain. Chhote data par ye ghaate ka sauda hai, bade data par faayde ka.
+
+
+
+
+
 
 
 

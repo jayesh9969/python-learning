@@ -60,15 +60,19 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 - [x] prompt ki shakl — data + sawal ek jagah, saaf label ke saath. Baant do to model confuse
 - [x] chunk size aur overlap — `range(0, len(text), size-overlap)`, chhote tukde `len()` se chhaan do — `chunk01.py`
 - [x] citations — `enumerate(rules, 1)` se `[1] [2]`, aur prompt mein saaf maango
-- [ ] re-ranking
+- [x] re-ranking — Chroma se 8 nikaalo, Gemini se 2-3 chunwao, phir jawab — `rag03.py`
 
-> **No LangChain, no LlamaIndex** jab tak raw pipeline khud na ban jaye. Framework baad mein, samajhne ke baad.
+> Raw pipeline ban gaya. Ab framework seekh sakte ho — par baad mein, deployment ke baad.
 
 ### 4. Deployment
 - [ ] FastAPI — endpoints, request/response models
 - [ ] Docker — Dockerfile, image, container
 - [ ] live hosting (Render / Railway / Fly)
 - [ ] environment variables, secrets
+
+### 4.5 LangChain / LlamaIndex — chhota item, poora phase nahi
+Jo khud banaya uske naam seekhne hain: TextSplitter = chunking, VectorStore = Chroma, Retriever = query, PromptTemplate = f-string, Chain = sab jodna.
+- [ ] 2-3 session, sirf naam aur syntax. Portfolio mein scratch wala code hi rakhna.
 
 ### 5. Evaluation & Observability
 - [ ] Langfuse ya Logfire
@@ -118,7 +122,7 @@ Har project: **live deployed + README + demo video.**
 
 **Vector DB (Chroma):** `PersistentClient` · `get_or_create_collection` · `add` / `upsert` / `update` · `count` · `query` (`query_texts` / `query_embeddings`) · `distances` · `metadatas` + `where` · `delete_collection`
 
-**RAG:** chunking (`split`, fixed size + overlap) · `join()` · `enumerate()` · retrieve -> prompt -> generate · distance threshold · grounding instruction · citations
+**RAG:** chunking (`split`, fixed size + overlap) · `join()` · `enumerate()` · retrieve -> prompt -> generate · distance threshold · grounding instruction · citations · re-ranking (2-parat)
 
 **Aur:** git/GitHub · SQL (`SELECT` `WHERE` `GROUP BY` `ORDER BY` `LIMIT` `JOIN`) · sqlite3
 
