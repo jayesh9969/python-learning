@@ -6,3 +6,4 @@ chr_*/
 # Python ka apna kachra
 __pycache__/
 *.pyc
+.env

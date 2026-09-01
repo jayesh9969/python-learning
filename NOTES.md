@@ -182,6 +182,28 @@ GET vs POST. GET mein sawal URL mein jaata hai — chhoti cheezon ke liye theek,
 
 response_model shape pakka karta hai. Answer mein rules_used dena bhool gaye the — Pydantic ne rok diya, Field required bola. Bina iske wo bug chup-chaap nikal jaata.
 
+Docker kya hai. Code, Python, aur saari libraries ek dabbe mein band. Wo dabba kahin bhi chalao, andar sab waisa hi rehta hai. Ilaaj ek hi jumle ka — "mere laptop par to chal raha tha."
+
+requirements.txt — libraries ki list, har line par ek. Package ka naam aur import ka naam alag ho sakta hai: install google-genai, import google. Version likhna behtar (fastapi==0.141.1) warna kal koi nayi version aa gayi to dabba toot sakta hai.
+
+Dockerfile ke kadam — FROM (kis dabbe se shuru), WORKDIR (andar kaunsa folder), COPY (kya andar bhejo), RUN (build ke waqt kya chalao), CMD (dabba chalte hi kya chalao).
+
+requirements.txt alag se pehle copy karte hain. Docker har kadam yaad rakhta hai. Sirf code badla to wo dekhta hai requirements.txt to wahi hai, aur install skip kar deta hai. Sab ek saath copy karte to har chhoti si change par saari libraries dobara install hoti — 3 minute vs 5 second.
+
+--host 0.0.0.0 — bina iske dabba chalega par tum baat nahi kar paoge. Default 127.0.0.1 ka matlab "sirf isi machine se", aur dabbe ke liye wo "sirf isi dabbe ke andar se" ban jaata hai. 0.0.0.0 matlab bahar walon ko bhi andar aane do.
+
+-p 8000:8000 — dabbe mein khidki. Baayan laptop ka port, daayan dabbe ka. Bina iske dabba andar-andar chalta rahega.
+
+Image vs container. Image = bana hua packet. Container = wo packet jo abhi chal raha hai. Ek image se kai container.
+
+.dockerignore — .gitignore jaisa. COPY . . sab kuch andar bhej deta hai; bade folder (chroma) rok do.
+
+Key Dockerfile mein kabhi mat likhna. Image GitHub par jaati hai, hosting par jaati hai, doosron ko milti hai — key uske saath chali jayegi. Aur image ki har parat save rehti hai, line hata bhi do to purani parat mein padi rehti hai.
+
+Key chalte waqt bahar se do. .env file banao, docker run --env-file .env se chalao. .env ko .gitignore aur .dockerignore dono mein daalo — ye sabse aam galti hai, log key GitHub par daal dete hain aur bot dhoondh lete hain.
+
+Dabbe ka data dabbe ke saath mit jaata hai. Container band kiya to andar ki almirah gayab. Restart par phir se embed. Chaar rules par koi baat nahi, 500-page PDF par der bhi aur paisa bhi. Iska hal — volume (bahar ka folder jodna) ya hosted vector DB (Supabase/pgvector).
+
 
 
 
