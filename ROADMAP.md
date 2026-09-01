@@ -66,7 +66,8 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 > Raw pipeline ban gaya. Ab framework seekh sakte ho — par baad mein, deployment ke baad.
 
 ### 4. Deployment
-- [ ] FastAPI — endpoints, request/response models
+- [x] FastAPI — endpoints (`@app.get` / `@app.post`), `uvicorn main:app --reload`, `/docs` khud banta hai — `main.py`
+- [x] request/response models — Pydantic `BaseModel`, `response_model=`, class = design / object = bhara hua form
 - [ ] Docker — Dockerfile, image, container
 - [ ] live hosting (Render / Railway / Fly)
 - [ ] environment variables, secrets

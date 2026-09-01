@@ -164,6 +164,26 @@ Gemini se numbers maango to ginti 1 se hoti hai, list 0 se. rules[n - 1] likhna 
 
 Do call ka kharcha. Ab har sawal par do Gemini call jaati hain — ek chunne ki, ek jawab ki. Faayda ye ki doosri call mein kam tukde jaate hain. Chhote data par ye ghaate ka sauda hai, bade data par faayde ka.
 
+FastAPI kya hai. Python code ko ek darwaza (URL) de deta hai taaki koi aur use kar sake. Script sirf tum chala sakte the, wo bhi file edit karke.
+
+@app.get("/pata") — upar wali ye line neeche wale function ko ek pata deti hai. Koi us pate par aaya to function chalta hai.
+
+Chalane ka tarika alag hai — python main.py nahi, uvicorn main:app --reload. main = file, app = us file ka variable. --reload matlab save karte hi server khud restart.
+
+/docs khud ban jaata hai. Ek line likhe bina. Client ya frontend wale ko dene ke liye ready documentation — freelance mein seedha faayda.
+
+Sabse bada farak: print vs return. Script mein print user tak pahunchta tha kyunki user aur programmer ek hi the. Server mein user kisi aur shehar mein hai — print sirf tumhare terminal mein jaata hai, user tak sirf return pahunchta hai. Threshold wale raste par return bhool gaya tha to user ko null mila.
+
+Setup function ke bahar. Chroma aur Gemini client server chalu hote waqt ek baar banao. Function ke andar rakhoge to har sawal par dobara banega. Wahi "API call loop ke bahar" wali baat, naye bhes mein.
+
+Class = design, object = bhara hua form. class Question ek khaali form ka naksha hai. body wo form jo kisi ne bharke bheja. Question.query galat hai (naksha khaali hai), body.query sahi.
+
+GET vs POST. GET mein sawal URL mein jaata hai — chhoti cheezon ke liye theek, par lambe text ya &/# jaise akshar par tootta hai. POST mein sawal body mein jaata hai, JSON ki shakl mein. Bade input ke liye POST.
+
+response_model shape pakka karta hai. Answer mein rules_used dena bhool gaye the — Pydantic ne rok diya, Field required bola. Bina iske wo bug chup-chaap nikal jaata.
+
+
+
 
 
 

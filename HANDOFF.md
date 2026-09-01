@@ -1,6 +1,6 @@
 # Handoff — Learning Session History
 
-*Last updated: 2026-08-31*
+*Last updated: 2026-09-01*
 
 Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `ROADMAP.md` plan hai, ye file **kahani** hai — kaise wahan tak pahunche.
 
@@ -10,7 +10,9 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 **Phase 3 — RAG: KHATAM.** `rag01.py` (menu + budget), `rag02.py` (college rules + chunking + citations), `rag03.py` (2-parat re-ranking) — teeno verified.
 
-Agla: **Phase 4 — Deployment.** FastAPI se shuru — script ko web service banana. Phir Docker, phir hosting. Uske turant baad Project 1 live karna hai, aur seekhte nahi rehna.
+**Phase 4 — Deployment shuru.** FastAPI ho gaya — `main.py` mein RAG ab ek asli API hai (POST `/poocho`, Pydantic models, `/docs` khud bana).
+
+Agla: **Docker**, phir hosting, phir env vars. Uske turant baad Project 1 live karna hai, aur seekhte nahi rehna.
 
 ---
 
@@ -66,6 +68,18 @@ Files: `rag01.py` (menu + budget), `rag02.py` (college rules + chunking + citati
 
 ---
 
+### Phase 4 — Deployment
+File: `main.py` (RAG as API)
+
+- **`print` vs `return`** — server ka sabse bada farak. Script mein `print` user tak jaata tha; server mein user kisi aur shehar mein hai, `print` sirf apne terminal mein jaata hai. Threshold wale raste par `return` bhool gaye the to user ko `null` mila.
+- **Setup function ke bahar** — Chroma aur Gemini client server chalu hote waqt ek baar. Function ke andar rakha tha to har request par dobara ban raha tha. Wahi "API call loop ke bahar" wali baat, naye bhes mein.
+- **Class = design, object = bhara hua form** — `Question.query` (naksha, khaali) vs `body.query` (bhara hua). OOP abhi bhi skip; sirf ye ek farak chahiye tha Pydantic ke liye.
+- **`response_model` bug pakadta hai** — `Answer(answer=...)` mein `rules_used` bhool gaye, Pydantic ne `Field required` bola. Bina iske chup-chaap nikal jaata.
+- **GET vs POST** — GET mein sawal URL mein (chhota theek, lamba/`&`/`#` par tootta), POST mein body mein JSON ki tarah.
+- `/docs` khud ban jaata hai, ek line likhe bina. Client/frontend ko dene ke liye ready documentation.
+
+---
+
 ## Baar-baar hui galtiyan (in par dobara dhyan dena — teaching pattern)
 
 Ye galtiyan multiple sessions mein repeat hui hain, isliye inko revision ke waqt zaroor check karna:
@@ -112,7 +126,7 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 
 ## Aage kya hai (order mein, `ROADMAP.md` se)
 
-1. **Deployment** ← agla asli kadam — FastAPI, Docker, hosting, env vars
+1. **Deployment** — FastAPI [x]. Ab **Docker**, phir hosting, phir env vars
 2. **Project 1 live** — deployment ke turant baad, aur seekhte mat raho
 3. **Agents + tool calling** — job market ka sabse bada gap (RAG, agents, evaluation — teeno saath maange jaate hain)
 4. MCP — agents ke baad, chhota
