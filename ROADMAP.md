@@ -68,9 +68,10 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 ### 4. Deployment
 - [x] FastAPI — endpoints (`@app.get` / `@app.post`), `uvicorn main:app --reload`, `/docs` khud banta hai — `main.py`
 - [x] request/response models — Pydantic `BaseModel`, `response_model=`, class = design / object = bhara hua form
-- [ ] Docker — Dockerfile, image, container
+- [x] Docker — `Dockerfile`, `requirements.txt`, `.dockerignore`, `docker build -t` / `docker run -p`. `--host 0.0.0.0` zaroori, warna dabbe se baat nahi hoti
+- [x] environment variables, secrets — key Dockerfile mein KABHI nahi (image share hoti hai, parat mein padi rehti hai). `.env` + `--env-file`, aur `.env` dono ignore files mein
 - [ ] live hosting (Render / Railway / Fly)
-- [ ] environment variables, secrets
+- [ ] container ka data mit jaata hai — volume ya hosted vector DB (Supabase/pgvector)
 
 ### 4.5 Project 1 — LIVE karo, yahin, isi jagah par
 Deployment ke turant baad. Aur seekhte mat raho — jo aata hai usse ek asli cheez banao.
@@ -152,6 +153,8 @@ Har project: **live deployed + README + demo video.**
 **Vector DB (Chroma):** `PersistentClient` · `get_or_create_collection` · `add` / `upsert` / `update` · `count` · `query` (`query_texts` / `query_embeddings`) · `distances` · `metadatas` + `where` · `delete_collection`
 
 **RAG:** chunking (`split`, fixed size + overlap) · `join()` · `enumerate()` · retrieve -> prompt -> generate · distance threshold · grounding instruction · citations · re-ranking (2-parat)
+
+**Deployment:** FastAPI (`@app.get`/`@app.post`, Pydantic models, `/docs`) · `uvicorn` · Docker (`Dockerfile`, `build`, `run -p`, `.dockerignore`) · `.env` + `--env-file`
 
 **Aur:** git/GitHub · SQL (`SELECT` `WHERE` `GROUP BY` `ORDER BY` `LIMIT` `JOIN`) · sqlite3
 

@@ -10,9 +10,9 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 **Phase 3 — RAG: KHATAM.** `rag01.py` (menu + budget), `rag02.py` (college rules + chunking + citations), `rag03.py` (2-parat re-ranking) — teeno verified.
 
-**Phase 4 — Deployment shuru.** FastAPI ho gaya — `main.py` mein RAG ab ek asli API hai (POST `/poocho`, Pydantic models, `/docs` khud bana).
+**Phase 4 — Deployment.** FastAPI [x], Docker [x], secrets [x]. Dabba chal chuka hai aur uske andar se asli jawab aaya, verified.
 
-Agla: **Docker**, phir hosting, phir env vars. Uske turant baad Project 1 live karna hai, aur seekhte nahi rehna.
+Agla: **live hosting** (Render/Railway/Fly) — asli URL. Uske turant baad Project 1, aur seekhte nahi rehna.
 
 ---
 
@@ -78,6 +78,13 @@ File: `main.py` (RAG as API)
 - **GET vs POST** — GET mein sawal URL mein (chhota theek, lamba/`&`/`#` par tootta), POST mein body mein JSON ki tarah.
 - `/docs` khud ban jaata hai, ek line likhe bina. Client/frontend ko dene ke liye ready documentation.
 
+**Docker** — `Dockerfile`, `requirements.txt`, `.dockerignore`
+- `--host 0.0.0.0` bina dabba chalega par baat nahi hogi (default `127.0.0.1` = "sirf isi dabbe ke andar se"). `-p 8000:8000` khidki banata hai.
+- `requirements.txt` alag se pehle copy karo — Docker kadam yaad rakhta hai, sirf code badla to libraries dobara install nahi hoti. 3 minute vs 5 second.
+- **Key Dockerfile mein kabhi nahi.** Image share hoti hai aur uski har parat save rehti hai. `.env` + `--env-file` se chalte waqt do; `.env` `.gitignore` aur `.dockerignore` dono mein.
+- **Container ka data container ke saath mit jaata hai** — `.dockerignore` ne chroma folder rok diya, to dabba khaali almirah ke saath chala aur 12 chunks dobara embed kiye (`menu embeded` logs mein). Bade data par ye der aur paisa dono hai. Hal: volume ya hosted vector DB.
+- Verified: `docker run -p 8000:8000 --env-file .env rag-api` -> `POST /poocho` -> `{"answer":"Lunch time starts from 2:30pm to 3pm [1]","rules_used":[...]}`
+
 ---
 
 ## Baar-baar hui galtiyan (in par dobara dhyan dena — teaching pattern)
@@ -126,7 +133,7 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 
 ## Aage kya hai (order mein, `ROADMAP.md` se)
 
-1. **Deployment** — FastAPI [x]. Ab **Docker**, phir hosting, phir env vars
+1. **Deployment** — FastAPI [x], Docker [x], secrets [x]. Ab **live hosting**
 2. **Project 1 live** — deployment ke turant baad, aur seekhte mat raho
 3. **Agents + tool calling** — job market ka sabse bada gap (RAG, agents, evaluation — teeno saath maange jaate hain)
 4. MCP — agents ke baad, chhota
