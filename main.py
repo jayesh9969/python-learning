@@ -33,7 +33,7 @@ class Answer(BaseModel):
 all_vectors = []
 c = genai.Client()
 
-client = chromadb.PersistentClient(path="chr_rules_api")
+client = chromadb.PersistentClient(path="chroma_rules_api")
 
 collection = client.get_or_create_collection(name="college_rules")
 
