@@ -3,6 +3,7 @@ from google import genai
 import chromadb
 from pydantic import BaseModel
 
+
 app = FastAPI()
 
 
@@ -18,6 +19,8 @@ if students didn't informed about taking leaves those students needs to call the
 students can enter classes after parents teachers discussion is solved.
 cheating and copying other students answers are not allowed if get caught student will be not allowed to sit in the exams for a year.
 teachers are not allowed to abuse students physically or mentally and it is punishable by law"""
+
+
 
 chunks = college_rules.split("\n")
 

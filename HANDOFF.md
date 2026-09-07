@@ -1,6 +1,6 @@
 # Handoff — Learning Session History
 
-*Last updated: 2026-09-01*
+*Last updated: 2026-09-02*
 
 Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `ROADMAP.md` plan hai, ye file **kahani** hai — kaise wahan tak pahunche.
 
@@ -8,11 +8,10 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 ## Abhi kaha hu
 
-**Phase 3 — RAG: KHATAM.** `rag01.py` (menu + budget), `rag02.py` (college rules + chunking + citations), `rag03.py` (2-parat re-ranking) — teeno verified.
+**Phase 4 — Deployment: KHATAM.** FastAPI [x], Docker [x], secrets [x], Live hosting on Render [x]. Live URL `https://rag-api-zgoi.onrender.com/poocho` verified with real terminal output.
 
-**Phase 4 — Deployment.** FastAPI [x], Docker [x], secrets [x]. Dabba chal chuka hai aur uske andar se asli jawab aaya, verified.
+Agla: **Project 1 — LIVE banana** (asli problem, live deployed, README, demo video), aur uske saath **Agents + tool calling**.
 
-Agla: **live hosting** (Render/Railway/Fly) — asli URL. Uske turant baad Project 1, aur seekhte nahi rehna.
 
 ---
 

@@ -70,7 +70,7 @@ pgvector Postgres par chalta hai, aur Supabase bhi. Bina SQL ke vector DB adhoor
 - [x] request/response models — Pydantic `BaseModel`, `response_model=`, class = design / object = bhara hua form
 - [x] Docker — `Dockerfile`, `requirements.txt`, `.dockerignore`, `docker build -t` / `docker run -p`. `--host 0.0.0.0` zaroori, warna dabbe se baat nahi hoti
 - [x] environment variables, secrets — key Dockerfile mein KABHI nahi (image share hoti hai, parat mein padi rehti hai). `.env` + `--env-file`, aur `.env` dono ignore files mein
-- [ ] live hosting (Render / Railway / Fly)
+- [x] live hosting (Render / Railway / Fly) — deployed on Render (https://rag-api-zgoi.onrender.com)
 - [ ] container ka data mit jaata hai — volume ya hosted vector DB (Supabase/pgvector)
 
 ### 4.5 Project 1 — LIVE karo, yahin, isi jagah par

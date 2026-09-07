@@ -16,7 +16,7 @@ print(smallest)
 
 education = {"harman": "B.tech", "noah": "BSC", "shahid": "BA"}
 
-print(f"noah ka qualification {education["noah"]} hai")
+print(f"noah ka qualification {education['noah']} hai")
 
 print(type(education))
 total = 0

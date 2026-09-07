@@ -15,3 +15,5 @@ for i in range(0, len(delivery_info), size - overlap):
 
         print(chunk)
 
+
+
