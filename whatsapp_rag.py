@@ -60,7 +60,7 @@ def question(Body : ChatRequest):
 
     res = collection.query(query_embeddings=[vectorq], n_results= 10)
 
-    prompt = f"""i have given you a list {res["documents"]} give answer according to {Body.message} if information is not available in the list say 'info not available' do not add additional information. give 4 steps if {Body.message} is short"""
+    prompt = f"""i have given you a list {res["documents"]} give answer according to {Body.message} if information is not available in the list say 'info not available' do not add additional information."""
     response = c.models.generate_content(
         model="gemini-flash-lite-latest",
         contents=prompt
