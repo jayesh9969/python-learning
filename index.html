@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp मार्गदर्शक | AI Guide Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #0c1317;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Main Container (WhatsApp Web Style) */
+    .chat-container {
+      width: 100%;
+      max-width: 520px;
+      height: 100vh;
+      background: #0b141a;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (min-width: 600px) {
+      .chat-container {
+        height: 92vh;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+    }
+
+    /* WhatsApp Header */
+    .chat-header {
+      background: #202c33;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #e9edef;
+      border-bottom: 1px solid #222d34;
+      z-index: 10;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 42px;
+      height: 42px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      background: #00a884;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .online-badge {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      background: #25d366;
+      border: 2px solid #202c33;
+      border-radius: 50%;
+    }
+
+    .header-info h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e9edef;
+    }
+
+    .header-info p {
+      font-size: 12px;
+      color: #8696a0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Messages Area */
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #0b141a;
+      background-image: radial-gradient(#1e293b 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .message-row {
+      display: flex;
+      width: 100%;
+    }
+
+    .message-row.user {
+      justify-content: flex-end;
+    }
+
+    .message-row.bot {
+      justify-content: flex-start;
+    }
+
+    .message-bubble {
+      max-width: 82%;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      position: relative;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .message-row.user .message-bubble {
+      background: #005c4b;
+      color: #e9edef;
+      border-top-right-radius: 0;
+    }
+
+    .message-row.bot .message-bubble {
+      background: #202c33;
+      color: #d1d7db;
+      border-top-left-radius: 0;
+    }
+
+    .message-time {
+      font-size: 11px;
+      color: #8696a0;
+      text-align: right;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .ticks {
+      color: #53bdeb;
+      font-size: 13px;
+    }
+
+    /* Quick Suggestions */
+    .suggestions {
+      display: flex;
+      gap: 8px;
+      padding: 8px 16px;
+      overflow-x: auto;
+      background: #111b21;
+      scrollbar-width: none;
+    }
+
+    .suggestions::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      background: #202c33;
+      color: #00a884;
+      border: 1px solid #2a3942;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 12.5px;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      background: #00a884;
+      color: #111b21;
+    }
+
+    /* Input Area */
+    .chat-input-bar {
+      background: #202c33;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .input-box {
+      flex: 1;
+      background: #2a3942;
+      border: none;
+      border-radius: 24px;
+      padding: 10px 16px;
+      color: #d1d7db;
+      font-size: 14.5px;
+      outline: none;
+    }
+
+    .input-box::placeholder {
+      color: #8696a0;
+    }
+
+    .send-btn {
+      width: 42px;
+      height: 42px;
+      background: #00a884;
+      border: none;
+      border-radius: 50%;
+      color: #111b21;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .send-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #111b21;
+      margin-left: 2px;
+    }
+
+    /* Typing Animation */
+    .typing-dots {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px 8px;
+    }
+
+    .typing-dots span {
+      width: 6px;
+      height: 6px;
+      background: #8696a0;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="avatar-wrapper">
+        <div class="avatar">💬</div>
+        <div class="online-badge"></div>
+      </div>
+      <div class="header-info">
+        <h2>WhatsApp मार्गदर्शक (AI Guide)</h2>
+        <p>🟢 ऑनलाइन (सुलभ मराठी मदत)</p>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" id="messagesBox">
+      <div class="message-row bot">
+        <div class="message-bubble">
+नमस्कार! 🙏 मी तुमचा व्हॉट्सअ‍ॅप मार्गदर्शक आहे.
+
+तुम्हाला व्हॉट्सअ‍ॅपमध्ये ग्रुप कसा बनवायचा, पैसे कसे पाठवायचे, किंवा कोणतीही सेटिंग कशी करायची हे सोप्या मराठीत विचारा.
+          <div class="message-time">आत्ताच</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Suggestion Chips -->
+    <div class="suggestions">
+      <button class="chip" onclick="sendSuggestion('new group kasa banvaycha?')">👥 नवीन ग्रुप कसा बनवायचा?</button>
+      <button class="chip" onclick="sendSuggestion('bank account kase add karu?')">🏦 बँक खाते कसे जोडायचे?</button>
+      <button class="chip" onclick="sendSuggestion('paise kase pathvave?')">💸 पैसे कसे पाठवायचे?</button>
+      <button class="chip" onclick="sendSuggestion('account balance kasa baghaycha?')">💰 बॅलन्स कसा तपासायचा?</button>
+    </div>
+
+    <!-- Input Bar -->
+    <div class="chat-input-bar">
+      <input type="text" id="userInput" class="input-box" placeholder="इथे प्रश्न विचारा... (उदा. ग्रुप कसा तयार करायचा?)" autocomplete="off">
+      <button class="send-btn" id="sendBtn" onclick="handleSend()">
+        <svg viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const messagesBox = document.getElementById("messagesBox");
+    const userInput = document.getElementById("userInput");
+
+    userInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        handleSend();
+      }
+    });
+
+    function sendSuggestion(text) {
+      userInput.value = text;
+      handleSend();
+    }
+
+    function getCurrentTime() {
+      const now = new Date();
+      return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    async function handleSend() {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      // 1. Append User Message
+      appendMessage(text, "user");
+      userInput.value = "";
+
+      // 2. Append Typing Indicator
+      const typingId = appendTypingIndicator();
+      messagesBox.scrollTop = messagesBox.scrollHeight;
+
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text })
+        });
+
+        const data = await response.json();
+        removeTypingIndicator(typingId);
+
+        if (data.reply) {
+          appendMessage(data.reply, "bot");
+        } else {
+          appendMessage("माहिती उपलब्ध नाही. कृपया वेगळा प्रश्न विचारा.", "bot");
+        }
+      } catch (err) {
+        removeTypingIndicator(typingId);
+        appendMessage("सर्व्हरशी संपर्क होऊ शकला नाही. कृपया थोड्या वेळाने प्रयत्न करा.", "bot");
+      }
+
+      messagesBox.scrollTop = messagesBox.scrollHeight;
+    }
+
+    function appendMessage(text, sender) {
+      const row = document.createElement("div");
+      row.className = `message-row ${sender}`;
+
+      const bubble = document.createElement("div");
+      bubble.className = "message-bubble";
+      bubble.innerText = text;
+
+      const time = document.createElement("div");
+      time.className = "message-time";
+      time.innerHTML = `${getCurrentTime()} ${sender === "user" ? '<span class="ticks">✓✓</span>' : ''}`;
+
+      bubble.appendChild(time);
+      row.appendChild(bubble);
+      messagesBox.appendChild(row);
+      messagesBox.scrollTop = messagesBox.scrollHeight;
+    }
+
+    function appendTypingIndicator() {
+      const id = "typing-" + Date.now();
+      const row = document.createElement("div");
+      row.className = "message-row bot";
+      row.id = id;
+
+      const bubble = document.createElement("div");
+      bubble.className = "message-bubble";
+      bubble.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
+
+      row.appendChild(bubble);
+      messagesBox.appendChild(row);
+      return id;
+    }
+
+    function removeTypingIndicator(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+  </script>
+</body>
+</html>
