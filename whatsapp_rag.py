@@ -61,9 +61,7 @@ def question(Body : str = Form(...)):
 
     res = collection.query(query_embeddings=[vectorq], n_results= 10)
 
-    context_text = "\n\n".join(res["documents"][0]) if res.get("documents") else "no context found."
-
-    prompt = f"""i have given you a list of documents: {context_text} give answer according to: {Body} if information is not available in the list say 'info not available' do not add additional information."""
+    prompt = f"""i have given you a list {res["documents"]} give answer according to {Body.message} if information is not available in the list say 'info not available' do not add additional information. give 4 steps if {Body.message} is short"""
     response = c.models.generate_content(
         model="gemini-flash-lite-latest",
         contents=prompt
