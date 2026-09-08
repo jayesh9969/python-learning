@@ -1,17 +1,17 @@
 
-from fastapi.responses import HTMLResponse
+
 from google import genai
 import chromadb
 import json
-from fastapi import FastAPI
-from fastapi.responses import Response
-from fastapi import Form
-from twilio.twiml.messaging_response import MessagingResponse
+from app import user_query
 
 
 
 
-app = FastAPI()
+
+
+
+
 
 
 
@@ -54,22 +54,24 @@ if collection.count() == 0:
 else:
     print("already emdeded, skip")
 
-@app.post("/whatsapp")
-def question(Body : str = Form(...)):
-    q = c.models.embed_content(model="gemini-embedding-001", contents=Body)
-    vectorq = q.embeddings[0].values
 
-    res = collection.query(query_embeddings=[vectorq], n_results= 10)
+q = c.models.embed_content(model="gemini-embedding-001", contents=user_query)
+vectorq = q.embeddings[0].values
 
-    prompt = f"""i have given you a list {res["documents"]} give answer according to {Body.message} if information is not available in the list say 'info not available' do not add additional information. give 4 steps if {Body.message} is short"""
-    response = c.models.generate_content(
-        model="gemini-flash-lite-latest",
-        contents=prompt
-    )
-    model_answer = response.text if response.text else "sorry, i couldn't generate an answer"
-    resp = MessagingResponse()
-    resp.message(model_answer)
-    return Response(content=str(resp), media_type="application/xml")
+res = collection.query(query_embeddings=[vectorq], n_results= 10)
+
+context_text = res["documents"][0]
+
+prompt = f"""i have given you a list: {context_text} give answer according to: {user_query} if information is not available in the list say 'info not available' do not add additional information."""
+response = c.models.generate_content(
+    model="gemini-flash-lite-latest",
+    contents=prompt
+)
+
+
+
+    
+
 
 
 
