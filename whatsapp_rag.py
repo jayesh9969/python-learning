@@ -18,10 +18,6 @@ import json
 
 
 
-
-
-
-
 with open("whatsapp_guide.json", "r", encoding="utf-8") as f:
     whasapp_ins = json.load(f)
     
@@ -31,7 +27,7 @@ with open("whatsapp_guide.json", "r", encoding="utf-8") as f:
     
     all_docs = []
     for steps in whasapp_ins.values():
-        one_part = "\n".join(steps)
+        one_part = "\n\n".join(steps)
         all_docs.append(one_part)
 
 
