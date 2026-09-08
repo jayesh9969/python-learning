@@ -4,7 +4,7 @@ from google import genai
 import chromadb
 import json
 
-from app import user_query
+
 
 
 
