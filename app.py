@@ -1,37 +1,129 @@
-import streamlit as st
-# Import the function we just created
-from whatsapp_rag import ask_whatsapp_rag 
+import os
+import requests
 
-st.set_page_config(page_title="WhatsApp Guide Bot", page_icon="💬", layout="centered")
-st.title("💬 WhatsApp Guide Assistant")
-st.caption("Ask questions strictly based on the loaded WhatsApp installation guide context.")
+from fastapi import FastAPI, Request
+from fastapi.responses import PlainTextResponse
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+from whatsapp_rag import ask_whatsapp_rag
 
-# Display previous chat messages from history
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
 
-# Create the input text box and send button
-if user_query := st.chat_input("Ask a question about the guide..."):
-    
-    # Display user's question
-    with st.chat_message("user"):
-        st.markdown(user_query)
-    st.session_state.messages.append({"role": "user", "content": user_query})
+app = FastAPI()
 
-    # Display a loading spinner while processing embeddings and RAG pipeline
-    with st.spinner("Scanning database and consulting Gemini..."):
-        try:
-            # Run your actual RAG function using the query string
-            ai_response = ask_whatsapp_rag(user_query)
-        except Exception as e:
-            ai_response = f"⚠️ System Error: {str(e)}"
 
-    # Display the strict RAG response
-    with st.chat_message("assistant"):
-        st.markdown(ai_response)
-    st.session_state.messages.append({"role": "assistant", "content": ai_response})
+VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN")
+ACCESS_TOKEN = os.getenv("WHATSAPP_ACCESS_TOKEN")
+PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID")
+
+
+# --------------------------------------------------
+# Meta webhook verification
+# --------------------------------------------------
+
+@app.get("/webhook")
+async def verify_webhook(request: Request):
+
+    params = request.query_params
+
+    mode = params.get("hub.mode")
+    token = params.get("hub.verify_token")
+    challenge = params.get("hub.challenge")
+
+    if mode == "subscribe" and token == VERIFY_TOKEN:
+        return PlainTextResponse(challenge)
+
+    return PlainTextResponse("Verification failed", status_code=403)
+
+
+# --------------------------------------------------
+# Receive WhatsApp messages
+# --------------------------------------------------
+
+@app.post("/webhook")
+async def receive_message(request: Request):
+
+    data = await request.json()
+
+    try:
+
+        entry = data["entry"][0]
+        changes = entry["changes"][0]
+        value = changes["value"]
+
+        messages = value.get("messages")
+
+        if not messages:
+            return {"status": "no message"}
+
+        message = messages[0]
+
+        # We only handle text messages
+        if message.get("type") != "text":
+            return {"status": "ignored"}
+
+        user_phone = message["from"]
+        user_text = message["text"]["body"]
+
+        print("User:", user_phone)
+        print("Message:", user_text)
+
+        # Run your RAG
+        answer = ask_whatsapp_rag(user_text)
+
+        print("Answer:", answer)
+
+        # Send answer back
+        send_whatsapp_message(user_phone, answer)
+
+    except Exception as e:
+
+        print("Webhook error:", e)
+
+    return {"status": "ok"}
+
+
+# --------------------------------------------------
+# Send WhatsApp message
+# --------------------------------------------------
+
+def send_whatsapp_message(to: str, message: str):
+
+    url = (
+        f"https://graph.facebook.com/"
+        f"v23.0/{PHONE_NUMBER_ID}/messages"
+    )
+
+    headers = {
+        "Authorization": f"Bearer {ACCESS_TOKEN}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": to,
+        "type": "text",
+        "text": {
+            "body": message
+        }
+    }
+
+    response = requests.post(
+        url,
+        headers=headers,
+        json=payload
+    )
+
+    print("Meta response:", response.status_code)
+    print(response.text)
+
+
+# --------------------------------------------------
+# Health check
+# --------------------------------------------------
+
+@app.get("/")
+def health():
+
+    return {
+        "status": "running",
+        "service": "WhatsApp RAG bot"
+    }
