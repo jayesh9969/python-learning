@@ -3,7 +3,9 @@
 from google import genai
 import chromadb
 import json
+
 from app import user_query
+
 
 
 
@@ -54,19 +56,20 @@ if collection.count() == 0:
 else:
     print("already emdeded, skip")
 
+def ask_whatsapp_rag(user_query : str) ->str:
+    q = c.models.embed_content(model="gemini-embedding-001", contents=user_query)
+    vectorq = q.embeddings[0].values
 
-q = c.models.embed_content(model="gemini-embedding-001", contents=user_query)
-vectorq = q.embeddings[0].values
+    res = collection.query(query_embeddings=[vectorq], n_results= 10)
 
-res = collection.query(query_embeddings=[vectorq], n_results= 10)
+    context_text = res["documents"][0]
 
-context_text = res["documents"][0]
-
-prompt = f"""i have given you a list: {context_text} give answer according to: {user_query} if information is not available in the list say 'info not available' do not add additional information."""
-response = c.models.generate_content(
-    model="gemini-flash-lite-latest",
-    contents=prompt
-)
+    prompt = f"""i have given you a list: {context_text} give answer according to: {user_query} if information is not available in the list say 'info not available' do not add additional information."""
+    response = c.models.generate_content(
+        model="gemini-flash-lite-latest",
+        contents=prompt
+    )
+    return response.text
 
 
 
