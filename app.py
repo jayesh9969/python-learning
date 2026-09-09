@@ -89,7 +89,7 @@ def send_whatsapp_message(to: str, message: str):
 
     url = (
         f"https://graph.facebook.com/"
-        f"v25.0/{PHONE_NUMBER_ID}/messages"
+        f"v26.0/{PHONE_NUMBER_ID}/messages"
     )
 
     headers = {
