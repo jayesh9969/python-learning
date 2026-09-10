@@ -60,7 +60,7 @@ def ask_whatsapp_rag(user_query : str) ->str:
 
     context_text = res["documents"][0]
 
-    prompt = f"""i have given you a list: {context_text} give answer according to: {user_query} if information is not available in the list say 'info not available' do not add additional information."""
+    prompt = f"""i have given you a list: {context_text} give answer according to: {user_query} if information is not available in the list say 'info not available' do not add additional information. convret these steps into marathi text"""
     response = c.models.generate_content(
         model="gemini-flash-lite-latest",
         contents=prompt
