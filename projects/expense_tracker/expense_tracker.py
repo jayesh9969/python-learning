@@ -10,8 +10,13 @@
 # step 5:     naam aur amount alag nikalo, strip karo
 # step 6:     f-string se print karo
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+EXPENSES_FILE = BASE_DIR / "expenses.txt"
+
 def view_expenses():
-    with open("expenses.txt", "r") as f:
+    with open(EXPENSES_FILE, "r") as f:
         for line in f:
             parts = line.split(',')
             name = parts[0]
@@ -26,7 +31,7 @@ def show_summary():
     max_amount = 0
     max_name = ""
 
-    with open("expenses.txt", "r") as f:
+    with open(EXPENSES_FILE, "r") as f:
         for line in f:
             parts = line.split(',')
             amount = int(parts[1].strip())
@@ -76,7 +81,7 @@ def add_expense():
             print("enter only number")
 
 
-    with open("expenses.txt", "a") as f:
+    with open(EXPENSES_FILE, "a") as f:
             f.write(f"{name},{amount}\n")
 
             print(f"{name} - Rs {amount} is added")

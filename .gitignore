@@ -1,7 +1,9 @@
 # Vector DB ka banaya hua data - code se dobara ban jaata hai
 # Naya store banao to naam chroma_ se shuru karna, warna ye pattern chhod dega
 chroma_*/
+**/chroma_*/
 chr_*/
+**/chr_*/
 
 # Python ka apna kachra
 __pycache__/

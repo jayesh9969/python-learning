@@ -1,5 +1,7 @@
+from pathlib import Path
+
 marks = []
-with open("marks.txt") as m:
+with open(Path(__file__).parent / "marks.txt") as m:
     marks = [int(line) for line in m]
         
     print(marks)        

@@ -8,9 +8,11 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 ## Abhi kaha hu
 
-**Phase 4 — Deployment: KHATAM.** FastAPI [x], Docker [x], secrets [x], Live hosting on Render [x]. Live URL `https://rag-api-zgoi.onrender.com/poocho` verified with real terminal output.
+**Project 1 — KHATAM & LIVE.** Marathi WhatsApp Guide RAG assistant Streamlit (`app.py`) ke saath successfully deploy ho gaya aur chal raha hai.
+- Live URL verified: `https://rag-api-zgoi.onrender.com/` (HTTP 200 OK, Streamlit UI).
+- Abhi baaki: `README.md` portfolio presentation + `NOTES.md` user notes.
 
-Agla: **Project 1 — LIVE banana** (asli problem, live deployed, README, demo video), aur uske saath **Agents + tool calling**.
+Agla: **4.6 Agents + tool calling** (job market ka sabse bada gap: RAG, Agents, Evaluation).
 
 
 ---
@@ -132,15 +134,15 @@ Purani cheezein (Phase 0 se): outer vs inner variable confusion, accumulator (`t
 
 ## Aage kya hai (order mein, `ROADMAP.md` se)
 
-1. **Deployment** — FastAPI [x], Docker [x], secrets [x]. Ab **live hosting**
-2. **Project 1 live** — deployment ke turant baad, aur seekhte mat raho
-3. **Agents + tool calling** — job market ka sabse bada gap (RAG, agents, evaluation — teeno saath maange jaate hain)
-4. MCP — agents ke baad, chhota
-5. LangChain/LlamaIndex — chhota item, sirf naam aur syntax
-6. Hybrid search (BM25) — Phase 3 ka bacha hua, 2 session
-7. Supabase / pgvector (Phase 2 ka bacha hua hissa)
-8. Evaluation & Observability — haath se eval pehle, phir RAGAS/DeepEval/Langfuse
-9. n8n automation
-10. PyTorch (sabse aakhir, kam priority)
+1. **4.6 Agents + tool calling** — abhi ka focus (tool calling, agent loop, error handling, state, evaluation)
+2. **LangGraph** — multi-step agent workflows
+3. **MCP (Model Context Protocol)** — agents ke baad
+4. **LangChain / LlamaIndex** — chhota overview (naming lookup)
+5. **Phase 1.5 & 3 Updates:** PostgreSQL + pgvector & Hybrid search (BM25 + embeddings)
+6. **Phase 5: Evaluation & Observability** — RAGAS, DeepEval, Langfuse tracing
+7. **Phase 5.5: AI Security & Guardrails** — prompt injection, safety, PII
+8. **Phase 4.1 & 4.2: Python Engineering & Testing** — typing, async, logging, pytest + mocking
+9. **Project 2: Autonomous Production AI Agent** (Flagship full-stack project)
+10. Cloud + CI/CD, Basic ML, PyTorch, Minimal Frontend (job-readiness ke saath-saath)
 
 Plus: 3 portfolio projects, har ek live deployed, kisi asli insaan ki asli problem.

@@ -1,10 +1,10 @@
-
-
+from pathlib import Path
 from google import genai
 import chromadb
 import json
 
 
+BASE_DIR = Path(__file__).resolve().parent
 
 
 
@@ -18,7 +18,9 @@ import json
 
 
 
-with open("whatsapp_guide.json", "r", encoding="utf-8") as f:
+
+
+with open(BASE_DIR / "whatsapp_guide.json", "r", encoding="utf-8") as f:
     whasapp_ins = json.load(f)
     
     all_ids = list(whasapp_ins.keys())
@@ -40,7 +42,7 @@ all_vectors = []
 
 c = genai.Client()
 
-client = chromadb.PersistentClient(path="chroma_whatsapp", settings=chromadb.Settings(allow_reset=True))
+client = chromadb.PersistentClient(path=str(BASE_DIR / "chroma_whatsapp"), settings=chromadb.Settings(allow_reset=True))
 
 collection = client.get_or_create_collection(name="whatsapp_parts")
 if collection.count() == 0:

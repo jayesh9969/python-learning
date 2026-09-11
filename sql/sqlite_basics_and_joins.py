@@ -1,6 +1,7 @@
+from pathlib import Path
 import pandas as pd, sqlite3
 
-con = sqlite3.connect('school.db')
+con = sqlite3.connect(Path(__file__).parent / 'school.db')
 
 # print(pd.read_sql('SELECT * FROM students', con))
 

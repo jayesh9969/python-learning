@@ -204,6 +204,8 @@ Key chalte waqt bahar se do. .env file banao, docker run --env-file .env se chal
 
 Dabbe ka data dabbe ke saath mit jaata hai. Container band kiya to andar ki almirah gayab. Restart par phir se embed. Chaar rules par koi baat nahi, 500-page PDF par der bhi aur paisa bhi. Iska hal — volume (bahar ka folder jodna) ya hosted vector DB (Supabase/pgvector).
 
+Project 1 : is project me humne Procedural RAG  chunking ka use kiya kyuki data ya documents koi paragraph nahi tha wo instructions the isliye alag line banane ke bajaye poore steps ko ek chunk me "/n".join me dala gaya. streamlit ka istemal waqt bachane ke liye kiya kyuki streamlit python me hi likha jata hai frontend ke liye koi dusri language nahi sikhni padi jaise HTML, streamlit khud ek frondend ki tarah kam karta hai st.session_state aur st.chat_message ne ek chatbox bana diya. gemini-embedding-2 7 documents list leta hai lekin ek hi vector nikalta hai jab ki gemini-embedding-001 ye 7 documents ko 7 alag embeddings deta hai jo hame is project me chahiye tha wo tha gemini-embedding-001.
+
 
 
 
