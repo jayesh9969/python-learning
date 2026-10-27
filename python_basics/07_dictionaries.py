@@ -19,6 +19,7 @@ students = [
     {"name": "Kabir", "marks": [90, 95, 99]},
 ]
 
+
 for s in students:
     m = s['marks']
     avg = sum(m) / len(m)

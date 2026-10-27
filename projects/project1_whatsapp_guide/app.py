@@ -4,7 +4,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent))
 
 import streamlit as st
-from whatsapp_rag import ask_whatsapp_rag
+from projects.project1_whatsapp_guide.whatsapp_rag import ask_whatsapp_rag
 
 st.title("Whatsapp Instructions")
 

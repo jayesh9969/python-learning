@@ -1,0 +1,10 @@
+google-genai==2.25.0
+uvicorn==0.52.4
+streamlit==1.63.0
+requests==2.34.2
+python-dotenv==1.2.3
+pydantic==2.13.4
+psycopg-binary==3.3.6
+pgvector==0.5.1
+fastapi==0.141.1
+

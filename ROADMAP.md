@@ -40,13 +40,13 @@ Postgres + pgvector production standard hai. Vector DB aur structured data dono 
 - [x] `ORDER BY`, `LIMIT` — `sql/sqlite_basics_and_joins.py`
 - [x] `JOIN` — inner aur left — `sql/sqlite_basics_and_joins.py`
 - [x] Python se connect — `sqlite3` + `pd.read_sql`
-- [ ] PostgreSQL basics & setup
-- [ ] primary / foreign keys, indexes
+- [x] PostgreSQL basics & setup
+- [x] primary / foreign keys, indexes
 - [ ] transactions & database migrations
-- [ ] connection pooling basics
-- [ ] Supabase setup & connection
-- [ ] pgvector extension & vector similarity search (`<->`, `<=>`)
-- [ ] metadata filtering in PostgreSQL
+- [x] connection pooling basics
+- [x] Supabase setup & connection
+- [x] pgvector extension & vector similarity search (`<->`, `<=>`) — `postgres_learning/pgvector_setup.py`
+- [x] metadata filtering in PostgreSQL (`WHERE ... ORDER BY embedding <=> %s::vector`)
 
 ---
 
@@ -78,7 +78,7 @@ Postgres + pgvector production standard hai. Vector DB aur structured data dono 
 - [ ] HTML / Web extraction
 - [ ] metadata design & filtering strategy
 - [ ] duplicate detection & incremental indexing (sirf naye/badle documents embed karo)
-- [ ] **hybrid search (BM25 + embedding)** — semantic + exact keyword match (`rank_bm25` + dense vectors)
+- [x] **hybrid search (BM25 + embedding)** — semantic + exact keyword match (`rank_bm25` + dense vectors + RRF) — `postgres_learning/hybrid_search.py`
 - [ ] query rewriting (user query ko search-friendly banana)
 - [ ] contextual compression
 - [ ] retrieval evaluation
@@ -113,7 +113,7 @@ Scripting se nikalke software engineer level Python likhna:
 - [ ] basic OOP / classes (encapsulation, methods, `__init__`, `__repr__`)
 - [ ] `pathlib` for file/path management
 - [ ] JSON handling (robust serialization/deserialization)
-- [ ] structured logging (`logging` module, log levels, formatting)
+- [x] structured logging (`logging` module, log levels, formatting) — `testing_and_logging/agent_service.py`
 - [ ] async/await and `asyncio` fundamentals
 
 ---
@@ -121,12 +121,12 @@ Scripting se nikalke software engineer level Python likhna:
 ### 4.2 Testing & Quality Assurance — HIGH Priority
 Production apps bina tests ke deploy nahi hote:
 
-- [ ] `pytest` setup and execution
-- [ ] unit tests for core logic
-- [ ] API integration tests with FastAPI `TestClient`
+- [x] `pytest` setup and execution — `testing_and_logging/test_agent_service.py`
+- [x] unit tests for core logic
+- [x] API integration tests with FastAPI `TestClient` — `projects/job_matcher/test_api.py`
 - [ ] test fixtures (`@pytest.fixture`)
-- [ ] mocking LLM / API responses (bina paisa/tokens kharch kiye test chalana)
-- [ ] testing error and failure edge cases
+- [x] mocking LLM / API responses (bina paisa/tokens kharch kiye test chalana)
+- [x] testing error and failure edge cases
 - [ ] regression testing
 
 ---
@@ -158,41 +158,41 @@ Production apps bina tests ke deploy nahi hote:
 ### 4.6 Agents & Reliable Tool Calling — CURRENT FOCUS (HIGH Priority)
 Job market ka sabse bada gap: **RAG + Agents + Evaluation**. Model sirf text nahi bolta, **actions leta hai**.
 
-- [ ] tool calling — function ko model ke haath mein dena
-- [ ] agent loop — soche, tool chalaye, natija dekhe, phir soche (ReAct pattern)
-- [ ] kab agent chahiye aur kab sirf RAG kaafi hai
-- [ ] tool schema design (parameters, docstrings, type annotations)
-- [ ] tool validation (model ke bheje inputs validate karna)
-- [ ] tool error handling, retries, timeouts
-- [ ] maximum agent steps (infinite loop safety guard)
-- [ ] state management & agent memory basics
-- [ ] human-in-the-loop approval (critical actions se pehle insaan se poochna)
-- [ ] agent evaluation
-- [ ] deterministic workflow vs autonomous agent (kab rule-based flow, kab LLM decision)
+- [x] tool calling — function ko model ke haath mein dena
+- [x] agent loop — soche, tool chalaye, natija dekhe, phir soche (ReAct pattern)
+- [x] kab agent chahiye aur kab sirf RAG kaafi hai
+- [x] tool schema design (parameters, docstrings, type annotations)
+- [x] tool validation (model ke bheje inputs validate karna)
+- [x] tool error handling, retries, timeouts
+- [x] maximum agent steps (infinite loop safety guard)
+- [x] state management & agent memory basics
+- [x] human-in-the-loop approval (critical actions se pehle insaan se poochna)
+- [x] agent evaluation
+- [x] deterministic workflow vs autonomous agent (kab rule-based flow, kab LLM decision)
 
 ---
 
 ### 4.7 LangGraph (Practical Multi-Step Workflows) — MEDIUM-HIGH Priority
 Agents scratch se seekhne ke baad reliable workflows banane ke liye:
 
-- [ ] LangGraph fundamentals & state graph concept
-- [ ] state schema
-- [ ] nodes (agents / functions)
-- [ ] edges & conditional routing
-- [ ] tool integration inside graph
-- [ ] checkpointing / memory persistence
-- [ ] error & retry handling inside graphs
+- [x] LangGraph fundamentals & state graph concept
+- [x] state schema
+- [x] nodes (agents / functions)
+- [x] edges & conditional routing
+- [x] tool integration inside graph
+- [x] checkpointing / memory persistence
+- [x] error & retry handling inside graphs
 
 ---
 
 ### 4.8 MCP (Model Context Protocol) — MEDIUM-HIGH Priority
 Tools ko kisi bhi AI model/client se connect karne ka open standard:
 
-- [ ] MCP concepts & architecture (client-server model)
-- [ ] MCP server banana
-- [ ] tools & resources expose karna
-- [ ] MCP server ko agent ke saath connect karna
-- [ ] basic authentication & security considerations
+- [x] MCP concepts & architecture (client-server model)
+- [x] MCP server banana
+- [x] tools & resources expose karna
+- [x] MCP server ko agent ke saath connect karna
+- [x] basic authentication & security considerations
 
 ---
 
@@ -294,13 +294,13 @@ Client ko skills ki list nahi, **working links aur code** chahiye. Har major pro
   - Deployed on Render: [https://rag-api-zgoi.onrender.com/](https://rag-api-zgoi.onrender.com/)
   - RAG with Gemini Flash, ChromaDB, Streamlit UI.
   - Progressive updates: hybrid search, evaluation benchmarks, observability.
-- [ ] **Project 2: Autonomous Production AI Agent (Flagship Job-Ready Project)**
-  - Real-world workflow automation.
-  - Tool calling, agent loop/state, reliable error recovery.
-  - FastAPI backend, PostgreSQL + pgvector, authentication, Docker.
-  - Automated testing with pytest + mocking.
-  - Full evaluation (RAGAS/DeepEval) & Observability (Langfuse).
-  - Deployed live with CI/CD.
+- [x] **Project 2: AI Job Matcher & Route Finder (Flagship Production Project)**
+  - Real-world workflow: Candidate profile analysis, vector similarity matching, competition diagnosis & learning route generation.
+  - Live ingestion pipeline with Remotive API (`inject_live_jobs.py`).
+  - FastAPI backend (`main.py`) + PostgreSQL + `pgvector` on Supabase cloud.
+  - Automated integration testing with `pytest` + `TestClient` (`test_api.py`).
+  - Interactive Streamlit Web UI (`app.py`).
+  - Next: Dockerization, live deployment on cloud & portfolio presentation.
 - [ ] **Project 3: Specialized Domain Solution (Optional / Flagship)**
   - Enterprise-style multi-agent or hybrid search RAG addressing complex document workflows.
 
@@ -344,4 +344,6 @@ Deep ML research theory · scratch se transformer train karna · Kaggle competit
 **Vector DB (Chroma):** `PersistentClient` · `get_or_create_collection` · `add`/`upsert`/`update` · `count()` · `query` · `distances` · `metadatas` + `where` · `delete_collection`
 **RAG (Scratch):** chunking (split + fixed size with overlap) · retrieval pipeline · distance threshold · grounding instruction · citations · 2-tier re-ranking
 **Deployment & Containers:** FastAPI (`@app.get`/`@app.post`, Pydantic models, `/docs`) · `uvicorn` · Docker (`Dockerfile`, `build`, `run -p`, `.dockerignore`) · `.env` + `--env-file` · Render hosting · Streamlit UI (`st.session_state`, `st.chat_message`)
+**Agents, LangGraph & MCP:** tool calling (manual & automatic) · ReAct pattern · LangGraph (`StateGraph`, `ToolNode`, `tools_condition`, `MemorySaver`, `RetryPolicy`) · MCP (`FastMCP`, `stdio_client`, dynamic tool discovery)
+**PostgreSQL & pgvector:** Supabase PostgreSQL 17 · `VECTOR(3072)` · `<=>` cosine distance · explicit `%s::vector` casting · combined SQL filter + vector similarity search
 **Projects Live:** Project 1 (Marathi WhatsApp RAG Assistant deployed on Render)

@@ -1,13 +1,22 @@
 {
+    "python.languageServer": "Jedi",
     "python-envs.defaultEnvManager": "ms-python.python:system",
     "python.defaultInterpreterPath": "C:\\Users\\Jayu\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
-    "python.languageServer": "Default",
+    "python.autoComplete.extraPaths": [
+        "C:\\Users\\Jayu\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages",
+        "./projects/job_matcher"
+    ],
+    "python.analysis.extraPaths": [
+        "./projects/job_matcher"
+    ],
+    "python.pyrefly.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
     "editor.suggestOnTriggerCharacters": true,
     "editor.quickSuggestions": {
         "other": "on",
         "comments": "off",
         "strings": "off"
     },
-    "editor.quickSuggestionsDelay": 10,
+    "editor.quickSuggestionsDelay": 0,
     "editor.suggest.snippetsPreventQuickSuggestions": false
 }

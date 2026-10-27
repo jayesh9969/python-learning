@@ -8,11 +8,16 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 ## Abhi kaha hu
 
-**Project 1 — KHATAM & LIVE.** Marathi WhatsApp Guide RAG assistant Streamlit (`app.py`) ke saath successfully deploy ho gaya aur chal raha hai.
-- Live URL verified: `https://rag-api-zgoi.onrender.com/` (HTTP 200 OK, Streamlit UI).
-- Abhi baaki: `README.md` portfolio presentation + `NOTES.md` user notes.
+**Flagship Project 2: AI Job Matcher & Route Finder — COMPLETED ✅**
+- Cloud PostgreSQL + pgvector Schema: Supabase live database par 13 columns table `jobs` (`projects/job_matcher/db_setup.py`).
+- Live Data Ingestion: Remotive API se real tech jobs live fetch karke Gemini 3072-dim embeddings ke saath PostgreSQL mein store kiya (`projects/job_matcher/inject_live_jobs.py`).
+- Semantic Matching Engine: Cosine distance `<=> %s::vector` query ke saath competition tag (`Low Competition 🔥` vs `High Competition ⚡`) calculate kiya (`projects/job_matcher/matcher.py`).
+- AI Career Doctor: Gemini LLM agent se grounded diagnosis aur shortest learning roadmap generate karwaya without fake percentages (`projects/job_matcher/diagnose.py`).
+- FastAPI Backend: `/analyze` and `/` endpoints banaye jo JSON response return karte hain (`projects/job_matcher/main.py`).
+- Automated Testing: `TestClient` aur `pytest` ke saath 100% green test suite verify kiya (`projects/job_matcher/test_api.py`).
+- Interactive Web UI: Streamlit frontend (`projects/job_matcher/app.py`) jo live FastAPI backend se baat karta hai aur formatted cards + roadmap dikhata hai.
 
-Agla: **4.6 Agents + tool calling** (job market ka sabse bada gap: RAG, Agents, Evaluation).
+Agla: **Dockerization & Live Cloud Deployment (Render) + Portfolio Presentation / README & Demo!**
 
 
 ---
