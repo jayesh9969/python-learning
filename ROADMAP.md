@@ -104,17 +104,17 @@ Postgres + pgvector production standard hai. Vector DB aur structured data dono 
 ### 4.1 Python Engineering (Production-Ready Code) — HIGH Priority
 Scripting se nikalke software engineer level Python likhna:
 
-- [ ] modules, packages, imports structure
-- [ ] virtual environments (`venv`)
-- [ ] pip and dependency management (`requirements.txt` pinning)
-- [ ] `pyproject.toml` basics
-- [ ] type hints (`typing` module, Union, Optional, Callable)
-- [ ] dataclasses (`@dataclass` vs Pydantic)
-- [ ] basic OOP / classes (encapsulation, methods, `__init__`, `__repr__`)
-- [ ] `pathlib` for file/path management
-- [ ] JSON handling (robust serialization/deserialization)
+- [x] modules, packages, imports structure (`__init__.py`, `pip install -e .`)
+- [x] virtual environments (`venv`)
+- [x] pip and dependency management (`requirements.txt` pinning)
+- [x] `pyproject.toml` basics — `python_engineering/pyproject.toml`
+- [x] type hints (`typing` module, Union, Optional, Callable) — `python_engineering/type_hints_practice.py`
+- [x] dataclasses (`@dataclass` vs Pydantic) — `python_engineering/dataclass_practice.py`
+- [x] basic OOP / classes (encapsulation, methods, `__init__`, `__repr__`) — `python_engineering/classes_and_objects.py`
+- [x] `pathlib` for file/path management — `python_engineering/pathlib_practice.py`
+- [x] JSON handling (robust serialization/deserialization) — `python_engineering/json_practice.py`
 - [x] structured logging (`logging` module, log levels, formatting) — `testing_and_logging/agent_service.py`
-- [ ] async/await and `asyncio` fundamentals
+- [x] async/await and `asyncio` fundamentals — `python_engineering/async_practice.py`
 
 ---
 
@@ -132,14 +132,14 @@ Production apps bina tests ke deploy nahi hote:
 ---
 
 ### 4.3 Git & GitHub Professional Workflow — HIGH Priority
-- [ ] branches & branch strategy (`main`, feature branches)
+- [x] branches & branch strategy (`main`, feature branches) — `git checkout -b`, `git branch`
 - [ ] pull requests (PR) & code review
 - [ ] merge conflicts resolve karna
 - [ ] rebase basics
-- [ ] good commit practices (conventional commits)
+- [x] good commit practices (conventional commits) — `feat:`, `fix:`, `ci:`, `refactor:`, `docs:`
 - [ ] GitHub Issues & tracking
-- [ ] GitHub Actions basics
-- [ ] basic CI workflow — push/PR par automatically tests run karna
+- [x] GitHub Actions basics
+- [x] basic CI workflow — push/PR par automatically tests run karna — `.github/workflows/ci.yml`
 
 ---
 

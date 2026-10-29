@@ -8,16 +8,33 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 ## Abhi kaha hu
 
-**Flagship Project 2: AI Job Matcher & Route Finder — COMPLETED ✅**
+**Flagship Project 2: AI Job Matcher & Route Finder — DEPLOYED LIVE & VERIFIED ✅**
 - Cloud PostgreSQL + pgvector Schema: Supabase live database par 13 columns table `jobs` (`projects/job_matcher/db_setup.py`).
 - Live Data Ingestion: Remotive API se real tech jobs live fetch karke Gemini 3072-dim embeddings ke saath PostgreSQL mein store kiya (`projects/job_matcher/inject_live_jobs.py`).
 - Semantic Matching Engine: Cosine distance `<=> %s::vector` query ke saath competition tag (`Low Competition 🔥` vs `High Competition ⚡`) calculate kiya (`projects/job_matcher/matcher.py`).
 - AI Career Doctor: Gemini LLM agent se grounded diagnosis aur shortest learning roadmap generate karwaya without fake percentages (`projects/job_matcher/diagnose.py`).
-- FastAPI Backend: `/analyze` and `/` endpoints banaye jo JSON response return karte hain (`projects/job_matcher/main.py`).
+- FastAPI Backend: `/analyze` and `/` endpoints banaye jo JSON response return karte hain (`projects/job_matcher/main.py`). Deployed on Render: `https://job-matcher-api-mj7s.onrender.com`.
 - Automated Testing: `TestClient` aur `pytest` ke saath 100% green test suite verify kiya (`projects/job_matcher/test_api.py`).
-- Interactive Web UI: Streamlit frontend (`projects/job_matcher/app.py`) jo live FastAPI backend se baat karta hai aur formatted cards + roadmap dikhata hai.
+- Interactive Web UI: Streamlit frontend (`projects/job_matcher/app.py`). Deployed on Streamlit Cloud: `https://python-learning-88qwzcxqka7gaxbtcslcmv.streamlit.app/`.
 
-Agla: **Dockerization & Live Cloud Deployment (Render) + Portfolio Presentation / README & Demo!**
+**Phase 4.1: Python Engineering — IN PROGRESS 🚀**
+- Basic OOP & Classes: `class`, `__init__`, `self`, encapsulation (insufficient balance check), `__repr__`, instance vs class variables (`python_engineering/classes_and_objects.py`). 5/5 score passed!
+- Type Hints (`typing` module): `int`, `str`, `bool`, `list[str]`, `dict[str, Any]`, `Optional[str]`, `Union[int, float]` (`python_engineering/type_hints_practice.py`). 5/5 score passed!
+- Dataclasses (`@dataclass`): auto `__init__`/`__repr__`/`__eq__`, custom methods, `frozen=True`, `@dataclass` vs `Pydantic` (`python_engineering/dataclass_practice.py`). 5/5 score passed!
+- Modern File & Path Management (`pathlib`): `Path(__file__).parent`, `/` operator, `mkdir(parents=True, exist_ok=True)`, `write_text`, `read_text`, `.name`, `.suffix`, `.exists()` (`python_engineering/pathlib_practice.py`). 5/5 score passed!
+- JSON Serialization & Deserialization (`json`): `json.dumps`, `json.loads`, `indent=2`, `default=str` for non-serializable objects, `try...except json.JSONDecodeError` (`python_engineering/json_practice.py`). 5/5 score passed!
+- Asynchronous Programming & Concurrency (`asyncio`): `async def`, `await`, `asyncio.sleep`, `asyncio.gather` for parallel tasks, `asyncio.run(main())` (`python_engineering/async_practice.py`). 5/5 score passed!
+- Packaging & Environments: `venv`, `pip freeze > requirements.txt` pinning, `pyproject.toml` (PEP 621), `__init__.py`, `pip install -e .` (`python_engineering/pyproject.toml`, `verify_config.py`). 5/5 score passed!
+
+**Phase 4.1 Python Engineering: 100% COMPLETED ✅**
+- Basic OOP, Type Hints, Dataclasses, Pathlib, JSON, Asyncio, Packaging & pyproject.toml — All 5/5 passed with verified terminal outputs.
+
+**Phase 4.3 Git & CI/CD Workflow: IN PROGRESS 🚀**
+- GitHub Actions CI Pipeline: `.github/workflows/ci.yml` setup with `ubuntu-latest`, `actions/checkout@v4`, `actions/setup-python@v5`, dependency caching, and automated `pytest` on `push`/`pull_request`. 5/5 score passed!
+- Feature Branching & Strategy: `git checkout -b <name>`, `git branch`, `git checkout main`, `git branch -d` (Explain, Quiz, Implement, Review all passed).
+- Conventional & Atomic Commits: `feat:`, `fix:`, `ci:`, `docs:`, `test:`, `refactor:`, `chore:`, single logical task per commit, SHA commit hash and `HEAD` pointer (Explain, Quiz, Implement, Review all passed).
+- Agla: **Pull Requests (PR) & Resolving Merge Conflicts**.
+
 
 
 ---

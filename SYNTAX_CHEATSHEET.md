@@ -928,3 +928,259 @@ def test_ai_failure_handling():
         pass  # Gracefully handled
 ```
 
+---
+
+## 17. Python Engineering — OOP & Type Hints
+
+### 1. Classes, Objects & Methods
+```python
+class BankAccount:
+    bank_name: str = "State Bank"  # Class attribute (sabke liye shared)
+
+    def __init__(self, name: str, balance: int):
+        self.name = name           # Instance attribute (har object ka apna)
+        self.balance = balance
+
+    def deposit(self, amount: int) -> int:
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self, amount: int) -> int | str:
+        if amount > self.balance:
+            return "Insufficient Balance"
+        self.balance -= amount
+        return self.balance
+
+    def __repr__(self) -> str:
+        return f"BankAccount(name='{self.name}', balance={self.balance})"
+
+user1 = BankAccount("Amit", 5000)
+user1.deposit(1500)       # 6500
+user1.withdraw(2000)      # 4500
+print(user1)              # BankAccount(name='Amit', balance=4500)
+```
+
+### 2. Modern Type Hints (`typing` module)
+```python
+from typing import Optional, Union, Any, Literal
+
+# 1. Primitives & Return Types
+def is_adult(age: int) -> bool:
+    return age >= 18
+
+# 2. Lists & Dicts (lowercase list, dict in Python 3.9+)
+skills: list[str] = ["Python", "SQL"]
+scores: dict[str, int] = {"Jayu": 95}
+
+# 3. Dynamic JSON / API Payload (Any)
+job_data: dict[str, Any] = {"title": "AI Engineer", "salary": 120000, "remote": True}
+
+# 4. Optional (value ya None)
+def get_bio(user_id: int) -> Optional[str]:  # ya `str | None`
+    return "AI Dev" if user_id == 1 else None
+
+# 5. Union (Multiple types allowed)
+price: Union[int, float] = 150.50             # ya `int | float`
+
+# 6. Literal (Strict choice list)
+role: Literal["admin", "user", "guest"] = "admin"
+```
+
+### 3. Dataclasses (`@dataclass`)
+```python
+from dataclasses import dataclass
+
+# 1. Standard Dataclass (Auto __init__, __repr__, __eq__)
+@dataclass
+class JobPost:
+    title: str
+    monthly_salary: int
+    is_remote: bool = True  # Default value
+
+    def annual_salary(self) -> int:
+        return self.monthly_salary * 12
+
+job1 = JobPost("AI Engineer", 100000)
+job2 = JobPost("AI Engineer", 100000)
+
+print(job1)                 # JobPost(title='AI Engineer', monthly_salary=100000, is_remote=True)
+print(job1 == job2)         # True (values compare hoti hain, memory address nahi)
+print(job1.annual_salary()) # 1200000
+
+# 2. Immutable / Read-Only Dataclass (frozen=True)
+@dataclass(frozen=True)
+class APIConfig:
+    api_key: str
+    base_url: str
+
+# config = APIConfig("secret", "https://api.com")
+# config.api_key = "hack"  # Raises FrozenInstanceError!
+```
+
+### 4. Modern Path & File Management (`pathlib`)
+```python
+from pathlib import Path
+
+# 1. Base directory anchoring (Current script location)
+BASE_DIR = Path(__file__).resolve().parent
+
+# 2. Path creation using `/` (Cross-platform Windows & Linux)
+folder = BASE_DIR / "outputs" / "reports"
+file_path = folder / "summary.txt"
+
+# 3. Safe folder creation (parents=True, exist_ok=True)
+folder.mkdir(parents=True, exist_ok=True)
+
+# 4. Direct read & write (No `with open` required)
+file_path.write_text("Processed 100 jobs successfully\n", encoding="utf-8")
+content = file_path.read_text(encoding="utf-8")
+
+# 5. Path inspections
+print(file_path.name)    # "summary.txt" (Full filename)
+print(file_path.stem)    # "summary" (Name without extension)
+print(file_path.suffix)  # ".txt" (Extension only)
+print(file_path.parent)  # Path to folder
+print(file_path.exists())# True / False
+
+# 6. File search with glob
+for txt_file in folder.glob("*.txt"):
+    print(txt_file.name)
+```
+
+### 5. Robust JSON Serialization & Deserialization (`json`)
+```python
+import json
+from datetime import datetime
+
+# 1. Serialization (Dict -> String / Parcel Packing)
+data = {"user": "Jayu", "created_at": datetime.now(), "active": True}
+json_string = json.dumps(data, indent=2, default=str)  # default=str prevents crash on datetime/Path
+
+# 2. Deserialization (String -> Dict / Parcel Unpacking)
+parsed_dict = json.loads(json_string)
+
+# 3. Direct File I/O (No 's' at the end)
+with open("profile.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, default=str)
+
+with open("profile.json", "r", encoding="utf-8") as f:
+    loaded_data = json.load(f)
+
+# 4. Safe Parsing with Error Handling (Malfunctioning LLM / Broken JSON)
+raw_input = '{"broken": '
+try:
+    clean_obj = json.loads(raw_input)
+except json.JSONDecodeError as e:
+    print(f"Malformed JSON intercepted at line {e.lineno}, col {e.colno}")
+```
+
+### 6. Asynchronous Programming (`asyncio`, `async/await`)
+```python
+import asyncio
+import time
+
+# 1. Async Function Definition & Non-blocking Sleep
+async def fetch_job(job_id: int, delay: float = 1.0) -> str:
+    await asyncio.sleep(delay)  # NEVER use time.sleep inside async def
+    return f"Job {job_id} ready"
+
+# 2. Concurrent Execution with gather (Multiple calls run in parallel)
+async def main():
+    start = time.time()
+    # Runs all 3 concurrently in ~1s instead of 3s
+    results = await asyncio.gather(
+        fetch_job(1, 1.0),
+        fetch_job(2, 1.0),
+        fetch_job(3, 1.0),
+    )
+    print(results)  # ['Job 1 ready', 'Job 2 ready', 'Job 3 ready']
+    print(f"Elapsed: {time.time() - start:.2f}s")
+
+# 3. Starting the Event Loop
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### 7. Modern Packaging, Environments & `pyproject.toml`
+```bash
+# 1. Virtual Environment
+python -m venv .venv                  # Create
+.venv\Scripts\activate                # Windows activate
+source .venv/bin/activate             # Linux/Mac activate
+deactivate                            # Exit
+
+# 2. Dependency Pinning
+pip freeze > requirements.txt          # Lock exact versions
+pip install -r requirements.txt       # Reproducible install
+
+# 3. Editable Install (Development Mode)
+pip install -e .                      # Changes reflect immediately
+```
+
+```toml
+# pyproject.toml (PEP 621 Standard)
+[project]
+name = "career-doctor"
+version = "0.1.0"
+description = "AI Career Matcher and Route Finder"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "pydantic>=2.9.0",
+    "google-genai>=0.1.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+```
+
+---
+
+## 18. CI/CD & GitHub Actions (`.github/workflows/ci.yml`)
+
+```yaml
+# Automated Testing on Every Push & PR
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download repository code to cloud runner
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Setup Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip" # Speed up dependency installation
+
+      # 3. Install dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Run automated tests with secrets
+      - name: Run Pytest
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: pytest -v
+```
+
+
+
+
+
+
+

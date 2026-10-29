@@ -21,10 +21,16 @@ Ye file tumhare daily use ke commands ki list hai — Git, GitHub CLI (`gh`), Do
   - **Kab chalana hai:** Jab changes check kar liye hon aur unhe save karne ke liye ready karna ho.
   - **Example:** `git add Dockerfile` ya saari files ke liye `git add .`
 
-- `git commit -m "aapka message"`
+- `git commit -m "<type>: <message>"`
   - **Ye kya hai:** Tokri mein rakhe changes ki pakki photo (snapshot) khinch kar history mein save karta hai.
-  - **Kab chalana hai:** Ek chhota logical task khatam hone par.
-  - **Example:** `git commit -m "Dockerfile: set dynamic port for cloud hosting"`
+  - **Conventional Commits Standard:**
+    - `feat: add job filter by experience` (Naya feature)
+    - `fix: resolve crash on invalid json input` (Bug fix)
+    - `ci: add github actions test workflow` (CI/CD pipeline)
+    - `docs: update readme with setup instructions` (Documentation)
+    - `test: add unit test for annual salary` (Tests)
+    - `refactor: simplify distance loop in matcher` (Code cleanup without logic change)
+    - `chore: update dependencies in pyproject.toml` (Maintenance/Configs)
 
 - `git push origin main`
   - **Ye kya hai:** Tumhare laptop ke local commits ko GitHub par upload karta hai.
@@ -32,6 +38,20 @@ Ye file tumhare daily use ke commands ki list hai — Git, GitHub CLI (`gh`), Do
 
 - `git pull`
   - **Ye kya hai:** GitHub par agar koi naya commit hai to use laptop mein download karke merge karta hai.
+
+### Branch Management (Professional Workflow)
+- `git checkout -b <branch-name>` (ya `git switch -c <branch-name>`)
+  - **Ye kya hai:** Nayi branch create karke turant uspar switch karta hai (e.g. `git checkout -b feature/login`).
+  - **Kab chalana hai:** Koi bhi naya feature ya bug fix shuru karne se pehle (`main` par direct kaam nahi karte).
+
+- `git branch`
+  - **Ye kya hai:** Saari local branches dikhata hai aur active branch ke aage `*` mark hota hai.
+
+- `git checkout <branch-name>` (ya `git switch <branch-name>`)
+  - **Ye kya hai:** Kisi bani hui branch par wapas jump karta hai (e.g. `git checkout main`).
+
+- `git branch -d <branch-name>` (Force: `git branch -D <branch-name>`)
+  - **Ye kya hai:** Kaam poora hone ke baad purani feature branch ko delete karta hai (pehle doosri branch par switch hona padta hai).
 
 ### Bachav aur safai ke commands
 - `git restore <file>`
