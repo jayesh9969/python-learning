@@ -33,7 +33,9 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 - GitHub Actions CI Pipeline: `.github/workflows/ci.yml` setup with `ubuntu-latest`, `actions/checkout@v4`, `actions/setup-python@v5`, dependency caching, and automated `pytest` on `push`/`pull_request`. 5/5 score passed!
 - Feature Branching & Strategy: `git checkout -b <name>`, `git branch`, `git checkout main`, `git branch -d` (Explain, Quiz, Implement, Review all passed).
 - Conventional & Atomic Commits: `feat:`, `fix:`, `ci:`, `docs:`, `test:`, `refactor:`, `chore:`, single logical task per commit, SHA commit hash and `HEAD` pointer (Explain, Quiz, Implement, Review all passed).
-- Agla: **Pull Requests (PR) & Resolving Merge Conflicts**.
+- Pull Requests & Merge Conflicts: `git merge`, conflict markers anatomy (`<<<<<<< HEAD`, `=======`, `>>>>>>>`), manual resolution & commit, `git merge --abort` emergency cancel (Explain, Quiz, Implement, Review all passed).
+- Git Rebase & Stashing: `git rebase main` for linear commit history, SHA hash parent changes, Golden Rule of rebase, `git stash` and `git stash pop`, `git rebase --continue` and `git rebase --abort` (Explain, Quiz, Implement, Review all passed).
+- Agla: **GitHub Issues & Project Tracking (Phase 4.3 finish) OR Pytest Fixtures (`@pytest.fixture` in Phase 4.2)**.
 
 
 

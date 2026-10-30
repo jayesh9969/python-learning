@@ -278,6 +278,12 @@ Project 1 : is project me humne Procedural RAG  chunking ka use kiya kyuki data 
 
 ## Conventional Commits & Atomic Commits - 1) International Standard: `<type>: <description>` format Git itihaas ko clean, searchable aur automated changelog ke kaabil banata hai (`feat:`, `fix:`, `ci:`, `docs:`, `test:`, `refactor:`, `chore:`). 2) Atomic Commits: Ek commit mein saari files ka kachra nahi daalte; har logical task ka alag commit hota hai taaki future mein zaroorat padne par kisi ek specific bug ko rollback kiya ja sake. 3) Commit Hash & HEAD: Commit hash SHA cryptographic fingerprint hai jo code integrity aur history immutability ensure karta hai; `HEAD` active branch ke current latest commit ko point karta hai.
 
+## Pull Requests (PR) & Merge Conflict Resolution - 1) PR & Code Review: Production `main` par direct push ke badle PR banti hai taaki team inspect kare aur CI checks pass hon. 2) Conflict Cause: Do branches same line ko modify karein toh Git bina pooche overwrite nahi karta (safety feature). 3) Conflict Markers: `<<<<<<< HEAD` (current code), `=======` (divider), `>>>>>>> incoming-branch` (aane wala code). 4) Resolution: Sahi code rakho, teeno markers delete karo, save karke `git add` + `git commit`. (Markers chhoot gaye toh Python `SyntaxError: invalid syntax` phekega). 5) Emergency Abort: Agar merge cancel karni ho toh `git merge --abort` sab kuch pehle jaisa safe kar deta hai.
+
+## Git Rebase & Stashing (`git rebase`, `git stash`) - 1) Linear History: `git merge` do patriyon ko jodne ke liye extra merge commit banata hai; `git rebase main` feature branch ke commits ko uthakar `main` ke aakhiri commit ke aage seedhi line (linear sequence) mein re-play karta hai. 2) Golden Rule: Rebase commits ke SHA hashes badal deta hai (kyunki parent commit badal jata hai); isliye public/shared branch (`main`) par rebase kabhi nahi chalate, sirf private feature branches par chalate hain. 3) Stash Bag (`git stash`): Agar uncommitted changes hon toh Git rebase block karta hai (`error: cannot rebase: You have unstaged changes`); `git stash` uncommitted files ko temporary safe bag mein daalta hai aur rebase ke baad `git stash pop` se unhe wapas restore kar deta hai. 4) Rebase Conflicts: Conflict aane par resolve karke `git add <file>` karo aur `git rebase --continue` chalao (commit nahi karte); cancel karne ke liye `git rebase --abort`.
+
+
+
 
 
 

@@ -133,9 +133,9 @@ Production apps bina tests ke deploy nahi hote:
 
 ### 4.3 Git & GitHub Professional Workflow — HIGH Priority
 - [x] branches & branch strategy (`main`, feature branches) — `git checkout -b`, `git branch`
-- [ ] pull requests (PR) & code review
-- [ ] merge conflicts resolve karna
-- [ ] rebase basics
+- [x] pull requests (PR) & code review
+- [x] merge conflicts resolve karna — manual marker resolution, `git merge --abort`
+- [x] rebase basics — `git rebase`, `git rebase --continue`, `git rebase --abort`
 - [x] good commit practices (conventional commits) — `feat:`, `fix:`, `ci:`, `refactor:`, `docs:`
 - [ ] GitHub Issues & tracking
 - [x] GitHub Actions basics

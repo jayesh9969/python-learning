@@ -53,6 +53,26 @@ Ye file tumhare daily use ke commands ki list hai — Git, GitHub CLI (`gh`), Do
 - `git branch -d <branch-name>` (Force: `git branch -D <branch-name>`)
   - **Ye kya hai:** Kaam poora hone ke baad purani feature branch ko delete karta hai (pehle doosri branch par switch hona padta hai).
 
+- `git merge <branch-name>`
+  - **Ye kya hai:** Kisi feature branch ke changes ko active branch (jaise `main`) mein jodta hai.
+  - **Merge Conflict aane par:** File mein `<<<<<<< HEAD`, `=======`, `>>>>>>>` markers aate hain. Sahi code rakhkar markers delete karo, save karo, aur `git add` + `git commit` karo.
+
+- `git merge --abort`
+  - **Ye kya hai:** Emergency cancel button! Adhe-adhure merge aur saare conflict markers ko turant hata kar pehle jaisi clean halat mein le aata hai.
+
+- `git rebase <target-branch>`
+  - **Ye kya hai:** Feature branch ke commits ko target branch ke aage ek seedhi line (linear history) mein chipka deta hai (e.g. `git rebase main`).
+  - **Golden Rule:** Public/shared branch (`main`) ko kabhi rebase mat karo, sirf private feature branch ko karo.
+  - **Conflict hone par:** Fix markers -> `git add <file>` -> `git rebase --continue`.
+  - **Cancel karne ke liye:** `git rebase --abort`.
+
+### Bachav aur safai ke commands
+- `git stash`
+  - **Ye kya hai:** Temporary bag! Uncommitted modified files ko bag mein chupakar working directory saaf karta hai (taaki rebase/pull bina error chale).
+
+- `git stash pop`
+  - **Ye kya hai:** Bag se chupa hua kaam wapas nikaal kar files mein restore karta hai.
+
 ### Bachav aur safai ke commands
 - `git restore <file>`
   - **Ye kya hai:** Agar kisi file mein galat change ho gaya jo commit nahi hua, to use purani sahi halat mein wapas lata hai.
