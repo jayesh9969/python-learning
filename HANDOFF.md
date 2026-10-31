@@ -35,7 +35,11 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 - Conventional & Atomic Commits: `feat:`, `fix:`, `ci:`, `docs:`, `test:`, `refactor:`, `chore:`, single logical task per commit, SHA commit hash and `HEAD` pointer (Explain, Quiz, Implement, Review all passed).
 - Pull Requests & Merge Conflicts: `git merge`, conflict markers anatomy (`<<<<<<< HEAD`, `=======`, `>>>>>>>`), manual resolution & commit, `git merge --abort` emergency cancel (Explain, Quiz, Implement, Review all passed).
 - Git Rebase & Stashing: `git rebase main` for linear commit history, SHA hash parent changes, Golden Rule of rebase, `git stash` and `git stash pop`, `git rebase --continue` and `git rebase --abort` (Explain, Quiz, Implement, Review all passed).
-- Agla: **GitHub Issues & Project Tracking (Phase 4.3 finish) OR Pytest Fixtures (`@pytest.fixture` in Phase 4.2)**.
+- GitHub Issues & Tracking: `gh issue create`, `gh issue list`, `gh issue view`, `fixes #id` commit keyword, auto-close lifecycle (Explain, Quiz, Implement, Review all passed).
+
+**Phase 4.3 Git & CI/CD Workflow: 100% COMPLETED ✅**
+
+Agla: **Phase 4.2 Quality Assurance Gaps (`@pytest.fixture` and Regression Testing) OR Phase 5 AI Observability (Langfuse Tracing)**.
 
 
 

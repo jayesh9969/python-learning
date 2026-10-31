@@ -137,7 +137,7 @@ Production apps bina tests ke deploy nahi hote:
 - [x] merge conflicts resolve karna — manual marker resolution, `git merge --abort`
 - [x] rebase basics — `git rebase`, `git rebase --continue`, `git rebase --abort`
 - [x] good commit practices (conventional commits) — `feat:`, `fix:`, `ci:`, `refactor:`, `docs:`
-- [ ] GitHub Issues & tracking
+- [x] GitHub Issues & tracking — `gh issue create`, `gh issue list`, `gh issue view`, `fixes #id`
 - [x] GitHub Actions basics
 - [x] basic CI workflow — push/PR par automatically tests run karna — `.github/workflows/ci.yml`
 

@@ -100,6 +100,18 @@ Terminal se GitHub handle karne ka auzaar:
 - `gh pr create`
   - **Ye kya hai:** Pull request create karne ke liye.
 
+- `gh issue create --title "<title>" --body "<details>"`
+  - **Ye kya hai:** Terminal se naya bug ya feature task GitHub Issue par register karta hai.
+
+- `gh issue list`
+  - **Ye kya hai:** Current repository ke saare open issues terminal mein dikhata hai.
+
+- `gh issue view <issue-number>`
+  - **Ye kya hai:** Kisi specific issue ki poori details aur comments terminal mein padhta hai.
+
+- `gh issue close <issue-number>`
+  - **Ye kya hai:** Task cancel ya complete hone par issue ko terminal se manually close karta hai.
+
 ---
 
 ## 3. Docker Commands (Dabba banana aur chalana)

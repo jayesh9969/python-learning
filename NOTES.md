@@ -282,6 +282,9 @@ Project 1 : is project me humne Procedural RAG  chunking ka use kiya kyuki data 
 
 ## Git Rebase & Stashing (`git rebase`, `git stash`) - 1) Linear History: `git merge` do patriyon ko jodne ke liye extra merge commit banata hai; `git rebase main` feature branch ke commits ko uthakar `main` ke aakhiri commit ke aage seedhi line (linear sequence) mein re-play karta hai. 2) Golden Rule: Rebase commits ke SHA hashes badal deta hai (kyunki parent commit badal jata hai); isliye public/shared branch (`main`) par rebase kabhi nahi chalate, sirf private feature branches par chalate hain. 3) Stash Bag (`git stash`): Agar uncommitted changes hon toh Git rebase block karta hai (`error: cannot rebase: You have unstaged changes`); `git stash` uncommitted files ko temporary safe bag mein daalta hai aur rebase ke baad `git stash pop` se unhe wapas restore kar deta hai. 4) Rebase Conflicts: Conflict aane par resolve karke `git add <file>` karo aur `git rebase --continue` chalao (commit nahi karte); cancel karne ke liye `git rebase --abort`.
 
+## GitHub Issues & Project Tracking (`gh issue`) - 1) Single Source of Truth: Har bug ya feature ek Issue banta hai jisse duplicate effort rukta hai aur team progress transparent rehti hai. 2) Auto-Close Keywords: Commit message ya PR description mein `fixes #id` ya `closes #id` likhne se branch merge hote hi issue automatically Closed mark ho jata hai (plain text jaise "fixed bug issue 1" trigger nahi hota). 3) CLI Integration: `gh issue create`, `gh issue list`, `gh issue view <id>`, aur `gh issue close <id>` se developer ko browser khole bina terminal se direct ticketing control milta hai.
+
+
 
 
 
