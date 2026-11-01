@@ -124,7 +124,7 @@ Production apps bina tests ke deploy nahi hote:
 - [x] `pytest` setup and execution — `testing_and_logging/test_agent_service.py`
 - [x] unit tests for core logic
 - [x] API integration tests with FastAPI `TestClient` — `projects/job_matcher/test_api.py`
-- [ ] test fixtures (`@pytest.fixture`)
+- [x] test fixtures (`@pytest.fixture`) — `testing_and_logging/test_fixture_practice.py`
 - [x] mocking LLM / API responses (bina paisa/tokens kharch kiye test chalana)
 - [x] testing error and failure edge cases
 - [ ] regression testing

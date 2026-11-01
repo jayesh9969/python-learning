@@ -284,6 +284,9 @@ Project 1 : is project me humne Procedural RAG  chunking ka use kiya kyuki data 
 
 ## GitHub Issues & Project Tracking (`gh issue`) - 1) Single Source of Truth: Har bug ya feature ek Issue banta hai jisse duplicate effort rukta hai aur team progress transparent rehti hai. 2) Auto-Close Keywords: Commit message ya PR description mein `fixes #id` ya `closes #id` likhne se branch merge hote hi issue automatically Closed mark ho jata hai (plain text jaise "fixed bug issue 1" trigger nahi hota). 3) CLI Integration: `gh issue create`, `gh issue list`, `gh issue view <id>`, aur `gh issue close <id>` se developer ko browser khole bina terminal se direct ticketing control milta hai.
 
+## Pytest Fixtures & Test Isolation (`@pytest.fixture`) - 1) Fresh State Isolation: Har test function ko clean, isolated dummy data supply karta hai taaki ek test ka mutation (jaise list append ya balance deduction) doosre tests ko pollute na kare. 2) Auto-Injection: Test function ke parameter mein fixture ka naam likhte hi Pytest use automatically instantiate karke inject kar deta hai. 3) Global Sharing (`conftest.py`): Multi-file projects mein fixtures ko `conftest.py` mein rakhte hain jisse saari test files bina import kiye unhe use kar sakti hain. 4) Scope Management (`scope="session"`): Database connection ya AI models jaise heavy resources ke liye `scope="session"` use karte hain taaki wo har test mein baar-baar load na ho aur test suite fast rahe.
+
+
 
 
 
