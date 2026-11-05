@@ -286,6 +286,9 @@ Project 1 : is project me humne Procedural RAG  chunking ka use kiya kyuki data 
 
 ## Pytest Fixtures & Test Isolation (`@pytest.fixture`) - 1) Fresh State Isolation: Har test function ko clean, isolated dummy data supply karta hai taaki ek test ka mutation (jaise list append ya balance deduction) doosre tests ko pollute na kare. 2) Auto-Injection: Test function ke parameter mein fixture ka naam likhte hi Pytest use automatically instantiate karke inject kar deta hai. 3) Global Sharing (`conftest.py`): Multi-file projects mein fixtures ko `conftest.py` mein rakhte hain jisse saari test files bina import kiye unhe use kar sakti hain. 4) Scope Management (`scope="session"`): Database connection ya AI models jaise heavy resources ke liye `scope="session"` use karte hain taaki wo har test mein baar-baar load na ho aur test suite fast rahe.
 
+## Regression Testing & CI Gates - 1) Regression Concept: Naye code ya prompt change se puraane chalte hue features ka tootna Regression kehlata hai. 2) Automated Test Suite: Manual verification ke badle `python -m pytest` har baar saare puraane tests 1 second mein verify karta hai. 3) CI Blocker Gate: GitHub Actions mein regression suite fail hone par PR merge block ho jata hai (Red ❌), jisse toota hua code kabhi live production server ya users tak nahi pahunchta.
+
+
 
 
 

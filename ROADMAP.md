@@ -127,7 +127,7 @@ Production apps bina tests ke deploy nahi hote:
 - [x] test fixtures (`@pytest.fixture`) — `testing_and_logging/test_fixture_practice.py`
 - [x] mocking LLM / API responses (bina paisa/tokens kharch kiye test chalana)
 - [x] testing error and failure edge cases
-- [ ] regression testing
+- [x] regression testing — automated test suite execution via `pytest` and CI
 
 ---
 
