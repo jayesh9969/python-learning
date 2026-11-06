@@ -3,7 +3,7 @@ import requests
 
 import os
 
-API_URL = os.getenv("API_URL","http://127.0.0.1:8000")
+API_URL = os.getenv("API_URL","https://job-matcher-api-mj7s.onrender.com")
 
 
 
@@ -45,6 +45,9 @@ if user_query := st.chat_input("Write your skills or resume summary"):
                 job_cards += f"- ** {job['title']}** at *{job['company']}* | {job['salary']} | {job['competition']}\n"
 
             full_reply = f"{job_cards}\n\n---\n\n{diagnosis}"
+
+        else:
+            full_reply = f"Backend error ({res.status_code}). Please make sure Render backend is awake."
 
     with st.chat_message("assistant"):
         st.markdown(full_reply)
