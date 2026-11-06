@@ -219,9 +219,9 @@ Senior aur junior engineer ka sabse bada farak: *kya tum prove kar sakte ho ki t
 - [x] structured logging for AI systems — `testing_and_logging/agent_service.py`
 - [x] request tracing & span breakdown — `observability/test_langfuse.py`
 - [x] LLM input/output tracing — `observability/test_langfuse.py`
-- [ ] token usage, latency, and cost tracking per request
-- [ ] error tracking & rate monitoring
-- [x] **Langfuse** setup & dashboard — Cloud setup, `@observe()`, traces/spans/generations verified
+- [x] token usage, latency, and cost tracking per request — `projects/job_matcher` live production tracing on Render
+- [x] error tracking & rate monitoring — live backend error tracing
+- [x] **Langfuse** setup & dashboard — Cloud setup, `@observe()`, traces/spans/generations verified in production
 
 ---
 

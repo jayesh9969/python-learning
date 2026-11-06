@@ -35,10 +35,12 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 **Phase 4.3 Git & CI/CD Workflow: 100% COMPLETED ✅**
 - Feature branches, Conventional commits, Pull requests, Merge conflict manual resolution, Git Rebase linear history, Stashing, GitHub Issues CLI, and GitHub Actions CI workflow (`.github/workflows/ci.yml`). All verified!
 
-**Phase 5: AI Observability & Tracing: IN PROGRESS 🚀**
-- Langfuse Cloud Setup & Dashboard: API keys authenticated, `@observe()` decorators, Traces, Spans, LLM Generations, background batching and `langfuse.flush()` (`observability/test_langfuse.py`). Verified live on cloud.langfuse.com!
+**Phase 5: AI Observability & Tracing: 100% COMPLETED ✅**
+- Langfuse Cloud Setup & Dashboard: API keys authenticated, `@observe()` decorators, Traces, Spans, LLM Generations, background batching (`observability/test_langfuse.py`).
+- Flagship Project 2 Live Tracing: Instrumented `@observe()` in `main.py`, `matcher.py`, and `diagnose.py`. Deployed to Render with production environment variables (`LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST`). Live requests from Streamlit UI now trace latency, token usage, and costs end-to-end.
+- Production Bug Fixes: Streamlit fallback handling for API errors, model upgrade to `gemini-3.5-flash-lite`, and verified 200 OK end-to-end.
 
-Agla: **Integrating Langfuse Tracing into Live Flagship Project 2 (`projects/job_matcher`) — Real token tracking, latency & Gemini cost tracking in production**.
+Agla: **Phase 5 AI Evaluation: Evaluation Dataset Creation & LLM-as-a-Judge Pattern (Evaluating Faithfulness & Answer Relevance)**.
 
 
 
