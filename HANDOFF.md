@@ -35,7 +35,10 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 **Phase 4.3 Git & CI/CD Workflow: 100% COMPLETED ✅**
 - Feature branches, Conventional commits, Pull requests, Merge conflict manual resolution, Git Rebase linear history, Stashing, GitHub Issues CLI, and GitHub Actions CI workflow (`.github/workflows/ci.yml`). All verified!
 
-Agla: **Phase 5 — AI Observability & Tracing (Langfuse Integration into Live AI Job Matcher)**.
+**Phase 5: AI Observability & Tracing: IN PROGRESS 🚀**
+- Langfuse Cloud Setup & Dashboard: API keys authenticated, `@observe()` decorators, Traces, Spans, LLM Generations, background batching and `langfuse.flush()` (`observability/test_langfuse.py`). Verified live on cloud.langfuse.com!
+
+Agla: **Integrating Langfuse Tracing into Live Flagship Project 2 (`projects/job_matcher`) — Real token tracking, latency & Gemini cost tracking in production**.
 
 
 

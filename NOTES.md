@@ -288,6 +288,9 @@ Project 1 : is project me humne Procedural RAG  chunking ka use kiya kyuki data 
 
 ## Regression Testing & CI Gates - 1) Regression Concept: Naye code ya prompt change se puraane chalte hue features ka tootna Regression kehlata hai. 2) Automated Test Suite: Manual verification ke badle `python -m pytest` har baar saare puraane tests 1 second mein verify karta hai. 3) CI Blocker Gate: GitHub Actions mein regression suite fail hone par PR merge block ho jata hai (Red ❌), jisse toota hua code kabhi live production server ya users tak nahi pahunchta.
 
+## AI Observability & Tracing (Langfuse) - 1) Black Box Problem: Production AI apps mein multiple steps (embedding, vector search, LLM generation) hote hain; normal logs latency, token consumption, aur ₹/$ cost ka step-by-step breakdown nahi de paate. 2) Trace vs Span vs Generation: Poore user request flow ko 'Trace' kehte hain; internal non-AI steps (DB retrieval, preprocessing) ko 'Span' (`@observe()`) kehte hain; LLM model calls ko 'Generation' (`@observe(as_type="generation")`) kehte hain jo model name, input prompt, output, aur token counts capture karta hai. 3) Background Batching & `flush()`: Langfuse SDK application ko slow hone se bachane ke liye telemetry network packets ko background thread mein batch karta hai; short CLI scripts mein program band hone se pehle `langfuse.flush()` chalana zaroori hai taaki queued data cloud par sync ho sake.
+
+
 
 
 

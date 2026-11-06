@@ -216,12 +216,12 @@ Senior aur junior engineer ka sabse bada farak: *kya tum prove kar sakte ho ki t
 - [ ] regression evaluation (prompt/chunk change karne par purani quality giri to nahi?)
 
 #### Observability & Tracing:
-- [ ] structured logging for AI systems
-- [ ] request tracing & span breakdown
-- [ ] LLM input/output tracing
+- [x] structured logging for AI systems — `testing_and_logging/agent_service.py`
+- [x] request tracing & span breakdown — `observability/test_langfuse.py`
+- [x] LLM input/output tracing — `observability/test_langfuse.py`
 - [ ] token usage, latency, and cost tracking per request
 - [ ] error tracking & rate monitoring
-- [ ] **Langfuse** (ya equivalent open-source tool) setup & dashboard
+- [x] **Langfuse** setup & dashboard — Cloud setup, `@observe()`, traces/spans/generations verified
 
 ---
 
