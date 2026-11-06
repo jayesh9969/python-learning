@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+load_dotenv()
+
+from langfuse import observe
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -17,7 +21,7 @@ def health_check():
 
 
 @app.post("/analyze")
-
+@observe()
 def analyze_response(body : CandidateRequest):
 
     jobs = match_jobs(body.profile)

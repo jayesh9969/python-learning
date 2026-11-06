@@ -1,11 +1,12 @@
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import psycopg
 from google import genai
 import os
-from dotenv import load_dotenv
 from pgvector.psycopg import register_vector
-
-load_dotenv()
+from langfuse import observe
 
 conn = psycopg.connect(os.getenv("DATABASE_URL"))
 register_vector(conn)
@@ -13,6 +14,8 @@ register_vector(conn)
 client = genai.Client()
 
 query_text = "i know python basics, OOP and building REST APIs"
+
+@observe()
 def match_jobs(query_text, limit=3):
 
     result = client.models.embed_content(model="gemini-embedding-001", contents=query_text)
