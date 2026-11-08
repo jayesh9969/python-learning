@@ -39,8 +39,9 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 - Langfuse Cloud Setup & Dashboard: API keys authenticated, `@observe()` decorators, Traces, Spans, LLM Generations, background batching (`observability/test_langfuse.py`).
 - Flagship Project 2 Live Tracing: Instrumented `@observe()` in `main.py`, `matcher.py`, and `diagnose.py`. Deployed to Render with production environment variables (`LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST`). Live requests from Streamlit UI now trace latency, token usage, and costs end-to-end.
 - Production Bug Fixes: Streamlit fallback handling for API errors, model upgrade to `gemini-3.5-flash-lite`, and verified 200 OK end-to-end.
+- LLM-as-a-Judge Pattern & Groundedness Metric: Implemented `evaluate_faithfulness()` with Pydantic structured output (`EvaluationResult: score, reason`) and `gemini-3.5-flash` in `evaluation/evaluate_judge.py`. Verified real outputs: 1.0 on faithful grounded advice, 0.0 on hallucinated advice. Mastered concept that Retrieved Context is mandatory for Faithfulness scoring.
 
-Agla: **Phase 5 AI Evaluation: Evaluation Dataset Creation & LLM-as-a-Judge Pattern (Evaluating Faithfulness & Answer Relevance)**.
+Agla: **Phase 5 AI Evaluation: Evaluation Dataset Creation & Automated Batch Evaluation (Test Benchmark Suite)**.
 
 
 
