@@ -46,6 +46,10 @@ if user_query := st.chat_input("Write your skills or resume summary"):
 
             full_reply = f"{job_cards}\n\n---\n\n{diagnosis}"
 
+        elif res.status_code == 400:
+            error_data = res.json()
+            full_reply = f"🛡️ **Security Alert:** {error_data.get('detail', 'Request blocked due to security rules.')}"
+
         else:
             full_reply = f"Backend error ({res.status_code}). Please make sure Render backend is awake."
 
