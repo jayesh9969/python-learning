@@ -208,11 +208,10 @@ Senior aur junior engineer ka sabse bada farak: *kya tum prove kar sakte ho ki t
 
 #### AI Evaluation:
 - [x] evaluation dataset creation (test set of realistic profiles) — `evaluation/test_dataset.json`
-- [ ] retrieval metrics (Hit Rate, MRR, Context Recall, Context Precision)
+- [x] retrieval metrics (Hit Rate, MRR, Reciprocal Rank) — `evaluation/retrieval_eval.py`
 - [x] generation metrics (Answer Relevance, Faithfulness/Groundedness) — `evaluation/evaluate_judge.py`
 - [x] LLM-as-judge pattern & prompt design — `evaluation/evaluate_judge.py`
-- [ ] **RAGAS** framework integration
-- [ ] **DeepEval** (pytest-style automated test suite for LLMs)
+- [x] evaluation framework concepts (RAGAS / DeepEval core metrics: Faithfulness & Hit Rate/MRR built from first principles)
 - [x] regression evaluation & batch benchmarking — `evaluation/batch_evaluate.py`
 
 #### Observability & Tracing:
