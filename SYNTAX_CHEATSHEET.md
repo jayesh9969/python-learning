@@ -1178,6 +1178,55 @@ jobs:
         run: pytest -v
 ```
 
+---
+
+## 8. AI Evaluation & Observability
+
+### LLM-as-a-Judge (Faithfulness / Groundedness)
+```python
+from google import genai
+from google.genai import types
+from pydantic import BaseModel
+
+class EvaluationResult(BaseModel):
+    score: float  # 1.0 = Grounded, 0.0 = Hallucinated
+    reason: str
+
+client = genai.Client()
+
+def evaluate_faithfulness(candidate: str, retrieved_jobs: list, diagnosis: str) -> EvaluationResult:
+    prompt = f"""You are an expert AI quality evaluator.
+Context: {retrieved_jobs}
+Candidate: {candidate}
+Diagnosis: {diagnosis}
+Rule: If diagnosis claims skills not present in Context, score 0.0. If all claims are grounded, score 1.0."""
+
+    res = client.models.generate_content(
+        model="gemini-3.5-flash-lite",
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            response_mime_type="application/json",
+            response_schema=EvaluationResult
+        )
+    )
+    return res.parsed
+```
+
+### Retrieval Metrics: Hit Rate & MRR (Mean Reciprocal Rank)
+```python
+def calculate_hit_rate(retrieved_jobs: list, target_keyword: str) -> float:
+    for job in retrieved_jobs:
+        if target_keyword.lower() in job["title"].lower() or target_keyword.lower() in job["skills"].lower():
+            return 1.0
+    return 0.0
+
+def calculate_reciprocal_rank(retrieved_jobs: list, target_keyword: str) -> float:
+    for rank, job in enumerate(retrieved_jobs, start=1):
+        if target_keyword.lower() in job["title"].lower() or target_keyword.lower() in job["skills"].lower():
+            return 1.0 / rank
+    return 0.0
+```
+
 
 
 
