@@ -227,15 +227,15 @@ Senior aur junior engineer ka sabse bada farak: *kya tum prove kar sakte ho ki t
 ### 5.5 AI Security & Guardrails — HIGH Priority
 Public AI apps ko hack hone aur galat jawab dene se bachana:
 
-- [ ] prompt injection (direct jailbreaking)
+- [x] prompt injection (direct jailbreaking detection) — `security/guardrails.py`
 - [ ] indirect prompt injection (document/data ke andar chhupa hua malicious prompt)
-- [ ] input validation & sanitization
-- [ ] output validation & Pydantic schema enforcement
-- [ ] secrets management (API keys, credentials leak prevention)
-- [ ] sensitive data leakage prevention (PII detection)
+- [x] input validation & sanitization — `security/guardrails.py`
+- [x] output validation & Pydantic schema enforcement — `evaluation/evaluate_judge.py`
+- [x] secrets management (API keys, credentials leak prevention) — `.env` isolation & `.gitignore`
+- [x] sensitive data leakage prevention (PII detection & masking) — `security/guardrails.py`
 - [ ] tool abuse prevention (unauthorized actions rokna)
 - [ ] rate limiting & abuse prevention
-- [ ] basic guardrails (NeMo Guardrails ya custom validator rules)
+- [x] basic guardrails (custom regex validator rules) — `security/guardrails.py`
 
 ---
 

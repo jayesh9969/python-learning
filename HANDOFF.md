@@ -45,7 +45,11 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 
 **Phase 5: Evaluation & Observability: 100% COMPLETED ✅**
 
-Agla: **Phase 5.5: AI Security & Guardrails (Prompt Injection Defense, PII Masking & Jailbreak Protection)**.
+**Phase 5.5: AI Security & Guardrails: IN PROGRESS 🚀**
+- Input Sanitization & PII Masking: Regex-based redaction of phone numbers (`[REDACTED_PHONE]`) and email addresses (`[REDACTED_EMAIL]`) in `security/guardrails.py`.
+- Prompt Injection & Jailbreak Defense: Pre-LLM security gatekeeper with regex pattern matching (`INJECTION_PATTERNS`) and lowercase normalization (`text.lower()`). Successfully blocks attacks ("ignore all previous instructions", "reveal api key") before reaching the LLM.
+
+Agla: **Integrating Security Guardrails into Live Flagship Project 2 (`projects/job_matcher/main.py`) & Rate Limiting / Abuse Prevention**.
 
 
 

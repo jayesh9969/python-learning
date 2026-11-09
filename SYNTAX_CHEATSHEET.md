@@ -1307,6 +1307,41 @@ def calculate_reciprocal_rank(retrieved_jobs: list, target_keyword: str) -> floa
     return 0.0
 ```
 
+---
+
+## 9. AI Security & Guardrails
+
+### Input Sanitization, PII Masking & Prompt Injection Defense
+```python
+import re
+
+INJECTION_PATTERNS = [
+    r"ignore\s+(all\s+)?(previous\s+)?instructions",
+    r"forget\s+(all\s+)?(previous\s+)?rules",
+    r"reveal\s+(the\s+)?system\s+prompt",
+    r"print\s+(the\s+)?api\s*key",
+]
+
+def mask_pii(text: str) -> str:
+    # 10-digit phone number masking
+    text = re.sub(r"\b(?:\+?91[-.\s]?)?[6-9]\d{9}\b|\b\d{10}\b", "[REDACTED_PHONE]", text)
+    # email masking
+    text = re.sub(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", "[REDACTED_EMAIL]", text)
+    return text
+
+def is_prompt_injection(text: str) -> bool:
+    text_lower = text.lower()  # Bypass rokne ke liye lowercase normalization zaroori
+    for pattern in INJECTION_PATTERNS:
+        if re.search(pattern, text_lower):
+            return True
+    return False
+
+def secure_user_input(text: str) -> dict:
+    if is_prompt_injection(text):
+        return {"allowed": False, "sanitized_text": "", "reason": "Prompt injection blocked 🛡️"}
+    return {"allowed": True, "sanitized_text": mask_pii(text), "reason": "Safe ✅"}
+```
+
 
 
 
