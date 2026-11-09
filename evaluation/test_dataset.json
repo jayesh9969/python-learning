@@ -1,0 +1,18 @@
+[
+  {
+    "id": "tc-01",
+    "profile": "Junior Python developer with knowledge of basic Python, OOP, and Git",
+    "expected_domain": "Python Development"
+  },
+  {
+    "id": "tc-02",
+    "profile": "Data Analyst skilled in SQL, Excel, and basic statistics",
+    "expected_domain": "Data Analytics"
+  },
+  {
+    "id": "tc-03",
+    "profile": "Web developer knowing HTML, CSS, JavaScript, and building APIs",
+    "expected_domain": "Web & Full Stack"
+  }
+]
+

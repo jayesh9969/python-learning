@@ -207,13 +207,13 @@ Jo scratch se banaya uske ecosystem names samajhna (2-3 sessions, interview look
 Senior aur junior engineer ka sabse bada farak: *kya tum prove kar sakte ho ki tumhara AI sahi kaam kar raha hai?*
 
 #### AI Evaluation:
-- [ ] evaluation dataset creation (test set of 20-50 questions + ground truth)
+- [x] evaluation dataset creation (test set of realistic profiles) — `evaluation/test_dataset.json`
 - [ ] retrieval metrics (Hit Rate, MRR, Context Recall, Context Precision)
 - [x] generation metrics (Answer Relevance, Faithfulness/Groundedness) — `evaluation/evaluate_judge.py`
 - [x] LLM-as-judge pattern & prompt design — `evaluation/evaluate_judge.py`
 - [ ] **RAGAS** framework integration
 - [ ] **DeepEval** (pytest-style automated test suite for LLMs)
-- [ ] regression evaluation (prompt/chunk change karne par purani quality giri to nahi?)
+- [x] regression evaluation & batch benchmarking — `evaluation/batch_evaluate.py`
 
 #### Observability & Tracing:
 - [x] structured logging for AI systems — `testing_and_logging/agent_service.py`

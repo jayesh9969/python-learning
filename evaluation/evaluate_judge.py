@@ -20,13 +20,12 @@ def evaluate_faithfulness(candidate_profile: str, retrieved_jobs: list, diagnosi
     judge_prompt = f"You are an expert AI quality evaluator, Context({retrieved_jobs}),{candidate_profile},{diagnosis} Rules: if there is skill or claim in the {diagnosis} which is not present in {retrieved_jobs} then give a score 0.0 . if all claims are grounded then give a score 1.0 ."
 
     res = client.models.generate_content(
-        model="gemini-3.5-flash",
+        model="gemini-3.5-flash-lite",
         contents=judge_prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
             response_schema=EvaluationResult
         )
-    
     )
     return res.parsed
     # TODO: 1. Judge prompt taiyar kijiye jisme:
