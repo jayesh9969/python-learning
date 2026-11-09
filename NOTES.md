@@ -288,7 +288,29 @@ Project 1 : is project me humne Procedural RAG  chunking ka use kiya kyuki data 
 
 ## Regression Testing & CI Gates - 1) Regression Concept: Naye code ya prompt change se puraane chalte hue features ka tootna Regression kehlata hai. 2) Automated Test Suite: Manual verification ke badle `python -m pytest` har baar saare puraane tests 1 second mein verify karta hai. 3) CI Blocker Gate: GitHub Actions mein regression suite fail hone par PR merge block ho jata hai (Red ❌), jisse toota hua code kabhi live production server ya users tak nahi pahunchta.
 
-## AI Observability & Tracing (Langfuse) - 1) Black Box Problem: Production AI apps mein multiple steps (embedding, vector search, LLM generation) hote hain; normal logs latency, token consumption, aur ₹/$ cost ka step-by-step breakdown nahi de paate. 2) Trace vs Span vs Generation: Poore user request flow ko 'Trace' kehte hain; internal non-AI steps (DB retrieval, preprocessing) ko 'Span' (`@observe()`) kehte hain; LLM model calls ko 'Generation' (`@observe(as_type="generation")`) kehte hain jo model name, input prompt, output, aur token counts capture karta hai. 3) Background Batching & `flush()`: Langfuse SDK application ko slow hone se bachane ke liye telemetry network packets ko background thread mein batch karta hai; short CLI scripts mein program band hone se pehle `langfuse.flush()` chalana zaroori hai taaki queued data cloud par sync ho sake.
+## AI Observability & Tracing (Langfuse) - 1) Black Box Problem: Production AI apps mein multiple steps (embedding, vector search, LLM generation) hote hain; normal logs latency, token consumption, aur ₹/$ cost ka step-by-step breakdown nahi de paate. 2) Trace vs Span vs Generation: Poore user request flow ko 'Trace' kehte hain; internal non-AI steps (DB retrieval, preprocessing) ko 'Span' (`@observe()`) kehte hain; LLM model calls ko 'Generation' (`@observe(as_type="generation")`) kehte hain jo model name, input prompt, output, aur token counts capture karta hai. 3) Import Order Gotcha: `load_dotenv()` hamesha `from langfuse import observe` se pehle chalna chahiye; agar Langfuse pehle import ho gaya toh wo khali environment dekh kar disable ho jata hai. 4) Decorator Syntax:
+```python
+from dotenv import load_dotenv
+load_dotenv()  # 1. Pehle env load karo
+from langfuse import observe
+from langfuse.decorators import langfuse_context
+
+@observe()  # Root Trace
+def main_flow(query):
+    # Tags aur custom metadata
+    langfuse_context.update_current_trace(tags=["production"], metadata={"query_len": len(query)})
+    docs = search_db(query)
+    return generate_answer(query, docs)
+
+@observe()  # Child Span (Database / Logic)
+def search_db(q):
+    return [...]
+
+@observe(as_type="generation")  # Child Generation (LLM Call)
+def generate_answer(q, docs):
+    return client.models.generate_content(...)
+```
+5) Background Batching & `flush()`: Langfuse SDK telemetry ko background thread mein batch karta hai; FastAPI/server mein automatic rehta hai, lekin short CLI test scripts mein program exit hone se pehle `langfuse.flush()` lagana zaroori hai taaki queued traces cloud par sync ho sakein.
 
 ## LLM-as-a-Judge & Groundedness/Faithfulness Evaluation - 1) Why assert fails: LLMs non-deterministic hote hain (har baar alag shabdon mein sahi jawab dete hain), isliye traditional `assert output == expected` tests fail ho jaate hain. 2) Judge Pattern: Ek doosre strictly-prompted model (Evaluator) ko reference context (`retrieved_jobs`), candidate profile, aur diagnosis pass karke objective quality score (1.0 ya 0.0) aur qualitative reason nikaala jata hai. 3) Context is Mandatory: Bina retrieved context ke Judge kabhi bhi Faithfulness (sachai) verify nahi kar sakta, kyunki bina syllabus/kitaab ke Judge ko pata hi nahi chalega ki candidate ne hawa mein claims (hallucination) kiye hain ya context se bole hain. 4) Guaranteed JSON with Pydantic: `types.GenerateContentConfig(response_mime_type="application/json", response_schema=EvaluationResult)` lagane se model guaranteed schema follow karta hai, aur `res.parsed` seedha Python object instantiate kar deta hai bina manual `json.loads` ke.
 

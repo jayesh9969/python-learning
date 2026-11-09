@@ -1182,6 +1182,53 @@ jobs:
 
 ## 8. AI Evaluation & Observability
 
+### Langfuse Observability & Tracing (`@observe()`)
+```python
+# Environment variables (.env ya Render dashboard):
+# LANGFUSE_PUBLIC_KEY = "pk-lf-..."
+# LANGFUSE_SECRET_KEY = "sk-lf-..."
+# LANGFUSE_HOST       = "https://cloud.langfuse.com"
+
+from dotenv import load_dotenv
+load_dotenv()  # 1. PEHLE .env load karna zaroori hai
+
+from langfuse import observe, Langfuse
+from langfuse.decorators import langfuse_context
+
+# 1. Root / Parent Trace (Poore user request ke liye)
+@observe()
+def analyze_response(user_profile: str):
+    # Tags aur custom metadata dynamically inject karna
+    langfuse_context.update_current_trace(
+        tags=["production", "fastapi"],
+        metadata={"user_query_len": len(user_profile)}
+    )
+    jobs = match_jobs(user_profile)
+    diagnosis = generate_diagnosis(user_profile, jobs)
+    return {"jobs": jobs, "diagnosis": diagnosis}
+
+# 2. Child Span (Internal DB / Search / Preprocessing)
+@observe()
+def match_jobs(query: str, limit: int = 3):
+    # normal database query logic
+    return [{"title": "Python Dev", "skills": "Python, SQL"}]
+
+# 3. Child Generation (LLM Model Calls — Model name, prompt, output, tokens & cost track karta hai)
+@observe(as_type="generation")
+def generate_diagnosis(profile: str, matched_jobs: list):
+    res = client.models.generate_content(
+        model="gemini-3.5-flash-lite",
+        contents=f"Profile: {profile}, Jobs: {matched_jobs}"
+    )
+    return res.text
+
+# 4. Flush Telemetry (Server mein automatic, lekin short CLI test scripts mein exit se pehle zaroori)
+if __name__ == "__main__":
+    analyze_response("Python, SQL developer")
+    langfuse = Langfuse()
+    langfuse.flush()
+```
+
 ### LLM-as-a-Judge (Faithfulness / Groundedness)
 ```python
 from google import genai
@@ -1212,6 +1259,38 @@ Rule: If diagnosis claims skills not present in Context, score 0.0. If all claim
     return res.parsed
 ```
 
+### Automated Batch Evaluation & Golden Dataset Benchmark
+```python
+import sys
+import json
+
+def run_benchmark(dataset_path: str = "evaluation/test_dataset.json") -> float:
+    with open(dataset_path, "r", encoding="utf-8") as f:
+        test_cases = json.load(f)
+
+    scores = []
+    for tc in test_cases:
+        jobs = match_jobs(tc["profile"])
+        diagnosis = generate_diagnosis(tc["profile"], jobs)
+        result = evaluate_faithfulness(tc["profile"], jobs, diagnosis)
+        scores.append(result.score)
+
+    # Edge Case Guard: ZeroDivisionError rokna
+    if not scores:
+        print("No test cases found!")
+        return 0.0
+
+    avg_score = sum(scores) / len(scores)
+
+    # CI/CD Gate: Fail hone par non-zero exit code throw karo
+    if avg_score < 0.8:
+        print(f"BENCHMARK FAILED: Average score {avg_score} < 0.8")
+        sys.exit(1)
+
+    print(f"BENCHMARK PASSED: Average score {avg_score}")
+    return avg_score
+```
+
 ### Retrieval Metrics: Hit Rate & MRR (Mean Reciprocal Rank)
 ```python
 def calculate_hit_rate(retrieved_jobs: list, target_keyword: str) -> float:
@@ -1221,6 +1300,7 @@ def calculate_hit_rate(retrieved_jobs: list, target_keyword: str) -> float:
     return 0.0
 
 def calculate_reciprocal_rank(retrieved_jobs: list, target_keyword: str) -> float:
+    # start=1 se 1-based human ranking aur 0-division safety milti hai
     for rank, job in enumerate(retrieved_jobs, start=1):
         if target_keyword.lower() in job["title"].lower() or target_keyword.lower() in job["skills"].lower():
             return 1.0 / rank
