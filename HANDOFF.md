@@ -49,8 +49,9 @@ Ye file batati hai ab tak kya hua, kaha atka tha, kaha dobara dhyan dena hai. `R
 - Input Sanitization & PII Masking: Regex-based redaction of phone numbers (`[REDACTED_PHONE]`) and email addresses (`[REDACTED_EMAIL]`) in `security/guardrails.py` & `projects/job_matcher/guardrails.py`.
 - Prompt Injection & Jailbreak Defense: Pre-LLM security gatekeeper with regex pattern matching (`INJECTION_PATTERNS`) and lowercase normalization (`text.lower()`). Successfully blocks attacks ("ignore all previous instructions", "reveal api key") before reaching the LLM.
 - Flagship Project 2 Live Security Integration: Connected `secure_user_input()` into `projects/job_matcher/main.py`. Malicious requests raise `HTTPException(status_code=400, detail=...)` protecting Gemini & Supabase tokens (0 cost). Safe profiles are sanitized before LLM. Frontend (`app.py`) gracefully surfaces `🛡️ Security Alert` card on 400. Automated pytest verification passed (`3 passed in 12.35s` in `projects/job_matcher/test_api.py`).
+- Rate Limiting & Abuse Prevention: Implemented `SlidingWindowRateLimiter` from first principles in `security/rate_limiter.py`. Mastered sliding window timestamp filtering (`now - t < window_seconds`), state tracking via `history.append(now)`, and prevention of DoS / quota exhaustion attacks via standard HTTP 429 Too Many Requests.
 
-Agla: **Phase 5.5: Rate Limiting & Abuse Prevention (Slowdown / Token Bucket / Request Throttling)**.
+Agla: **Phase 5.5: Indirect Prompt Injection Defense (Data-poisoning in external files/resumes) & Tool Abuse Protection**.
 
 
 

@@ -1342,6 +1342,30 @@ def secure_user_input(text: str) -> dict:
     return {"allowed": True, "sanitized_text": mask_pii(text), "reason": "Safe ✅"}
 ```
 
+### In-Memory Sliding Window Rate Limiter
+```python
+import time
+from collections import defaultdict
+
+class SlidingWindowRateLimiter:
+    def __init__(self, max_requests: int = 5, window_seconds: int = 60):
+        self.max_requests = max_requests
+        self.window_seconds = window_seconds
+        self.client_history = defaultdict(list)
+
+    def is_allowed(self, client_id: str) -> bool:
+        now = time.time()
+        # 1. Purani timestamps hata do jo window_seconds se purani hain
+        self.client_history[client_id] = [
+            t for t in self.client_history[client_id] if now - t < self.window_seconds
+        ]
+        # 2. Check karo active count limit ke andar hai ya nahi
+        if len(self.client_history[client_id]) < self.max_requests:
+            self.client_history[client_id].append(now)
+            return True
+        return False  # Limit cross -> Trigger HTTP 429 Too Many Requests
+```
+
 
 
 

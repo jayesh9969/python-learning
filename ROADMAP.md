@@ -234,7 +234,7 @@ Public AI apps ko hack hone aur galat jawab dene se bachana:
 - [x] secrets management (API keys, credentials leak prevention) — `.env` isolation & `.gitignore`
 - [x] sensitive data leakage prevention (PII detection & masking) — `security/guardrails.py`
 - [ ] tool abuse prevention (unauthorized actions rokna)
-- [ ] rate limiting & abuse prevention
+- [x] rate limiting & abuse prevention (Sliding Window Log algorithm) — `security/rate_limiter.py`
 - [x] basic guardrails (custom regex validator rules) — `security/guardrails.py`
 
 ---
