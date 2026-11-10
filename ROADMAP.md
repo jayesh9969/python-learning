@@ -228,7 +228,7 @@ Senior aur junior engineer ka sabse bada farak: *kya tum prove kar sakte ho ki t
 Public AI apps ko hack hone aur galat jawab dene se bachana:
 
 - [x] prompt injection (direct jailbreaking detection) — `security/guardrails.py`
-- [ ] indirect prompt injection (document/data ke andar chhupa hua malicious prompt)
+- [x] indirect prompt injection (XML boundary sandboxing & defense) — `security/indirect_injection_defense.py`
 - [x] input validation & sanitization — `security/guardrails.py`
 - [x] output validation & Pydantic schema enforcement — `evaluation/evaluate_judge.py`
 - [x] secrets management (API keys, credentials leak prevention) — `.env` isolation & `.gitignore`
@@ -305,25 +305,52 @@ Client ko skills ki list nahi, **working links aur code** chahiye. Har major pro
 
 ---
 
-## Job-Readiness Checklist (Kab Apply Karna Shuru Karein)
+## Job-Readiness Checklist (Status)
 
-Har low-priority item khatam hone ka intezar mat karo. Jab ye checklist poori ho jaye, **actively apply karna shuru kar do**:
+Har low-priority item khatam hone ka intezar mat karo. Yahan dekho kya complete ho chuka hai:
 
-- [ ] Python engineering fundamentals (modules, typing, async, logging)
-- [ ] SQL / PostgreSQL basics
-- [ ] LLM APIs (structured outputs, streaming, error handling)
-- [ ] Embeddings & Vector search
-- [ ] Production RAG with hybrid search (BM25 + dense)
-- [ ] Agents & reliable tool calling with error handling
-- [ ] AI Evaluation (RAGAS / DeepEval metrics)
-- [ ] FastAPI backend + Pydantic validation
-- [ ] Docker containerization
-- [ ] Git & GitHub workflow with basic CI (GitHub Actions)
-- [ ] Testing with pytest (unit + integration + mocks)
-- [ ] Basic AI security & secret management
-- [ ] Deployment & live hosting
-- [ ] Observability & tracing (Langfuse)
-- [ ] At least 2 strong deployed projects (Project 1 live + Project 2 flagship)
+- [x] Python engineering fundamentals (modules, typing, async, logging)
+- [x] SQL / PostgreSQL basics (Supabase pgvector)
+- [x] LLM APIs (structured outputs, streaming, error handling)
+- [x] Embeddings & Vector search (Chroma + pgvector)
+- [x] Production RAG with hybrid search (BM25 + dense)
+- [x] Agents & reliable tool calling with error handling
+- [x] AI Evaluation (RAGAS / DeepEval principles, Faithfulness, Hit Rate / MRR)
+- [x] FastAPI backend + Pydantic validation
+- [x] Docker containerization
+- [x] Git & GitHub workflow with basic CI (GitHub Actions)
+- [x] Testing with pytest (unit + integration + mocks)
+- [x] Basic AI security & secret management (Guardrails, PII masking, Rate Limiter)
+- [x] Deployment & live hosting (Render + Streamlit Cloud)
+- [x] Observability & tracing (Langfuse cloud traces, latency, costs)
+- [x] At least 2 strong deployed projects (Project 1 live + Project 2 flagship live)
+
+---
+
+## 10. Job Preparation & Application Sprint (NEW)
+
+Technical foundation ready hone ke baad interview aur hiring clear karne ke liye targeted sprint:
+
+### 10.1 GitHub & Portfolio Presence
+- [ ] Pinned GitHub Repositories (Project 1 & Project 2 clean repositories)
+- [ ] Production-Grade READMEs (Architecture Diagram, Problem Statement, Metrics, Live Links, Tech Stack badges)
+- [ ] 2-Minute Demo Loom/Video for Project 2 (UI demo + Langfuse dashboard trace walkthrough)
+
+### 10.2 Resume & Profile Positioning
+- [ ] ATS-Optimized Resume (Positioned as **Applied AI / GenAI Engineer**)
+- [ ] Impact-driven bullet points with real numbers (e.g., "Built hybrid search with 1.0 MRR", "Reduced latency via async streaming", "Zero-cost DoS defense via sliding window limiter")
+- [ ] LinkedIn profile update (Featured projects, live links, GenAI keywords)
+- [ ] Upwork / Freelance profile setup (Targeting foreign clients needing RAG & agent automation)
+
+### 10.3 Interview Preparation (GenAI & System Design)
+- [ ] RAG & Agent System Design Trade-offs (Chroma vs pgvector, Chunk size vs overlap, BM25 vs Dense, ReAct vs StateGraph)
+- [ ] Production Debugging Stories (Handoff file ki real galtiyan aur unka fix: casing mismatch, rate limit 429, zero division in eval)
+- [ ] Python Engineering & Coding basics refresh (collections, dicts, OOP, decorators, async)
+
+### 10.4 Active Outbound & Application Pipeline
+- [ ] Daily Outreach: 5 tailored applications on Wellfound (AngelList), LinkedIn, YC WorkAtAStartup
+- [ ] Cold Outreach on X (Twitter) / LinkedIn to AI startup founders & CTOs with Loom demo link
+- [ ] Freelance Proposal Bidding (Upwork / Contra for fast international client proof-of-work)
 
 ---
 
@@ -345,4 +372,7 @@ Deep ML research theory · scratch se transformer train karna · Kaggle competit
 **Deployment & Containers:** FastAPI (`@app.get`/`@app.post`, Pydantic models, `/docs`) · `uvicorn` · Docker (`Dockerfile`, `build`, `run -p`, `.dockerignore`) · `.env` + `--env-file` · Render hosting · Streamlit UI (`st.session_state`, `st.chat_message`)
 **Agents, LangGraph & MCP:** tool calling (manual & automatic) · ReAct pattern · LangGraph (`StateGraph`, `ToolNode`, `tools_condition`, `MemorySaver`, `RetryPolicy`) · MCP (`FastMCP`, `stdio_client`, dynamic tool discovery)
 **PostgreSQL & pgvector:** Supabase PostgreSQL 17 · `VECTOR(3072)` · `<=>` cosine distance · explicit `%s::vector` casting · combined SQL filter + vector similarity search
-**Projects Live:** Project 1 (Marathi WhatsApp RAG Assistant deployed on Render)
+**Testing, QA & CI/CD:** `pytest` · `@pytest.fixture` · FastAPI `TestClient` · mocking · regression testing · GitHub Actions CI
+**Evaluation & Observability:** Langfuse cloud tracing · `@observe()` · latency/cost monitoring · LLM-as-a-judge · Faithfulness · Golden dataset · Hit Rate & MRR
+**Security & Guardrails:** Prompt injection detection · PII masking · Sliding Window Rate Limiting · status 429 & 400 guards
+**Projects Live:** Project 1 (Marathi WhatsApp RAG Assistant on Render) · Project 2 (Flagship AI Job Matcher & Route Finder on Render + Streamlit Cloud)
