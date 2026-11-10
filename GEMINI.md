@@ -1,7 +1,7 @@
 # Antigravity Rules & Workspace Memory
 
 ## Primary Teaching Protocol
-All teaching rules, core workflow (**Explain → Quiz → Implement → Review → Advance**), persona, and testing standards live in [`CLAUDE.md`](file:///c:/Users/Jayu/python-learning/CLAUDE.md). Always follow `CLAUDE.md` as the single source of truth.
+All teaching rules, the 8-Phase Teaching Loop (Concept → Drill Spec → Author → Explain → Interrogate → Fix/Rerun → Transfer Check → Log), Hard Rules (zero code generation, blank-file authoring, zero false praise), persona, and standards live in [`CLAUDE.md`](file:///c:/Users/Jayu/python-learning/CLAUDE.md). Always follow `CLAUDE.md` as the single source of truth.
 
 ## Memory & Pointers
 - Teaching Rules & Protocol: [`CLAUDE.md`](file:///c:/Users/Jayu/python-learning/CLAUDE.md)
